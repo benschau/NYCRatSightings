@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NYCRatSightings</string>
+    <string name="login_button">Login</string>
+    <string name="register_button">Register</string>
+    <string name="passwd_txtview">Password</string>
+    <string name="register_txtview">Register here.</string>
+    <string name="email_txtview">Email</string>
+
 </resources>
