@@ -45,11 +45,11 @@
         android:text="@string/login_button" />
 
     <Button
-        android:id="@+id/cancel"
+        android:id="@+id/returnToWelcomeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:layout_marginBottom="24dp"
+        android:layout_marginTop="1dp"
         android:text="CANCEL" />
 
     <TextView
