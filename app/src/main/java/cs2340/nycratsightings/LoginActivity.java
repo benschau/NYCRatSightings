@@ -1,9 +1,8 @@
 package cs2340.nycratsightings;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +15,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //Creating dummy user here
-        final  user dummy = new user("lmao","dank");
+        final  user dummy = new user("user","pass");
 
         final Button login = (Button) findViewById(R.id.login);
         final Button welcomeReturnButton = (Button) findViewById(R.id.returnToWelcomeButton);
@@ -31,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String emaildata = ((EditText)findViewById(R.id.email)).getText().toString();
                 String password = ((EditText)findViewById(R.id.password)).getText().toString();
-                if(dummy.validateLogin(emaildata,password)){
+                if (dummy.validateLogin(emaildata,password)) {
                     goToMain(v);
                 }
             }
