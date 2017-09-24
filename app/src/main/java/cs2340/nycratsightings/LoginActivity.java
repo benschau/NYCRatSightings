@@ -14,8 +14,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final Button login = (Button) findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
+        final Button cancel = (Button) findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
