@@ -14,12 +14,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Creating dummy user here
-        final  user dummy = new user("user","pass");
-
+        final TextView loginFailed = (TextView) findViewById(R.id.loginFailed);
         final Button login = (Button) findViewById(R.id.login);
         final Button welcomeReturnButton = (Button) findViewById(R.id.returnToWelcomeButton);
         final TextView registerHere = (TextView) findViewById(R.id.signup);
+        //Creating dummy user here
+        final  user dummy = new user("user","pass");
+
         registerHere.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 goToRegister(v);
@@ -32,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
                 String password = ((EditText)findViewById(R.id.password)).getText().toString();
                 if (dummy.validateLogin(emaildata,password)) {
                     goToMain(v);
+                } else {
+                    loginFailed.setText("Incorrect username/password combination");
                 }
             }
         });
