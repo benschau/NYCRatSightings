@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final TextView loginFailed = (TextView) findViewById(R.id.loginFailed);
         final Button login = (Button) findViewById(R.id.login);
-        final Button welcomeReturnButton = (Button) findViewById(R.id.returnToWelcomeButton);
+        final Button cancelLogin = (Button) findViewById(R.id.cancelLogin);
         final TextView registerHere = (TextView) findViewById(R.id.signup);
         //Creating dummy user here
         final  user dummy = new user("user","pass");
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        welcomeReturnButton.setOnClickListener(new Button.OnClickListener() {
+        cancelLogin.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 returnToWelcome(v);
             }
