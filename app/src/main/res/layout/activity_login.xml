@@ -9,11 +9,6 @@
     android:paddingRight="24dp">
 
     <TextView
-        android:id="@+id/loginFailed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -25,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_hint" />
 
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:hint="@string/passwd_hint" />
 
     <Button
         android:id="@+id/login"
@@ -55,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="1dp"
-        android:text="CANCEL" />
+        android:text="@string/cancel" />
 
     <TextView
         android:id="@+id/signup"

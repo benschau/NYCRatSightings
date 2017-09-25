@@ -1,25 +1,31 @@
 package cs2340.nycratsightings;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private TextView mTitle;
     private TextView mloginText;
     private TextView mregisterText;
+    private Typeface mtypeFace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        mtypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
+
+        mTitle = (TextView) findViewById(R.id.title);
         mloginText = (TextView) findViewById(R.id.loginText);
         mregisterText = (TextView) findViewById(R.id.registerText);
 
+        mTitle.setTypeface(mtypeFace);
         mloginText.setOnClickListener(this);
         mregisterText.setOnClickListener(this);
     }

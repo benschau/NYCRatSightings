@@ -5,5 +5,8 @@
     <string name="passwd_txtview">Password</string>
     <string name="register_txtview">Register here.</string>
     <string name="email_txtview">Email</string>
+    <string name="cancel">CANCEL</string>
+    <string name="email_hint">Input email here.</string>
+    <string name="passwd_hint">Input password here</string>
 
 </resources>
