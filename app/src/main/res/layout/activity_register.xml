@@ -36,6 +36,30 @@
         android:ems="10"
         android:inputType="textPassword" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/user_type"/>
+
+    <RadioGroup
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/standard"/>
+        <RadioButton
+            android:id="@+id/administrator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/administrator"/>
+    </RadioGroup>
+
     <Button
         android:id="@+id/register"
         android:layout_width="match_parent"

@@ -8,5 +8,8 @@
     <string name="cancel">CANCEL</string>
     <string name="email_hint">Input email here.</string>
     <string name="passwd_hint">Input password here</string>
+    <string name="standard">Standard</string>
+    <string name="administrator">Administrator</string>
+    <string name="user_type">User Type (Select One)</string>
 
 </resources>
