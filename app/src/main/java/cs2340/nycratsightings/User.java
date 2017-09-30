@@ -11,6 +11,12 @@ public class User {
     private String mPasswd;
 
     /**
+     * Default constructor
+     */
+    public User () {
+
+    }
+    /**
      * Create a new user
      * @param email user's email
      * @param passwd user's passwd
@@ -18,6 +24,22 @@ public class User {
     public User (String email, String passwd) {
         mEmail = email;
         mPasswd = passwd;
+    }
+
+    String getmEmail () {
+        return mEmail;
+    }
+
+    void setmEmail (String mEmail) {
+        this.mEmail = mEmail;
+    }
+
+    String getmPasswd () {
+        return mPasswd;
+    }
+
+    void setmPasswd (String mPasswd) {
+        this.mPasswd = mPasswd;
     }
 
     /**
