@@ -44,20 +44,23 @@
         android:text="@string/user_type"/>
 
     <RadioGroup
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/userType"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+
         <RadioButton
             android:id="@+id/standard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/standard"/>
+            android:text="@string/standard" />
+
         <RadioButton
-            android:id="@+id/administrator"
+            android:id="@+id/admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/administrator"/>
+            android:text="@string/administrator" />
     </RadioGroup>
 
     <Button
