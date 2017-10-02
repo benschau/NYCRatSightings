@@ -7,25 +7,21 @@ package cs2340.nycratsightings;
 public class Admin extends User {
 
     /**
-     * Constructor
+     * Constructor for admin user. Call super class constructor
      */
-    public Admin (String email, String passwd) {
-        super(email, passwd);
+    public Admin(String email, String password) {
+        super(email, password);
     }
 
-
-    void addUser(String email, String passwd) {
-        User user = new User(email, passwd);
+    public void addUser(String email, String password) {
+        User user = new User(email, password);
     }
 
-    void deleteUser(User user) {
+    public void deleteUser(User user) {
         user = null;
     }
 
-    void unlockAccount(User user) {
-        user.setmPasswd(null);
+    public void unlockAccount(User user) {
+        user.setmAccountState("unlocked");
     }
-
-
-
 }
