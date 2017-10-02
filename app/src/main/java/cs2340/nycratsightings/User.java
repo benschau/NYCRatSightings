@@ -8,7 +8,8 @@ package cs2340.nycratsightings;
 
 public class User {
     private String mEmail;
-    private String mPasswd;
+    private String mPassword;
+    private String mAccountState;
 
     /**
      * Default constructor
@@ -23,23 +24,28 @@ public class User {
      */
     public User (String email, String passwd) {
         mEmail = email;
-        mPasswd = passwd;
+        mPassword = passwd;
+        mAccountState = "unlocked";
     }
 
-    String getmEmail () {
+    public void setmEmail(String email) {
+        mEmail = email;
+    }
+    public void setmPassword(String password) {
+        mPassword = password;
+    }
+    public void setmAccountState(String accountState) {
+        mAccountState = accountState;
+    }
+
+    public String getmEmail() {
         return mEmail;
     }
-
-    void setmEmail (String mEmail) {
-        this.mEmail = mEmail;
+    public String getmPassword() {
+        return mPassword;
     }
-
-    String getmPasswd () {
-        return mPasswd;
-    }
-
-    void setmPasswd (String mPasswd) {
-        this.mPasswd = mPasswd;
+    public String getmAccountState() {
+        return mAccountState;
     }
 
     /**
@@ -48,7 +54,7 @@ public class User {
      * @param passwd password input
      * @return true if email and password match, false if otherwise.
      */
-    public boolean validateLogin(String email, String passwd) {
-        return (email.equals(mEmail)) && (passwd.equals(mPasswd));
+    public boolean validateLogin(String email, String password) {
+        return (email.equals(mEmail)) && (password.equals(mPassword));
     }
 }
