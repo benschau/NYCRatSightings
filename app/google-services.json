@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "476597864673",
+    "firebase_url": "https://nycratsightings.firebaseio.com",
+    "project_id": "nycratsightings",
+    "storage_bucket": "nycratsightings.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476597864673:android:46757ae7d8a9db76",
+        "android_client_info": {
+          "package_name": "cs2340.nycratsightings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476597864673-h8lqmjh2bvkt9lnsn4d5l3mqujodk5rv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cs2340.nycratsightings",
+            "certificate_hash": "507d2e85d55c8d4bc6402ad7f6100b30890e7d8e"
+          }
+        },
+        {
+          "client_id": "476597864673-foedpi1sgeo1r85q74ndmiti5f36np33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr450AO_o7cWGBBlTFszhhSSO6CE2bvKE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476597864673-foedpi1sgeo1r85q74ndmiti5f36np33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
