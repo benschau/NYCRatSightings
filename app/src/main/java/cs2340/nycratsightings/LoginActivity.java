@@ -1,16 +1,28 @@
 package cs2340.nycratsightings;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private final String TAG = "LoginActivity";
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,53 +30,86 @@ public class LoginActivity extends AppCompatActivity {
 
         final Button login = (Button) findViewById(R.id.login);
         final Button cancelLogin = (Button) findViewById(R.id.cancelLogin);
-        final TextView registerHere = (TextView) findViewById(R.id.signup);
-        //Creating dummy user here
-        final User dummy = new User("user","pass");
+        final TextView signup = (TextView) findViewById(R.id.signup);
 
-        registerHere.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                goToRegister(v);
-            }
-        });
-
-        login.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Context context;
-                String email, passwd;
-
-                email = ((EditText) findViewById(R.id.email)).getText().toString();
-                passwd = ((EditText) findViewById(R.id.password)).getText().toString();
-
-                if (dummy.validateLogin(email, passwd)) {
-                    goToMain(v);
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // signed in
+                    Log.d(TAG, "OnAuthStateChanged: Signed in.");
+                    toMain();
                 } else {
-                    context = getApplicationContext();
-                    CharSequence text = "Incorrect email and password combination!";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast.makeText(context, text, duration).show();
+                    // signed out
+                    Log.d(TAG, "OnAuthStateChanged: Signed out.");
+                    // TODO: Implement what to do when signed out at the login screen.
                 }
             }
-        });
+        };
 
-        cancelLogin.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                returnToWelcome(v);
-            }
-        });
+        signup.setOnClickListener(this);
+        login.setOnClickListener(this);
+        cancelLogin.setOnClickListener(this);
     }
 
-    public void returnToWelcome(View view) {
-        startActivity(new Intent(view.getContext(),WelcomeActivity.class));
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
-    public void goToMain(View view){
-        startActivity(new Intent(view.getContext(),MainActivity.class));
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
-    public void goToRegister(View view){
-        startActivity(new Intent(view.getContext(),RegisterActivity.class));
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.cancelLogin:
+                finish();
+                break;
+            case R.id.signup:
+                this.startActivity(new Intent(this, RegisterActivity.class));
+                break;
+            case R.id.login:
+                login();
+                break;
+            default:
+                break;
+        }
     }
 
+    public void toMain() {
+        this.startActivity(new Intent(this, MainActivity.class));
+    }
+
+    /**
+     * Login to the Firebase system.
+     * If the login fails, a toast will appear to indicate login failure.
+     */
+    public void login() {
+        String email, passwd;
+
+        email = ((EditText) findViewById(R.id.email)).getText().toString();
+        passwd = ((EditText) findViewById(R.id.password)).getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, passwd)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, R.string.login_failed,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 }

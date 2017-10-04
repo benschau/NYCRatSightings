@@ -1,32 +1,34 @@
 package cs2340.nycratsightings;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by Benson Chau on 9/25/2017.
  *
  * Model for account information.
  */
-
+@IgnoreExtraProperties
 public class User {
-    private String mEmail;
-    private String mPasswd;
+    /**
+     * Instance variables are required to be public in order for Firebase to serialize them
+     * in the database.
+     */
+    public String mEmail;
+    public Boolean mAdmin;
+
+    /**
+     * Default constructor. Needed for DataSnapshot.getValue(User.class)
+     */
+    public User() {
+
+    }
 
     /**
      * Create a new user
      * @param email user's email
-     * @param passwd user's passwd
      */
-    public User (String email, String passwd) {
+    public User (String email, Boolean admin) {
         mEmail = email;
-        mPasswd = passwd;
-    }
-
-    /**
-     * Check user's credentials against given parameters.
-     * @param email email input
-     * @param passwd password input
-     * @return true if email and password match, false if otherwise.
-     */
-    public boolean validateLogin(String email, String passwd) {
-        return (email.equals(mEmail)) && (passwd.equals(mPasswd));
+        mAdmin = admin;
     }
 }

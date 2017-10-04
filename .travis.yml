@@ -1,0 +1,15 @@
+language: android
+android:
+  components:
+    # Build tools version
+    - build-tools-25.0.3
+
+    # SDK version to compile project
+    - android-25
+
+    # additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-google-firebase
+    - addon-google_apis-google-19

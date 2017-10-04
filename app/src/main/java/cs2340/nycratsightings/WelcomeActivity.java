@@ -1,5 +1,6 @@
 package cs2340.nycratsightings;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -7,27 +8,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class WelcomeActivity extends Activity implements View.OnClickListener{
 
     private TextView mTitle;
-    private TextView mloginText;
-    private TextView mregisterText;
-    private Typeface mtypeFace;
+    private TextView mLoginText;
+    private TextView mRegisterText;
+    private Typeface mTypeFace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        mtypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
+        mTypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
 
         mTitle = (TextView) findViewById(R.id.title);
-        mloginText = (TextView) findViewById(R.id.loginText);
-        mregisterText = (TextView) findViewById(R.id.registerText);
+        mLoginText = (TextView) findViewById(R.id.loginText);
+        mRegisterText = (TextView) findViewById(R.id.registerText);
 
-        mTitle.setTypeface(mtypeFace);
-        mloginText.setOnClickListener(this);
-        mregisterText.setOnClickListener(this);
+        mTitle.setTypeface(mTypeFace);
+        mLoginText.setOnClickListener(this);
+        mRegisterText.setOnClickListener(this);
     }
 
     @Override
