@@ -14,7 +14,6 @@ public class User {
      * in the database.
      */
     public String mEmail;
-    public Boolean mAdmin;
 
     /**
      * Default constructor. Needed for DataSnapshot.getValue(User.class)
@@ -27,8 +26,7 @@ public class User {
      * Create a new user
      * @param email user's email
      */
-    public User (String email, Boolean admin) {
+    public User (String email) {
         mEmail = email;
-        mAdmin = admin;
     }
 }
