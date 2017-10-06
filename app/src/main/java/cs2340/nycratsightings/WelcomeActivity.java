@@ -13,10 +13,9 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static com.google.android.gms.internal.zzt.TAG;
-
 public class WelcomeActivity extends Activity implements View.OnClickListener{
 
+    private final String TAG = "WelcomeActivity";
     private TextView mTitle;
     private TextView mLoginText;
     private TextView mRegisterText;
@@ -31,9 +30,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 
         mTypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
 
-        mTitle = (TextView) findViewById(R.id.title);
-        mLoginText = (TextView) findViewById(R.id.loginText);
-        mRegisterText = (TextView) findViewById(R.id.registerText);
+        mTitle = findViewById(R.id.title);
+        mLoginText = findViewById(R.id.loginText);
+        mRegisterText = findViewById(R.id.registerText);
 
         mTitle.setTypeface(mTypeFace);
         mLoginText.setOnClickListener(this);
