@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        welcomeView = (TextView) findViewById(R.id.welcome_text);
         logoutButton = (Button) findViewById(R.id.logoutButton);
         mTypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
 

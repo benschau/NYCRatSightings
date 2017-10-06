@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -51,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void writeNewUser(String uid, String email) {
         User user = new User(email, mUserType.isChecked());
-        String tag = mUserType.isChecked() ? "users" : "admins";
+        String tag = mUserType.isChecked() ? "admins" : "users";
         DatabaseReference ref = mDB.getReference();
 
         ref.child(tag).child(uid).setValue(user);
@@ -68,7 +70,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, R.string.register_failed,
+                            FirebaseException e = (FirebaseException)task.getException();
+                            Toast.makeText(RegisterActivity.this, R.string.register_failed + e.getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             FirebaseUser user = task.getResult().getUser();
