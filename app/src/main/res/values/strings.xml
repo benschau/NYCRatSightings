@@ -14,5 +14,6 @@
     <string name="login_failed">Incorrect email/password.</string>
     <string name="register_failed">Failed to create account.</string>
     <string name="admin">Admin</string>
+    <string name="title_activity_dashboard">Dashboard</string>
 
 </resources>
