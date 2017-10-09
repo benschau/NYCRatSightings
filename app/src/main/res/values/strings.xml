@@ -6,7 +6,7 @@
     <string name="sign_out">Sign Out</string>
 
     <string name="passwd_txtview">Password</string>
-    <string name="register_txtview">Register here.</string>
+    <string name="register_txtview">Register Here</string>
     <string name="email_txtview">Email</string>
     <string name="email_hint">Input email here.</string>
     <string name="passwd_hint">Input password here</string>
@@ -15,5 +15,11 @@
     <string name="register_failed">Failed to create account.</string>
     <string name="admin">Admin</string>
     <string name="title_activity_dashboard">Dashboard</string>
+
+    <string name="sightings">Sightings</string>
+    <string name="location">Location Type</string>
+    <string name="date">Created Date</string>
+    <string name="borough">Borough</string>
+
 
 </resources>
