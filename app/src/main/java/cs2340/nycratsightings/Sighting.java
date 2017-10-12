@@ -1,39 +1,30 @@
 package cs2340.nycratsightings;
 
+import android.util.Log;
+
 public class Sighting {
-    private Integer uniqueKey;
+    private static final String TAG = "TAG";
+    private String uniqueKey;
     private String creationDate;
     private String locationType;
     private String incidentZip;
     private String incidentAddress;
     private String city;
     private String borough;
-    private Float latitude;
-    private Float longitude;
+    private String latitude;
+    private String longitude;
 
     /**
-     * Takes in an object array consisting of ints and floats and strings
-     * then assigns the apropriate data at each index to the Sighting's
-     * attribute data
-     * @param input
      */
-    public Sighting(Object[] input){
-        uniqueKey = (Integer) input[0];
-        creationDate = (String) input[1];
-        locationType = (String) input[2];
-        incidentZip = (String) input[3];
-        incidentAddress = (String) input[4];
-        city = (String) input[5];
-        borough = (String) input[6];
-        latitude = (Float) input[7];
-        longitude = (Float) input[8];
+    public Sighting() {
     }
 
-    public Integer getUniqueKey() {
+
+    public String getUniqueKey() {
         return uniqueKey;
     }
 
-    public void setUniqueKey(Integer uniqueKey) {
+    public void setUniqueKey(String uniqueKey) {
         this.uniqueKey = uniqueKey;
     }
 
@@ -85,34 +76,34 @@ public class Sighting {
         this.borough = borough;
     }
 
-    public Float getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public Float getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
     @Override
     public String toString() {
         return "Sighting{" +
-                "uniqueKey=" + uniqueKey +
+                "uniqueKey='" + uniqueKey + '\'' +
                 ", creationDate='" + creationDate + '\'' +
                 ", locationType='" + locationType + '\'' +
                 ", incidentZip='" + incidentZip + '\'' +
                 ", incidentAddress='" + incidentAddress + '\'' +
                 ", city='" + city + '\'' +
                 ", borough='" + borough + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
                 '}';
     }
 }

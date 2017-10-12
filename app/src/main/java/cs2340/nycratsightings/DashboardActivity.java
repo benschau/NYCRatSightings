@@ -51,7 +51,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
 }*/
-package cs2340.nycratsightings;
+/*package cs2340.nycratsightings;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -86,4 +86,85 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
+}*/
+
+package cs2340.nycratsightings;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+
+public class DashboardActivity extends AppCompatActivity {
+
+    DashboardAdapter mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dashboard_listview);
+
+        ListView mList = (ListView) findViewById(R.id.csv_listview);
+
+        ArrayList<Sighting> sightings = loadArrayFromFile();
+
+        mAdapter = new DashboardAdapter(this, sightings);
+
+        //attach our Adapter to the ListView. This will populate all of the rows.
+        mList.setAdapter(mAdapter);
+
+        mList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+                Toast.makeText(v.getContext(), mAdapter.getItem(pos).getBorough(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private ArrayList<Sighting> loadArrayFromFile() {
+        ArrayList<Sighting> sightings = new ArrayList<>();
+        try {
+            InputStream csvFile = getResources().openRawResource(R.raw.small);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
+            String line;
+            boolean isRealData = false;
+
+            //Read each line
+            while ((line = reader.readLine()) != null) {
+                //Split to separate
+                String[] RowData = line.split(",");
+
+                Sighting sighting = new Sighting();
+                sighting.setBorough(RowData[0]);
+                sighting.setCity(RowData[1]);
+                sighting.setCreationDate(RowData[2]);
+                sighting.setIncidentAddress(RowData[3]);
+                sighting.setIncidentZip(RowData[4]);
+                sighting.setLatitude(RowData[5]);
+                sighting.setLocationType(RowData[6]);
+                sighting.setLongitude(RowData[7]);
+
+                if (isRealData) {
+                    sightings.add(sighting);
+                }
+                isRealData = true;
+            }
+            return sightings;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
+
+

@@ -4,53 +4,38 @@ package cs2340.nycratsightings;
  * Created by Mariam on 10/11/17.
  */
 
-        import android.content.Context;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.TextView;
-        import android.widget.Toast;
-
-        import java.io.BufferedReader;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
+import java.util.ArrayList;
 
 public class DashboardAdapter extends ArrayAdapter<Sighting> {
     Context ctx;
+    ArrayList<Sighting> values;
+    private TextView dateCreated, borough, city, initialAddress, incidentZip, latitude, longitude;
 
-    public DashboardAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-
+    public DashboardAdapter(Context context, ArrayList<Sighting> values) {
+        super(context, -1, values);
         this.ctx = context;
-        loadArrayFromFile();
+        this.values = values;
     }
 
     @Override
     public View getView(final int pos, View convertView, final ViewGroup parent) {
 
-        TextView mView = (TextView) convertView;
-
-        if (null == mView) {
-            mView = new TextView(parent.getContext());
-            mView.setTextSize(28);
-        }
-
-        //Set the state name as the text.
-        mView.setText(getItem(pos).getBorough());
-        mView.setText(getItem(pos).getCity());
-        mView.setText(getItem(pos).getCreationDate());
-        mView.setText(getItem(pos).getIncidentAddress());
-        mView.setText(getItem(pos).getIncidentZip());
-        mView.setText(getItem(pos).getUniqueKey());
-        Float latitude = getItem(pos).getLatitude();
-        mView.setText(String.valueOf(latitude));
-        Float longitude = getItem(pos).getLongitude();
-        mView.setText(String.valueOf(longitude));
-
+        LayoutInflater inflater = (LayoutInflater) ctx
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View mView = inflater.inflate(R.layout.list_item, parent, false);
+        bindValues(mView);
+        Sighting sighting = getItem(pos);
+        setItemValues(sighting);
         //We could handle the row clicks from here.
-        mView.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        mView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 Toast.makeText(parent.getContext(), getItem(pos).getBorough(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -58,32 +43,26 @@ public class DashboardAdapter extends ArrayAdapter<Sighting> {
         return mView;
     }
 
-    private void loadArrayFromFile() {
-        try {
-            // Get input stream and Buffered Reader for our data file.
-            InputStream csvFile = ctx.getResources().openRawResource(R.raw.small); //change to rat_sightings (entire file)
-            BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
-            String line;
-
-            //Read each line
-            while ((line = reader.readLine()) != null) {
-                //Split to separate
-                String[] RowData = line.split(",");
-
-                Sighting sighting = new Sighting(RowData); //rowdata?
-                sighting.setBorough(RowData[0]);
-                sighting.setCity(RowData[1]);
-                sighting.setCreationDate(RowData[2]);
-                sighting.setIncidentAddress(RowData[3]);
-                sighting.setIncidentZip(RowData[4]);
-                sighting.setLatitude(Float.valueOf(RowData[5]));
-                sighting.setLocationType(RowData[6]);
-                sighting.setLongitude(Float.valueOf(RowData[7]));
-
-                this.add(sighting);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void bindValues(View view) {
+        //Set up item layout params
+        dateCreated = view.findViewById(R.id.date_created);
+        borough = view.findViewById(R.id.borough);
+        city = view.findViewById(R.id.city);
+        initialAddress = view.findViewById(R.id.initial_address);
+        incidentZip = view.findViewById(R.id.incident_zip);
+        latitude = view.findViewById(R.id.latitude);
+        longitude = view.findViewById(R.id.longitude);
     }
+
+
+    public void setItemValues(Sighting sighting) {
+        dateCreated.setText(sighting.getCreationDate());
+        borough.setText(sighting.getBorough());
+        city.setText(sighting.getCity());
+        initialAddress.setText(sighting.getIncidentAddress());
+        incidentZip.setText(sighting.getIncidentZip());
+        latitude.setText(sighting.getLatitude());
+        longitude.setText(sighting.getLongitude());
+    }
+
 }

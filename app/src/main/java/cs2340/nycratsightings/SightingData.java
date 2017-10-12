@@ -23,7 +23,7 @@ public class SightingData {
                 String[] tokens = line.split(",");
                 Object[] entries = {Integer.parseInt(tokens[0]),tokens[1],tokens[7],tokens[8], tokens[9],
                     tokens[16], tokens[23], Float.parseFloat(tokens[49]), Float.parseFloat(tokens[50])};
-                Sighting entry = new Sighting(entries);
+                Sighting entry = new Sighting();
                 backingData.add(entry);
             }
             br.close();
