@@ -1,4 +1,4 @@
-package cs2340.nycratsightings;
+/*package cs2340.nycratsightings;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,4 +50,40 @@ public class DashboardActivity extends AppCompatActivity {
             return list;
     }
 
+}*/
+package cs2340.nycratsightings;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+
+public class DashboardActivity extends AppCompatActivity {
+
+    DashboardAdapter mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dashboard_listview);
+
+        ListView mList = (ListView) findViewById(R.id.csv_listview);
+
+        mAdapter = new DashboardAdapter(this, -1);
+
+        //attach our Adapter to the ListView. This will populate all of the rows.
+        mList.setAdapter(mAdapter);
+
+        mList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+                Toast.makeText(v.getContext(), mAdapter.getItem(pos).getBorough(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
