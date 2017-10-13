@@ -90,6 +90,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 package cs2340.nycratsightings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -103,16 +104,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import android.widget.Button;
 
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
     DashboardAdapter mAdapter;
+    //private Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_listview);
+
+        //mSignOut.setOnClickListener(this);
 
         ListView mList = (ListView) findViewById(R.id.csv_listview);
 
@@ -129,6 +134,20 @@ public class DashboardActivity extends AppCompatActivity {
                 Toast.makeText(v.getContext(), mAdapter.getItem(pos).getBorough(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    //sign out button functionality
+    public void onClick(View v) {
+        Intent i;
+
+        switch (v.getId()) {
+            case R.id.dash_sign_out:
+                i = new Intent(this, WelcomeActivity.class);
+                this.startActivity(i);
+                break;
+            default:
+                break;
+        }
     }
 
     private ArrayList<Sighting> loadArrayFromFile() {
