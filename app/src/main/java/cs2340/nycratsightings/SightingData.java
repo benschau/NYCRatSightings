@@ -13,20 +13,19 @@ public class SightingData {
      * which should be instantiated to the rat sighting data
      * @param in
      */
-    public SightingData(FileReader in) {
+    public SightingData(BufferedReader in) {
         try {
-            BufferedReader br = new BufferedReader(in);
             String line;
-            br.readLine(); //delet hed
+            in.readLine(); //skip over header
             backingData = new ArrayList<Sighting>();
-            while ((line = br.readLine()) != null) {
+            while ((line = in.readLine()) != null) {
                 String[] tokens = line.split(",");
-                Object[] entries = {Integer.parseInt(tokens[0]),tokens[1],tokens[7],tokens[8], tokens[9],
-                    tokens[16], tokens[23], Float.parseFloat(tokens[49]), Float.parseFloat(tokens[50])};
-                Sighting entry = new Sighting();
+                String[] entries = {tokens[0],tokens[1],tokens[7],tokens[8], tokens[9],
+                    tokens[16], tokens[23], tokens[49], tokens[50]};
+                Sighting entry = new Sighting(entries);
                 backingData.add(entry);
             }
-            br.close();
+            in.close();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -50,9 +49,9 @@ public class SightingData {
 
     /**
      * gets the entire backing arraylist
-     * @return
+     * @return backingData
      */
-    public ArrayList<Sighting> getBackingdata(){
+    public ArrayList<Sighting> getBackingData(){
         return backingData;
     }
 }

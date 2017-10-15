@@ -93,6 +93,7 @@ package cs2340.nycratsightings;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -100,6 +101,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -107,8 +111,9 @@ import java.util.ArrayList;
 import android.widget.Button;
 
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
+public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
 
+    ArrayList<Sighting> sightings;
     DashboardAdapter mAdapter;
     //private Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
 
@@ -121,19 +126,35 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         ListView mList = (ListView) findViewById(R.id.csv_listview);
 
-        ArrayList<Sighting> sightings = loadArrayFromFile();
+        // Make use of SightingData
+        InputStream csvFile = getResources().openRawResource(R.raw.small);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
+
+        SightingData sd = new SightingData(reader);
+
+        sightings = sd.getBackingData();
 
         mAdapter = new DashboardAdapter(this, sightings);
 
         //attach our Adapter to the ListView. This will populate all of the rows.
         mList.setAdapter(mAdapter);
 
-        mList.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
-                Toast.makeText(v.getContext(), mAdapter.getItem(pos).getBorough(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        mList.setOnItemClickListener(this);
+    }
+
+    public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+        Intent i;
+        Bundle b;
+
+        Sighting currSighting = (Sighting) parent.getItemAtPosition(pos);
+
+        Log.d("ITEMCLICK: ", currSighting.toString());
+
+        b = new Bundle();
+        b.putParcelable("CURRENT_SIGHTING", currSighting);
+        i = new Intent(this, DetailedViewActivity.class);
+        i.putExtras(b);
+        startActivity(i);
     }
 
     //sign out button functionality
@@ -150,6 +171,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    /*
     private ArrayList<Sighting> loadArrayFromFile() {
         ArrayList<Sighting> sightings = new ArrayList<>();
         try {
@@ -164,7 +186,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 String[] RowData = line.split(",");
 
                 Sighting sighting = new Sighting();
-                sighting.setBorough(RowData[0]);
+                sighting.setBorough(RowData[23]);
                 sighting.setCity(RowData[1]);
                 sighting.setCreationDate(RowData[2]);
                 sighting.setIncidentAddress(RowData[3]);
@@ -184,6 +206,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
         return null;
     }
+    */
 }
-
 

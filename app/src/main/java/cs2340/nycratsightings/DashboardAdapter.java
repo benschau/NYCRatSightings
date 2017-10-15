@@ -5,6 +5,7 @@ package cs2340.nycratsightings;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-public class DashboardAdapter extends ArrayAdapter<Sighting> {
+public class DashboardAdapter extends ArrayAdapter<Sighting>{
     Context ctx;
     ArrayList<Sighting> values;
-    private TextView dateCreated, borough, city, initialAddress, incidentZip, latitude, longitude;
+    private TextView uniqueID, dateCreated, locationType, borough, city, incidentAddress, incidentZip, latitude, longitude;
 
     public DashboardAdapter(Context context, ArrayList<Sighting> values) {
         super(context, -1, values);
@@ -34,35 +35,26 @@ public class DashboardAdapter extends ArrayAdapter<Sighting> {
         Sighting sighting = getItem(pos);
         setItemValues(sighting);
         //We could handle the row clicks from here.
-        mView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(parent.getContext(), getItem(pos).getBorough(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         return mView;
     }
 
     public void bindValues(View view) {
         //Set up item layout params
+        uniqueID = view.findViewById(R.id.unique_id);
         dateCreated = view.findViewById(R.id.date_created);
-        borough = view.findViewById(R.id.borough);
-        city = view.findViewById(R.id.city);
-        initialAddress = view.findViewById(R.id.initial_address);
-        incidentZip = view.findViewById(R.id.incident_zip);
-        latitude = view.findViewById(R.id.latitude);
-        longitude = view.findViewById(R.id.longitude);
+        locationType = view.findViewById(R.id.location_type);
+
     }
 
 
     public void setItemValues(Sighting sighting) {
+
+        uniqueID.setText(sighting.getUniqueKey());
         dateCreated.setText(sighting.getCreationDate());
-        borough.setText(sighting.getBorough());
-        city.setText(sighting.getCity());
-        initialAddress.setText(sighting.getIncidentAddress());
-        incidentZip.setText(sighting.getIncidentZip());
-        latitude.setText(sighting.getLatitude());
-        longitude.setText(sighting.getLongitude());
+        locationType.setText(sighting.getLocationType());
+
     }
 
 }
