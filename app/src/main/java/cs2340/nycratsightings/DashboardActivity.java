@@ -130,7 +130,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         ListView mList = (ListView) findViewById(R.id.csv_listview);
 
         // Make use of SightingData
-        InputStream csvFile = getResources().openRawResource(R.raw.small);
+        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
 
         SightingData sd = new SightingData(reader);
