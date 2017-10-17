@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="56dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <TextView
+        android:text="Detailed View"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:paddingBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unique ID: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/unique_id_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Unique ID Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Creation Date: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/creation_date_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Creation Date Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location Type: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/location_type_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Location Type Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Incident Zip: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/incident_zip_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Incident Zip Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Incident Address: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/incident_address_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Incident Address Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/city_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="City Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Borough: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/borough_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Borough Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/latitude_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Latitude Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude: "
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/longitude_detailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="Longitude Value"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        />
+
+    <Button
+        android:id="@+id/returnToList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Return to list" />
+
+
+</LinearLayout>
