@@ -110,19 +110,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
 
     ArrayList<Sighting> sightings;
     DashboardAdapter mAdapter;
-    //private Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_listview);
 
-        //mSignOut.setOnClickListener(this);
+        final Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
+        mSignOut.setOnClickListener(this);
 
         ListView mList = (ListView) findViewById(R.id.csv_listview);
 
@@ -165,10 +168,15 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             case R.id.dash_sign_out:
                 i = new Intent(this, WelcomeActivity.class);
                 this.startActivity(i);
+                signOut();
                 break;
             default:
                 break;
         }
+    }
+
+    public void signOut() {
+        mAuth.signOut();
     }
 
     /*
