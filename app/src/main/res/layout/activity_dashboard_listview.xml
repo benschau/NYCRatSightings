@@ -30,6 +30,12 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/dash_add_sighting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_sighting" />
+
     <ListView
         android:id="@+id/csv_listview"
         android:layout_width="match_parent"
