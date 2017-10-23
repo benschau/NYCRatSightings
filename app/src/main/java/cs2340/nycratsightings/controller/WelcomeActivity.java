@@ -1,10 +1,9 @@
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.controller;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +11,10 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import cs2340.nycratsightings.R;
+import cs2340.nycratsightings.controller.LoginActivity;
+import cs2340.nycratsightings.controller.RegisterActivity;
 
 public class WelcomeActivity extends Activity implements View.OnClickListener{
 

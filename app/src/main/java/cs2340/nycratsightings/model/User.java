@@ -1,4 +1,4 @@
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

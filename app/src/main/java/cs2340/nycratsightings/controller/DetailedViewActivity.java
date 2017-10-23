@@ -1,4 +1,4 @@
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.util.Log;
+
+import cs2340.nycratsightings.R;
+import cs2340.nycratsightings.model.Sighting;
 
 /**
  * Created by Alex

@@ -1,4 +1,4 @@
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import cs2340.nycratsightings.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 

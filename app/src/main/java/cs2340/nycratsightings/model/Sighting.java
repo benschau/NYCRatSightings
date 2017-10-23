@@ -1,8 +1,7 @@
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.model;
 
 import android.os.Parcelable;
 import android.os.Parcel;
-import android.util.Log;
 
 public class Sighting implements Parcelable {
     private static final String TAG = "TAG";

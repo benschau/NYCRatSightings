@@ -1,4 +1,4 @@
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.controller;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +11,15 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import cs2340.nycratsightings.R;
+import cs2340.nycratsightings.model.User;
+import cs2340.nycratsightings.model.Admin;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 

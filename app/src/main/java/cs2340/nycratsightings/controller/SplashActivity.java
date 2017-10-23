@@ -1,4 +1,4 @@
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

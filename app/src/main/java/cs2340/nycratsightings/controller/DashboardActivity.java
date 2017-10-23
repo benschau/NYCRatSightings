@@ -88,7 +88,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 }*/
 
-package cs2340.nycratsightings;
+package cs2340.nycratsightings.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -96,21 +96,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import cs2340.nycratsightings.model.DashboardAdapter;
+import cs2340.nycratsightings.R;
+import cs2340.nycratsightings.model.Sighting;
+import cs2340.nycratsightings.model.SightingData;
 
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
