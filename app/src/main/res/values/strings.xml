@@ -21,5 +21,8 @@
     <string name="date">Created Date</string>
     <string name="borough">Borough</string>
 
+    <!--ADD NEW SIGHTING-->
     <string name="add_sighting">Add New Sighting</string>
+    <string name="add_sighting_button">Add</string>
+    <string name="cancel_button">Cancel</string>
 </resources>
