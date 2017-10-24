@@ -45,21 +45,18 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
                 break;
             case R.id.add_sighting:
                 saveNewSighting();
-                goToDash();
+                goToDashboard();
             default:
                 break;
         }
     }
 
+    /**
+     * Save new sighting to internal storage.
+     */
     private void saveNewSighting() {
-        // TODO: SANITIZE INPUTS
-        // Generate random number in range [1, 30000000] for unique id
-        Random random = new Random();
-        int r = random.nextInt(30000000) + 1;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        String id = new Integer(r).toString();
-        String sightingDate = dateFormat.format(date);
+        String id = generateSightingId();
+        String sightingDate = generateSightingDate();
         String locationType = ((EditText) findViewById(R.id.location_type)).getText().toString();
         String zipCode = ((EditText) findViewById(R.id.zip)).getText().toString();
         String address = ((EditText) findViewById(R.id.address)).getText().toString();
@@ -67,10 +64,11 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
         String borough = ((EditText) findViewById(R.id.borough)).getText().toString();
         String latitude = ((EditText) findViewById(R.id.latitutde)).getText().toString();
         String longitude = ((EditText) findViewById(R.id.longitude)).getText().toString();
+
         String[] sightingArray = {id, sightingDate, locationType, zipCode, address, city, borough,
                 latitude, longitude};
+        
         Sighting newSighting = new Sighting(sightingArray);
-        Log.e("new sighting", newSighting.toString());
 
         File file = new File(this.getFilesDir(), "new-sighting-data.txt");
         try {
@@ -79,12 +77,34 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
             pw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Log.d("AddSightingActivity", "Error opening text file to add data");
+            Log.e("AddSightingActivity", "Error opening text file to add data");
         }
     }
 
-    public void goToDash() {
+    public void goToDashboard() {
         Intent i = new Intent(this, DashboardActivity.class);
         this.startActivity(i);
+    }
+
+    /**
+     * Generate random number in range [1, 30000000] for unique id
+     *
+     * @return sighting id
+     */
+    private String generateSightingId() {
+        Random random = new Random();
+        int r = random.nextInt(30000000) + 1;
+        return Integer.toString(r);
+    }
+
+    /**
+     * Generate sighting date based on creation date
+     *
+     * @return sighting date
+     */
+    private String generateSightingDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
