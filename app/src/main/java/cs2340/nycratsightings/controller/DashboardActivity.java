@@ -124,12 +124,15 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_dashboard_listview);
 
         final Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
-        mSignOut.setOnClickListener(this);
-
+        final Button mAddSighting = findViewById(R.id.dash_add_sighting);
         ListView mList = (ListView) findViewById(R.id.csv_listview);
 
+        mSignOut.setOnClickListener(this);
+        mAddSighting.setOnClickListener(this);
+
         // Make use of SightingData
-        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
+//        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
+        InputStream csvFile = getResources().openRawResource(R.raw.test);
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
 
         SightingData sd = new SightingData(reader);
@@ -168,6 +171,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 i = new Intent(this, WelcomeActivity.class);
                 this.startActivity(i);
                 signOut();
+                break;
+            case R.id.dash_add_sighting:
+                i = new Intent(this, AddSightingActivity.class);
+                this.startActivity(i);
                 break;
             default:
                 break;
