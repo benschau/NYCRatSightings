@@ -99,6 +99,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -130,15 +133,28 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         mSignOut.setOnClickListener(this);
         mAddSighting.setOnClickListener(this);
 
-        // Make use of SightingData
-//        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
-        InputStream csvFile = getResources().openRawResource(R.raw.test);
+        /**
+         * Read the csv file with sighting data and add it to the SightingData array list.
+         */
+        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
+        SightingData sightingData = new SightingData();
+        sightingData.readCSV(reader);
 
-        SightingData sd = new SightingData();
-        sd.readCSV(reader);
+        /**
+         * Check if "new-sighting-data.txt" exists. If it does, then the user has added new
+         * sightings to the app. These are then read from the file and added to the SightingData
+         * array list.
+         */
+        try {
+            File file = new File(this.getFilesDir(), "new-sighting-data.txt");
+            BufferedReader readerInternalStorage = new BufferedReader(new FileReader(file));
+            sightingData.readInternalStorage(readerInternalStorage);
+        } catch (FileNotFoundException e) {
+            Log.e("Dashboard Activity", "new-sighting-data.txt does not exist");
+        }
 
-        sightings = sd.getBackingData();
+        sightings = sightingData.getBackingData();
 
         mAdapter = new DashboardAdapter(this, sightings);
 
