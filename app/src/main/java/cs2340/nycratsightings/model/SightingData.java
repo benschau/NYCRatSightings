@@ -1,22 +1,23 @@
-package cs2340.nycratsightings.model;//import com.sun.deploy.util.SystemUtils;
+package cs2340.nycratsightings.model;
 
 import java.io.BufferedReader;
-//import java.io.InputStream;
 import java.util.ArrayList;
+
+/**
+ * This class manages the list of sightings in the model
+ */
 public class SightingData {
-    ArrayList<Sighting> backingData;
-    boolean instantiated = false;
+    ArrayList<Sighting> backingData = new ArrayList<Sighting>();
 
     /**
-     * the constructor for the sightingdata takes in a FileReader object
-     * which should be instantiated to the rat sighting data
-     * @param in
+     * Read sighting data from csv file and add it to backing array
+     *
+     * @param in file to read from
      */
-    public SightingData(BufferedReader in) {
+    public void readCSV(BufferedReader in) {
         try {
             String line;
             in.readLine(); //skip over header
-            backingData = new ArrayList<Sighting>();
             while ((line = in.readLine()) != null) {
                 String[] tokens = line.split(",");
                 String[] entries = {tokens[0],tokens[1],tokens[7],tokens[8], tokens[9],

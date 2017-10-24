@@ -135,7 +135,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         InputStream csvFile = getResources().openRawResource(R.raw.test);
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
 
-        SightingData sd = new SightingData(reader);
+        SightingData sd = new SightingData();
+        sd.readCSV(reader);
 
         sightings = sd.getBackingData();
 
