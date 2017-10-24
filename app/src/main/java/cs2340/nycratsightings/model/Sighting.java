@@ -3,6 +3,8 @@ package cs2340.nycratsightings.model;
 import android.os.Parcelable;
 import android.os.Parcel;
 
+import java.io.PrintWriter;
+
 public class Sighting implements Parcelable {
     private static final String TAG = "TAG";
     private String uniqueKey;
@@ -118,6 +120,18 @@ public class Sighting implements Parcelable {
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 '}';
+    }
+
+    /**
+     * Save sighting to a file, separating each attribute with a comma.
+     * This method is called by AddSightingActivity.java when a user adds a new sighting to the app
+     *
+     * @param pw print writer with reference to file where student should be written
+     */
+    public void saveToFile(PrintWriter pw) {
+        pw.println(uniqueKey + ", " + creationDate + ", " + locationType + ", " + incidentZip
+                + ", " + incidentAddress + ", " + city + ", " + borough + ", " + latitude
+                + ", " + longitude);
     }
 
     @Override

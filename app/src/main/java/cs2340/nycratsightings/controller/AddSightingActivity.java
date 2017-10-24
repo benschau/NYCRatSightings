@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -68,6 +71,16 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
                 latitude, longitude};
         Sighting newSighting = new Sighting(sightingArray);
         Log.e("new sighting", newSighting.toString());
+
+        File file = new File(this.getFilesDir(), "new-sighting-data.txt");
+        try {
+            PrintWriter pw = new PrintWriter(file);
+            newSighting.saveToFile(pw);
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Log.d("AddSightingActivity", "Error opening text file to add data");
+        }
     }
 
     public void goToDash() {
