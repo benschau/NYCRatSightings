@@ -11,8 +11,10 @@ import android.widget.EditText;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import cs2340.nycratsightings.R;
+import cs2340.nycratsightings.model.Sighting;
 
 /**
  * Created by Gerardo Prada on 10/23/17.
@@ -39,19 +41,21 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
                 finish();
                 break;
             case R.id.add_sighting:
-                addSightingToCSV();
+                saveNewSighting();
                 goToDash();
             default:
                 break;
         }
     }
 
-    // TODO: IMPLEMENT
-    private void addSightingToCSV() {
+    private void saveNewSighting() {
         // TODO: SANITIZE INPUTS
-        // TODO: AUTOGENERATE ID
+        // Generate random number in range [1, 30000000] for unique id
+        Random random = new Random();
+        int r = random.nextInt(30000000) + 1;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
+        String id = new Integer(r).toString();
         String sightingDate = dateFormat.format(date);
         String locationType = ((EditText) findViewById(R.id.location_type)).getText().toString();
         String zipCode = ((EditText) findViewById(R.id.zip)).getText().toString();
@@ -60,6 +64,10 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
         String borough = ((EditText) findViewById(R.id.borough)).getText().toString();
         String latitude = ((EditText) findViewById(R.id.latitutde)).getText().toString();
         String longitude = ((EditText) findViewById(R.id.longitude)).getText().toString();
+        String[] sightingArray = {id, sightingDate, locationType, zipCode, address, city, borough,
+                latitude, longitude};
+        Sighting newSighting = new Sighting(sightingArray);
+        Log.e("new sighting", newSighting.toString());
     }
 
     public void goToDash() {
