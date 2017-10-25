@@ -23,6 +23,7 @@
     <string name="location">Location Type</string>
     <string name="date">Created Date</string>
     <string name="borough">Borough</string>
+    <string name="title_activity_rat_map">RatMap</string>
 
 
 </resources>
