@@ -112,7 +112,6 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
 
     ArrayList<Sighting> sightings;
@@ -178,42 +177,5 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void signOut() {
         mAuth.signOut();
     }
-
-    /*
-    private ArrayList<Sighting> loadArrayFromFile() {
-        ArrayList<Sighting> sightings = new ArrayList<>();
-        try {
-            InputStream csvFile = getResources().openRawResource(R.raw.small);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
-            String line;
-            boolean isRealData = false;
-
-            //Read each line
-            while ((line = reader.readLine()) != null) {
-                //Split to separate
-                String[] RowData = line.split(",");
-
-                Sighting sighting = new Sighting();
-                sighting.setBorough(RowData[23]);
-                sighting.setCity(RowData[1]);
-                sighting.setCreationDate(RowData[2]);
-                sighting.setIncidentAddress(RowData[3]);
-                sighting.setIncidentZip(RowData[4]);
-                sighting.setLatitude(RowData[5]);
-                sighting.setLocationType(RowData[6]);
-                sighting.setLongitude(RowData[7]);
-
-                if (isRealData) {
-                    sightings.add(sighting);
-                }
-                isRealData = true;
-            }
-            return sightings;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    */
 }
 

@@ -10,11 +10,13 @@ public class RatMarkerAdapter implements GoogleMap.InfoWindowAdapter {
     @Override
     public View getInfoWindow(Marker marker) {
 
+        return null;
     }
 
     @Override
     public View getInfoContents(Marker marker) {
 
+        return null;
     }
 
 }

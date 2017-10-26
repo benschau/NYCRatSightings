@@ -42,7 +42,8 @@ public class RatMap extends AppCompatActivity implements OnMapReadyCallback, Goo
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.setInfoWindowAdapter(RatMarkerAdapter);
+        RatMarkerAdapter ratInfo = new RatMarkerAdapter();
+        googleMap.setInfoWindowAdapter(ratInfo);
 
         // TODO: Read LAT/LONG and other info from reader
 
@@ -56,6 +57,7 @@ public class RatMap extends AppCompatActivity implements OnMapReadyCallback, Goo
     @Override
     public boolean onMarkerClick(final Marker marker) {
 
+        return true;
     }
 
     @Override
