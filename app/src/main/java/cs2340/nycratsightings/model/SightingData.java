@@ -1,7 +1,5 @@
 package cs2340.nycratsightings.model;
 
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +8,7 @@ import java.util.ArrayList;
  * This class manages the list of sightings in the model
  */
 public class SightingData {
-    ArrayList<Sighting> backingData = new ArrayList<Sighting>();
+    private static ArrayList<Sighting> backingData = new ArrayList<Sighting>();
 
     /**
      * Read sighting data from csv file and add it to backing array
@@ -76,7 +74,7 @@ public class SightingData {
      * gets the entire backing arraylist
      * @return backingData
      */
-    public ArrayList<Sighting> getBackingData(){
+    public static ArrayList<Sighting> getBackingData(){
         return backingData;
     }
 }
