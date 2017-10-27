@@ -1,4 +1,4 @@
-package cs2340.nycratsightings.model;
+package cs2340.nycratsightings.controller;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,16 +14,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import cs2340.nycratsightings.R;
+import cs2340.nycratsightings.model.RatMarkerAdapter;
+import cs2340.nycratsightings.model.Sighting;
+import cs2340.nycratsightings.model.SightingData;
 
-public class RatMap extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
-    private ArrayList<Sighting> sightings;
+    private ArrayList<Sighting> mSightings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +44,7 @@ public class RatMap extends AppCompatActivity implements OnMapReadyCallback, Goo
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-
-        // TODO: Change this so that we don't have to load the csv for every activity that needs this
-        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
-
-        SightingData sightingData = new SightingData();
-        sightingData.readCSV(reader);
-
-        sightings = sightingData.getBackingData();
+        mSightings = SightingData.getBackingData();
 
         mapFragment.getMapAsync(this);
     }
@@ -64,7 +56,7 @@ public class RatMap extends AppCompatActivity implements OnMapReadyCallback, Goo
         LatLng rat = null;
         Double lat, lng;
         String desc;
-        for (Sighting sighting : sightings) {
+        for (Sighting sighting : mSightings) {
             lat = Double.parseDouble(sighting.getLatitude());
             lng = Double.parseDouble(sighting.getLongitude());
 
@@ -79,7 +71,7 @@ public class RatMap extends AppCompatActivity implements OnMapReadyCallback, Goo
             );
         }
 
-        if (sightings != null)
+        if (mSightings != null)
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(rat));
 
         googleMap.setInfoWindowAdapter(ratInfo);

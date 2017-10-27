@@ -14,7 +14,7 @@ public class RatMarkerAdapter implements GoogleMap.InfoWindowAdapter {
     private View mWindow;
     private LayoutInflater mInflater;
 
-    RatMarkerAdapter(LayoutInflater inflater) {
+    public RatMarkerAdapter(LayoutInflater inflater) {
         this.mInflater = inflater;
     }
 
