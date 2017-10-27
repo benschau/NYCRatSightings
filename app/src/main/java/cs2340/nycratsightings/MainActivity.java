@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
     private Typeface mTypeFace;
-    private Button logoutButton;
+    private Button mAbout, mRatMap, mDashboard;
     private TextView welcomeView;
 
     @Override
@@ -27,17 +27,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         //welcomeView = (TextView) findViewById(R.id.welcome_text);
         //mTypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
         //welcomeView.setTypeface(mTypeFace);
 
-        logoutButton = (Button) findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        mAbout =  (Button) findViewById(R.id.about);
+        mRatMap =  (Button) findViewById(R.id.goToRatMap);
+        mDashboard = (Button) findViewById(R.id.goToDash);
 
         mAuth = FirebaseAuth.getInstance();
+
+        mAbout.setOnClickListener(this);
+        mRatMap.setOnClickListener(this);
+        mDashboard.setOnClickListener(this);
     }
 
     @Override
@@ -65,10 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent i;
-
         switch (v.getId()) {
-            case R.id.dashboard:
+            case R.id.goToDash:
+                this.startActivity(new Intent(this, DashboardActivity.class));
+                break;
+            case R.id.goToRatMap:
+                this.startActivity(new Intent(this, RatMap.class));
+                break;
+            case R.id.about:
                 break;
         }
     }

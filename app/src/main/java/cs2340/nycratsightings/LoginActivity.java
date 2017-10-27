@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     // signed in
                     Log.d(TAG, "OnAuthStateChanged: Signed in.");
                     toMain();
-                    //toDash(); // go to dashboard to see rat data
                 } else {
                     // signed out
                     Log.d(TAG, "OnAuthStateChanged: Signed out.");
@@ -90,11 +89,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void toMain() {
         this.startActivity(new Intent(this, MainActivity.class));
-    }
-
-    public void toDash() {
-        Intent i = new Intent(this, DashboardActivity.class);
-        this.startActivity(i);
     }
 
     /**

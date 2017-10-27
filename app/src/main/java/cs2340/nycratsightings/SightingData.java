@@ -1,9 +1,8 @@
-package cs2340.nycratsightings;//import com.sun.deploy.util.SystemUtils;
+package cs2340.nycratsightings;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
-//import java.io.InputStream;
 import java.util.ArrayList;
+
 public class SightingData {
     ArrayList<Sighting> backingData;
     boolean instantiated = false;

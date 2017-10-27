@@ -15,7 +15,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 public class RatMap extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+
+    private ArrayList<Sighting> sightings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,39 +36,77 @@ public class RatMap extends AppCompatActivity implements OnMapReadyCallback, Goo
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
             }
         });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
+
+        // TODO: Change this so that we don't have to load the csv for every activity that needs this
+        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
+
+        SightingData sd = new SightingData(reader);
+
+        sightings = sd.getBackingData();
+
         mapFragment.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        RatMarkerAdapter ratInfo = new RatMarkerAdapter();
+        RatMarkerAdapter ratInfo = new RatMarkerAdapter(getLayoutInflater());
+
+        LatLng rat = null;
+        Double lat, lng;
+        String desc;
+        for (Sighting sighting : sightings) {
+            lat = Double.parseDouble(sighting.getLatitude());
+            lng = Double.parseDouble(sighting.getLongitude());
+
+            desc = createDesc(sighting.getBorough(),
+                    sighting.getCity(),
+                    sighting.getIncidentAddress() + " " + sighting.getIncidentZip(),
+                    sighting.getCreationDate());
+
+            rat = new LatLng(lat, lng);
+            googleMap.addMarker(
+                    new MarkerOptions().position(rat).title(sighting.getUniqueKey()).snippet(desc)
+            );
+        }
+
+        if (sightings != null)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(rat));
+
         googleMap.setInfoWindowAdapter(ratInfo);
-
-        // TODO: Read LAT/LONG and other info from reader
-
-        LatLng rat = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(rat).title("A rat in sydney."));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(rat));
-
         googleMap.setOnInfoWindowClickListener(this);
     }
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
 
+        marker.showInfoWindow();
+
         return true;
     }
 
     @Override
     public void onInfoWindowClick(final Marker marker) {
+        // TODO: Go to rat info, show options to edit
+    }
 
+    private void addMarker(GoogleMap googleMap, Double lat, Double lon,
+                           String title, String snippet){
+        googleMap.addMarker(
+                new MarkerOptions().position(new LatLng(lat, lon))
+                                   .title(title)
+                                   .snippet(snippet)
+        );
+    }
+
+    public String createDesc(String borough, String city, String addr, String date) {
+        return String.format("Borough: %s\nCity: %s\nAddress: %s\nDate: %s", borough, city, addr, date);
     }
 }

@@ -31,6 +31,7 @@
             android:layout_margin="10dp">
         
             <Button
+                android:id="@+id/goToDash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Button.Colored"
@@ -46,6 +47,7 @@
             android:layout_margin="10dp">
 
             <Button
+                android:id="@+id/goToRatMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Button.Colored"
@@ -61,6 +63,7 @@
             android:layout_margin="10dp">
 
             <Button
+                android:id="@+id/about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Button.Colored"
