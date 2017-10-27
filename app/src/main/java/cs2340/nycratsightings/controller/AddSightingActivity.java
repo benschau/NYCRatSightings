@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,8 +45,13 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
                 finish();
                 break;
             case R.id.add_sighting:
-                saveNewSighting();
-                goToDashboard();
+                try {
+                    saveNewSighting();
+                    goToDashboard();
+                } catch (NumberFormatException e) {
+                    Toast.makeText(AddSightingActivity.this, R.string.invalid_lat_long,
+                            Toast.LENGTH_SHORT).show();
+                }
             default:
                 break;
         }
@@ -65,9 +71,14 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
         String latitude = ((EditText) findViewById(R.id.latitutde)).getText().toString();
         String longitude = ((EditText) findViewById(R.id.longitude)).getText().toString();
 
+        // Verify user input.
+        // If this fails, a NumberFormatException is thrown, caught in the switch case
+        // that called the saveNewSighting() method, and a toast is displayed
+        Double.parseDouble(latitude);
+        Double.parseDouble(longitude);
+
         String[] sightingArray = {id, sightingDate, locationType, zipCode, address, city, borough,
                 latitude, longitude};
-        
         Sighting newSighting = new Sighting(sightingArray);
 
         File file = new File(this.getFilesDir(), "new-sighting-data.txt");

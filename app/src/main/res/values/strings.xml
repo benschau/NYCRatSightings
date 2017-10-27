@@ -25,4 +25,5 @@
     <string name="add_sighting">Add New Sighting</string>
     <string name="add_sighting_button">Add</string>
     <string name="cancel_button">Cancel</string>
+    <string name="invalid_lat_long">Incorrect format for latitute or longitude</string>
 </resources>
