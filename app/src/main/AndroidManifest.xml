@@ -58,7 +58,7 @@
             android:label="DetailedView"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".model.RatMap"
+            android:name=".controller.RatMapActivity"
             android:label="@string/title_activity_rat_map"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
