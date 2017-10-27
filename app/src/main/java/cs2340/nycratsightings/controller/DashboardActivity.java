@@ -27,7 +27,9 @@ import cs2340.nycratsightings.model.SightingData;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
 
-    ArrayList<Sighting> sightings;
+    private ArrayList<Sighting> mSightings;
+    private SightingData mSightingData;
+    private ListView mList;
     DashboardAdapter mAdapter;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -38,7 +40,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         final Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
         final Button mAddSighting = findViewById(R.id.dash_add_sighting);
-        ListView mList = (ListView) findViewById(R.id.csv_listview);
+        mList = (ListView) findViewById(R.id.csv_listview);
 
         mSignOut.setOnClickListener(this);
         mAddSighting.setOnClickListener(this);
@@ -48,30 +50,18 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
          */
         InputStream csvFile = getResources().openRawResource(R.raw.xaa);
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
-        SightingData sightingData = new SightingData();
-        sightingData.readCSV(reader);
+        mSightingData = new SightingData();
+        mSightingData.readCSV(reader);
 
-        /**
-         * Check if "new-sighting-data.txt" exists. If it does, then the user has added new
-         * sightings to the app. These are then read from the file and added to the SightingData
-         * array list.
-         */
-        try {
-            File file = new File(this.getFilesDir(), "new-sighting-data.txt");
-            BufferedReader readerInternalStorage = new BufferedReader(new FileReader(file));
-            sightingData.readInternalStorage(readerInternalStorage);
-        } catch (FileNotFoundException e) {
-            Log.e("Dashboard Activity", "new-sighting-data.txt does not exist");
-        }
+        readInternalStorage();
+        updateSightings();
+    }
 
-        sightings = sightingData.getBackingData();
-
-        mAdapter = new DashboardAdapter(this, sightings);
-
-        //attach our Adapter to the ListView. This will populate all of the rows.
-        mList.setAdapter(mAdapter);
-
-        mList.setOnItemClickListener(this);
+    @Override
+    protected void onResume() {
+        super .onResume();
+        readInternalStorage();
+        updateSightings();
     }
 
     public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
@@ -110,6 +100,36 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     public void signOut() {
         mAuth.signOut();
+    }
+
+    /**
+     * Check if "new-sighting-data.txt" exists. If it does, then the user has added new
+     * mSightings to the app. These are then read from the file and added to the SightingData
+     * array list.
+     */
+    private void readInternalStorage() {
+        try {
+            File file = new File(this.getFilesDir(), "new-sighting-data.txt");
+            BufferedReader readerInternalStorage = new BufferedReader(new FileReader(file));
+            mSightingData.readInternalStorage(readerInternalStorage);
+        } catch (FileNotFoundException e) {
+            Log.e("Dashboard Activity", "new-sighting-data.txt does not exist");
+        }
+    }
+
+    /**
+     * Methods updates sightings array list with SightingData's backing array.
+     * Called after SightingData's backing array has been updated.
+     */
+    private void updateSightings() {
+        mSightings = mSightingData.getBackingData();
+
+        mAdapter = new DashboardAdapter(this, mSightings);
+
+        //attach our Adapter to the ListView. This will populate all of the rows.
+        mList.setAdapter(mAdapter);
+
+        mList.setOnItemClickListener(this);
     }
 }
 
