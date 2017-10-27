@@ -1,7 +1,6 @@
 package cs2340.nycratsightings.controller;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,7 +46,7 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
             case R.id.add_sighting:
                 try {
                     saveNewSighting();
-                    goToDashboard();
+                    finish();
                 } catch (NumberFormatException e) {
                     Toast.makeText(AddSightingActivity.this, R.string.invalid_lat_long,
                             Toast.LENGTH_SHORT).show();
@@ -90,11 +89,6 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
             e.printStackTrace();
             Log.e("AddSightingActivity", "Error opening text file to add data");
         }
-    }
-
-    public void goToDashboard() {
-        Intent i = new Intent(this, DashboardActivity.class);
-        this.startActivity(i);
     }
 
     /**
