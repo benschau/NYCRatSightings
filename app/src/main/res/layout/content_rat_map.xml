@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/map"
     class="com.google.android.gms.maps.SupportMapFragment"
-    android:name="cs2340.nycratsightings.model.RatMap" >
+    android:name="cs2340.nycratsightings.controller.RatMapActivity" >
 
 
 </fragment>

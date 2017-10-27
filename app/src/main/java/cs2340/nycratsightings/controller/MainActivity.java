@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import cs2340.nycratsightings.R;
-import cs2340.nycratsightings.model.RatMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.startActivity(new Intent(this, DashboardActivity.class));
                 break;
             case R.id.goToRatMap:
-                this.startActivity(new Intent(this, RatMap.class));
+                this.startActivity(new Intent(this, RatMapActivity.class));
                 break;
             case R.id.about:
                 break;
