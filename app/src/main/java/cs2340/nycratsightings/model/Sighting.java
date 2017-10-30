@@ -4,9 +4,10 @@ import android.os.Parcelable;
 import android.os.Parcel;
 
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Sighting implements Parcelable {
-    private static final String TAG = "TAG";
     private String uniqueKey;
     private String creationDate;
     private String locationType;
@@ -22,7 +23,7 @@ public class Sighting implements Parcelable {
      */
     public Sighting(String[] entries) {
         this.uniqueKey = entries[0];
-        this.creationDate = entries[1];
+        this.creationDate = entries[1]; // mon/day/yr time
         this.locationType = entries[2];
         this.incidentZip = entries[3];
         this.incidentAddress = entries[4];
@@ -54,6 +55,19 @@ public class Sighting implements Parcelable {
     public String getCreationDate() {
         return creationDate;
     }
+
+    public Calendar parseCreationDate() {
+        int end = this.creationDate.indexOf(' ');
+        String date = this.creationDate.substring(0, end);
+        String[] split = date.split("/");
+
+        Calendar c = new GregorianCalendar(Integer.parseInt(split[2]),
+                Integer.parseInt(split[0]),
+                Integer.parseInt(split[1]));
+
+        return c;
+    }
+
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
@@ -160,4 +174,5 @@ public class Sighting implements Parcelable {
             return new Sighting[size];
         }
     };
+
 }

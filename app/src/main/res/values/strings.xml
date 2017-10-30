@@ -5,6 +5,7 @@
     <string name="register_button">Register</string>
     <string name="sign_out">Sign Out</string>
     <string name="about">About</string>
+    <string name="submit">Submit</string>
 
     <string name="passwd_txtview">Password</string>
     <string name="register_txtview">Register Here</string>
@@ -33,4 +34,8 @@
 
     <!--Google Maps-->
     <string name="title_activity_rat_map">RatMap</string>
+    <string name="rat_range">Date range</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -62,15 +62,6 @@ public class SightingData {
     }
 
     /**
-     * returns the sighting object at that index
-     * @param index
-     * @return sighting
-     */
-    public Sighting getSightingAtIndex(int index){
-        return backingData.get(index);
-    }
-
-    /**
      * gets the entire backing arraylist
      * @return backingData
      */

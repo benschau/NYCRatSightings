@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/daterange_dialog"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+        
+   <LinearLayout
+       android:orientation="vertical"
+       android:scrollbars="vertical"
+       android:gravity="center_horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <DatePicker
+           android:id="@+id/dateFrom"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+       </DatePicker>
+
+       <DatePicker
+           android:id="@+id/dateTo"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+       </DatePicker>
+
+       <Button
+           android:id="@+id/submit"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/submit" />
+
+   </LinearLayout>
+
+</ScrollView>
