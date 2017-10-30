@@ -107,8 +107,29 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onInfoWindowClick(final Marker marker) {
-        // TODO: Show options to edit
-        startActivity(new Intent(RatMapActivity.this, DetailedViewActivity.class));
+        Intent i;
+        Bundle b;
+        Sighting currSighting = null;
+        String sightingKey;
+        String uniqueKey = marker.getTitle();
+
+        for (Sighting s : mSightings) {
+            sightingKey = s.getUniqueKey();
+            if (sightingKey.equals(uniqueKey)) {
+                currSighting = s;
+                break;
+            }
+        }
+
+        if (currSighting != null) {
+            Log.d(TAG, "OnInfoWindowClick: " + currSighting.toString());
+
+            b = new Bundle();
+            b.putParcelable("CURRENT_SIGHTING", currSighting);
+            i = new Intent(this, DetailedViewActivity.class);
+            i.putExtras(b);
+            startActivity(i);
+        }
     }
 
     @Override
