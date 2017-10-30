@@ -108,7 +108,7 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
      * @return sighting date
      */
     private String generateSightingDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
         Date date = new Date();
         return dateFormat.format(date);
     }
