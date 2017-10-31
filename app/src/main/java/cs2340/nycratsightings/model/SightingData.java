@@ -3,6 +3,7 @@ package cs2340.nycratsightings.model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This class manages the list of sightings in the model
@@ -66,6 +67,7 @@ public class SightingData {
      * @return backingData
      */
     public static ArrayList<Sighting> getBackingData(){
+        Collections.sort(backingData);
         return backingData;
     }
 }
