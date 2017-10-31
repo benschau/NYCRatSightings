@@ -58,9 +58,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
     }
 
     public Calendar parseCreationDate() {
-        Log.e("in parse cd", creationDate);
         int end = this.creationDate.indexOf(' ');
-        Log.e("leading space?", Integer.toString(end));
         String date = this.creationDate.substring(0, end);
         String[] split = date.split("/");
 
