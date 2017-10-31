@@ -1,13 +1,14 @@
 package cs2340.nycratsightings.model;
 
-import android.os.Parcelable;
 import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
 
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Sighting implements Parcelable {
+public class Sighting implements Parcelable, Comparable<Sighting> {
     private String uniqueKey;
     private String creationDate;
     private String locationType;
@@ -57,7 +58,9 @@ public class Sighting implements Parcelable {
     }
 
     public Calendar parseCreationDate() {
+        Log.e("in parse cd", creationDate);
         int end = this.creationDate.indexOf(' ');
+        Log.e("leading space?", Integer.toString(end));
         String date = this.creationDate.substring(0, end);
         String[] split = date.split("/");
 
@@ -143,9 +146,9 @@ public class Sighting implements Parcelable {
      * @param pw print writer with reference to file where student should be written
      */
     public void saveToFile(PrintWriter pw) {
-        pw.println(uniqueKey + ", " + creationDate + ", " + locationType + ", " + incidentZip
-                + ", " + incidentAddress + ", " + city + ", " + borough + ", " + latitude
-                + ", " + longitude);
+        pw.println(uniqueKey + "," + creationDate + "," + locationType + "," + incidentZip
+                + "," + incidentAddress + "," + city + "," + borough + "," + latitude
+                + "," + longitude);
     }
 
     @Override
@@ -175,4 +178,8 @@ public class Sighting implements Parcelable {
         }
     };
 
+    @Override
+    public int compareTo(Sighting other) {
+        return parseCreationDate().compareTo(other.parseCreationDate());
+    }
 }
