@@ -3,21 +3,21 @@
     package="cs2340.nycratsightings">
 
     <!-- Borrowed from GMaps AndroidManifest.xml -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission      android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <!-- External storage for caching. -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- My Location -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- Maps API needs OpenGL ES 2.0. -->
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true"/>
-    <!-- END OF COPY -->
+        android:required="true" />
 
+    <!-- END OF COPY -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,11 +25,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCxyZJ0Aw1bP7NfMs7g-quojE-LvU79bdE" />
@@ -46,8 +44,9 @@
         <activity android:name=".controller.WelcomeActivity" />
         <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.RegisterActivity" />
-        <activity android:name=".controller.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controller.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.AddSightingActivity" />
         <activity
             android:name=".controller.DashboardActivity"
@@ -61,6 +60,8 @@
             android:name=".controller.RatMapActivity"
             android:label="@string/title_activity_rat_map"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".controller.Grapher" />
+        <activity android:name=".controller.GraphVisualizer"></activity>
     </application>
 
 </manifest>

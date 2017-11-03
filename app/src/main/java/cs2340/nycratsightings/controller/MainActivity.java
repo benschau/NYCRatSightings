@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private Button mAbout, mRatMap, mDashboard;
+    private Button mAbout, mRatMap, mDashboard,mGraphVisualizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAbout = findViewById(R.id.about);
         mRatMap = findViewById(R.id.goToRatMap);
         mDashboard = findViewById(R.id.goToDash);
+        mGraphVisualizer = findViewById(R.id.goToGraph);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAbout.setOnClickListener(this);
         mRatMap.setOnClickListener(this);
         mDashboard.setOnClickListener(this);
+        mGraphVisualizer.setOnClickListener(this);
     }
 
     @Override
@@ -90,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.startActivity(new Intent(this, RatMapActivity.class));
                 break;
             case R.id.about:
+                break;
+            case R.id.goToGraph:
+                this.startActivity(new Intent(this,GraphVisualizer.class));
                 break;
         }
     }

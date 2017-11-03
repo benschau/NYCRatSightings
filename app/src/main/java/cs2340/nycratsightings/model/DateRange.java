@@ -49,6 +49,7 @@ public class DateRange {
      * @return whether date is in range or not
      */
     public boolean inRange(Calendar date) {
+        /**
         Log.d(TAG, "from: " + this.from);
         Log.d(TAG, "to: " + this.to);
         Log.d(TAG, "compared to: " + date);
@@ -56,6 +57,7 @@ public class DateRange {
         Log.d(TAG, "date.compareTo(from) == " + date.compareTo(this.from));
         Log.d(TAG, "date.compareTo(to) == " + date.compareTo(this.to));
         Log.d(TAG, "date between from and to == " + ((date.compareTo(this.from) >= 0) && (date.compareTo(this.to) <= 0)));
+         */
 
         return (date.compareTo(from) >= 0) && (date.compareTo(to) <= 0);
     }

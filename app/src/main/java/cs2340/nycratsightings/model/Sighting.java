@@ -81,6 +81,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
                 Integer.parseInt(split[1]));
     }
 
+
     /**
      * Gets the location type.
      * @return the location type

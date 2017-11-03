@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
+        android:layout_centerVertical="true"
+        android:id="@+id/linearLayout2">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -74,5 +75,15 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/goToGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="36dp"
+        android:text="TEST" />
 
 </RelativeLayout>
