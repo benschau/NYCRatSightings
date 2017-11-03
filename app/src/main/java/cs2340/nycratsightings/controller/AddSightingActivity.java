@@ -19,10 +19,11 @@ import java.util.Random;
 import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.Sighting;
 
-/**
- * Created by Gerardo Prada on 10/23/17.
- */
 
+/** Represents an AddSightingActivity.
+ * @author Gerardo Prada (10/23/17)
+ * @version 1.0
+ */
 public class AddSightingActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

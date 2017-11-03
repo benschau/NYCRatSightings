@@ -16,6 +16,10 @@ import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.controller.LoginActivity;
 import cs2340.nycratsightings.controller.RegisterActivity;
 
+/** Represents a WelcomeActivity.
+ * @author --
+ * @version 1.0
+ */
 public class WelcomeActivity extends Activity implements View.OnClickListener{
 
     private final String TAG = "WelcomeActivity";
@@ -93,6 +97,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         }
     }
 
+    /**
+     * This method goes to the login screen.
+     */
     public void toLogin() {
         Intent i = new Intent(this, LoginActivity.class);
         this.startActivity(i);

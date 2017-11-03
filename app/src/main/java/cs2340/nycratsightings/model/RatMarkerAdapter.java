@@ -9,11 +9,19 @@ import com.google.android.gms.maps.model.Marker;
 
 import cs2340.nycratsightings.R;
 
+/** Represents a RatMarkerAdapter.
+ * @author Benson
+ * @version 1.0
+ */
 public class RatMarkerAdapter implements GoogleMap.InfoWindowAdapter {
 
     private View mWindow;
     private LayoutInflater mInflater;
 
+    /**
+     * RatMarkerAdapter Constructor
+     * @param inflater inflater object
+     */
     public RatMarkerAdapter(LayoutInflater inflater) {
         this.mInflater = inflater;
     }

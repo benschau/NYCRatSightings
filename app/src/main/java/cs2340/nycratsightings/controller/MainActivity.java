@@ -19,31 +19,28 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import cs2340.nycratsightings.R;
 
+/** Represents a MainActivity.
+ * @author --
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private final String TAG = "MainActivity";
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mDB;
-    private Typeface mTypeFace;
     private Button mAbout, mRatMap, mDashboard;
-    private TextView welcomeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //welcomeView = (TextView) findViewById(R.id.welcome_text);
-        //mTypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
-        //welcomeView.setTypeface(mTypeFace);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mAbout =  (Button) findViewById(R.id.about);
-        mRatMap =  (Button) findViewById(R.id.goToRatMap);
-        mDashboard = (Button) findViewById(R.id.goToDash);
+        mAbout = findViewById(R.id.about);
+        mRatMap = findViewById(R.id.goToRatMap);
+        mDashboard = findViewById(R.id.goToDash);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -97,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * This method signs out of firebase.
+     */
     public void signOut() {
         mAuth.signOut();
         finish();

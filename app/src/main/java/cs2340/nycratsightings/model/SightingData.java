@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * This class manages the list of sightings in the model
+/** This class manages the list of sightings in the model
+ * @author Lucas & co.
+ * @version 1.0
  */
 public class SightingData {
     private static ArrayList<Sighting> backingData = new ArrayList<Sighting>();

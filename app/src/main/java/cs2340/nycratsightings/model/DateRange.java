@@ -6,24 +6,48 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/** Represents a DateRange.
+ * @author Benson
+ * @version 1.0
+ */
 public class DateRange {
     private final String TAG = "DateRange";
     private Calendar from, to;
 
+    /**
+     * DateRange constructor.
+     * @param from the beginning date
+     * @param to the end date
+     */
     public DateRange(Calendar from, Calendar to) {
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * More detailed DateRange Constructor.
+     * @param yrFrom the beginning year
+     * @param monFrom the beginning month
+     * @param dayFrom the beginning day
+     * @param yrTo the end year
+     * @param monTo the end month
+     * @param dayTo the end day
+     */
     public DateRange(int yrFrom, int monFrom, int dayFrom,
                      int yrTo, int monTo, int dayTo) {
 
         // NOTE: Month is incremented by one here. For some reason, it looks as if the Gregorian calendar is always a
         // month behind?
+
         this.from = new GregorianCalendar(yrFrom, monFrom + 1, dayFrom);
         this.to = new GregorianCalendar(yrTo, monTo + 1, dayTo);
     }
 
+    /**
+     * Checks whether date is in range.
+     * @param date the date
+     * @return whether date is in range or not
+     */
     public boolean inRange(Calendar date) {
         Log.d(TAG, "from: " + this.from);
         Log.d(TAG, "to: " + this.to);

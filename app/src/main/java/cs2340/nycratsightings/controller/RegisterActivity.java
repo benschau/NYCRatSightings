@@ -21,6 +21,10 @@ import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.User;
 import cs2340.nycratsightings.model.Admin;
 
+/** Represents a RegisterActivity.
+ * @author --
+ * @version 1.0
+ */
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
@@ -53,12 +57,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * This method saves the new user according to their type (admin or reg user).
+     * @param uid the user id
+     * @param email the user's email
+     */
     private void writeNewUser(String uid, String email) {
         User user;
         Admin admin;
         String tag;
 
         // TODO: Refactor- really shit
+        // ^ looks fine to me doe :/
         DatabaseReference ref = mDB.getReference();
         if (mUserType.isChecked()) {
             admin = new Admin(email);
@@ -71,6 +81,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Registers the new user.
+     */
     public void register() {
         String email, passwd;
 
@@ -82,7 +95,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            //FirebaseException e = (FirebaseException)task.getException();
 
                             Toast.makeText(RegisterActivity.this, R.string.register_failed,
                                     Toast.LENGTH_SHORT).show();

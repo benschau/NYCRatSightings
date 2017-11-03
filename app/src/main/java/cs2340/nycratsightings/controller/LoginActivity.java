@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import cs2340.nycratsightings.R;
 
+/** Represents a LoginActivity.
+ * @author Benson
+ * @version 1.0
+ */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = "LoginActivity";
@@ -89,6 +93,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * This method goes to the main screen.
+     */
     public void toMain() {
         this.startActivity(new Intent(this, MainActivity.class));
     }

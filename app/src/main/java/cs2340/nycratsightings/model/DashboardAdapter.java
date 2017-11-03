@@ -1,9 +1,5 @@
 package cs2340.nycratsightings.model;
 
-/**
- * Created by Mariam on 10/11/17.
- */
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +11,20 @@ import java.util.ArrayList;
 
 import cs2340.nycratsightings.R;
 
+/** Represents a DashboardAdapter.
+ * @author Mariam & co. (10/11/17)
+ * @version 1.0
+ */
 public class DashboardAdapter extends ArrayAdapter<Sighting>{
     Context ctx;
     ArrayList<Sighting> values;
-    private TextView uniqueID, dateCreated, locationType, borough, city, incidentAddress, incidentZip, latitude, longitude;
+    private TextView uniqueID, dateCreated, locationType;
 
+    /**
+     * Constructor for DashboardAdapter.
+     * @param context the context
+     * @param values the list of values
+     */
     public DashboardAdapter(Context context, ArrayList<Sighting> values) {
         super(context, -1, values);
         this.ctx = context;
@@ -37,10 +42,13 @@ public class DashboardAdapter extends ArrayAdapter<Sighting>{
         setItemValues(sighting);
         //We could handle the row clicks from here.
 
-
         return mView;
     }
 
+    /**
+     * Gets sighting values.
+     * @param view the view
+     */
     public void bindValues(View view) {
         //Set up item layout params
         uniqueID = view.findViewById(R.id.unique_id);
@@ -49,7 +57,10 @@ public class DashboardAdapter extends ArrayAdapter<Sighting>{
 
     }
 
-
+    /**
+     * Sets the sighting values.
+     * @param sighting the Sighting object
+     */
     public void setItemValues(Sighting sighting) {
 
         uniqueID.setText(sighting.getUniqueKey());

@@ -10,10 +10,10 @@ import android.util.Log;
 import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.Sighting;
 
-/**
- * Created by Alex
+/** Represents a DetailedViewActivity.
+ * @author Alex
+ * @version 1.0
  */
-
 public class DetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView uniqueIDDetailed, creationDateDetailed, locationTypeDetailed, incidentZipDetailed,

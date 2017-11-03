@@ -40,6 +40,10 @@ import cs2340.nycratsightings.model.Sighting;
 import cs2340.nycratsightings.model.SightingData;
 import cs2340.nycratsightings.model.DateRange;
 
+/** Represents a RatMapActivity.
+ * @author Benson?
+ * @version 1.0
+ */
 public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, DialogInterface.OnDismissListener {
     private final String TAG = "RatMapActivity";
@@ -172,6 +176,10 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
         finish();
     }
 
+    /**
+     * This method gets the date range from the user.
+     * @param context the context
+     */
     private void createRangeDialog(Context context) {
         final Dialog dialog = new Dialog(context);
         Calendar today = Calendar.getInstance();
@@ -219,10 +227,21 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
         });
     }
 
+    /**
+     * Creates a description of the sighting.
+     * @param borough the borough
+     * @param city the city
+     * @param addr the address
+     * @param date the date
+     * @return the formatted String
+     */
     private String createDesc(String borough, String city, String addr, String date) {
         return String.format("Borough: %s\nCity: %s\nAddress: %s\nDate: %s", borough, city, addr, date);
     }
 
+    /**
+     * Refreshes the map.
+     */
     private void refreshMap() {
         mGMap.clear();
 

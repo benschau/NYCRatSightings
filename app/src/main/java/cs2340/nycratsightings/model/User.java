@@ -3,9 +3,10 @@ package cs2340.nycratsightings.model;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
- * Created by Benson Chau on 9/25/2017.
- *
  * Model for account information.
+ * @author Benson Chau (9/25/2017)
+ * @version 1.0
+ *
  */
 @IgnoreExtraProperties
 public class User {
@@ -23,7 +24,7 @@ public class User {
     }
 
     /**
-     * Create a new user
+     * Create a new user.
      * @param email user's email
      */
     public User (String email) {

@@ -8,6 +8,10 @@ import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/** Represents a Sighting.
+ * @author Lucas
+ * @version 1.0
+ */
 public class Sighting implements Parcelable, Comparable<Sighting> {
     private String uniqueKey;
     private String creationDate;
@@ -46,80 +50,107 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
         this.longitude = in.readString();
     }
 
+    /**
+     * Gets the unique key.
+     * @return the unique key
+     */
     public String getUniqueKey() {
         return uniqueKey;
     }
-    public void setUniqueKey(String uniqueKey) {
-        this.uniqueKey = uniqueKey;
-    }
 
+    /**
+     * Gets the creation date of the sighting.
+     * @return creationDate
+     */
     public String getCreationDate() {
         return creationDate;
     }
 
+    /**
+     * Parses the creation date.
+     * @return the calendar object
+     */
     public Calendar parseCreationDate() {
         int end = this.creationDate.indexOf(' ');
         String date = this.creationDate.substring(0, end);
         String[] split = date.split("/");
 
-        Calendar c = new GregorianCalendar(Integer.parseInt(split[2]),
+        //return a new Calendar object
+        return new GregorianCalendar(Integer.parseInt(split[2]),
                 Integer.parseInt(split[0]),
                 Integer.parseInt(split[1]));
-
-        return c;
     }
 
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
-    }
-
+    /**
+     * Gets the location type.
+     * @return the location type
+     */
     public String getLocationType() {
         return locationType;
     }
-    public void setLocationType(String locationType) {
-        this.locationType = locationType;
-    }
 
+    /**
+     * Gets the zip.
+     * @return the zip
+     */
     public String getIncidentZip() {
         return incidentZip;
     }
-    public void setIncidentZip(String incidentZip) {
-        this.incidentZip = incidentZip;
-    }
 
+    /**
+     * Gets the address.
+     * @return the address
+     */
     public String getIncidentAddress() {
         return incidentAddress;
     }
-    public void setIncidentAddress(String incidentAddress) {
-        this.incidentAddress = incidentAddress;
-    }
 
+    /**
+     * Gets the city.
+     * @return the city
+     */
     public String getCity() {
         return city;
     }
+
+    /**
+     * Sets the city.
+     * @return the city
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     * Gets the borough.
+     * @return the borough
+     */
     public String getBorough() {
         return borough;
     }
+
+    /**
+     * Sets the borough.
+     * @return the borough
+     */
     public void setBorough(String borough) {
         this.borough = borough;
     }
 
+    /**
+     * Gets the latitude.
+     * @return the latitude
+     */
     public String getLatitude() {
         return latitude;
     }
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
 
+    /**
+     * Gets the longitude.
+     * @return the longitude
+     */
     public String getLongitude() {
         return longitude;
-    }
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
     }
 
     @Override

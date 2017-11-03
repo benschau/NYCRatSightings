@@ -24,13 +24,16 @@ import cs2340.nycratsightings.model.DashboardAdapter;
 import cs2340.nycratsightings.model.Sighting;
 import cs2340.nycratsightings.model.SightingData;
 
-
+/** Represents a DashboardActivity.
+ * @author Mariam Marzouk
+ * @version 1.0
+ */
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
 
     private ArrayList<Sighting> mSightings;
     private SightingData mSightingData;
     private ListView mList;
-    DashboardAdapter mAdapter;
+    private DashboardAdapter mAdapter;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
@@ -38,9 +41,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_listview);
 
-        final Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
+        final Button mSignOut = findViewById(R.id.dash_sign_out);
         final Button mAddSighting = findViewById(R.id.dash_add_sighting);
-        mList = (ListView) findViewById(R.id.csv_listview);
+        mList = findViewById(R.id.csv_listview);
 
         mSignOut.setOnClickListener(this);
         mAddSighting.setOnClickListener(this);
@@ -98,11 +101,15 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    /**
+     * This method signs out of firebase.
+     */
     public void signOut() {
         mAuth.signOut();
     }
 
     /**
+     * This method reads the internal storage.
      * Check if "new-sighting-data.txt" exists. If it does, then the user has added new
      * mSightings to the app. These are then read from the file and added to the SightingData
      * array list.

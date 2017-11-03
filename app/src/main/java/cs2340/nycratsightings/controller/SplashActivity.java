@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+/** Represents a SplashActivity.
+ * @author --
+ * @version 1.0
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override
