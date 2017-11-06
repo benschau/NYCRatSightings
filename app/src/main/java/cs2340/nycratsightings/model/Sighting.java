@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -12,19 +14,27 @@ import java.util.GregorianCalendar;
  * @author Lucas
  * @version 1.0
  */
+@IgnoreExtraProperties
 public class Sighting implements Parcelable, Comparable<Sighting> {
-    private String uniqueKey;
-    private String creationDate;
-    private String locationType;
-    private String incidentZip;
-    private String incidentAddress;
-    private String city;
-    private String borough;
-    private String latitude;
-    private String longitude;
+    public  String uniqueKey;
+    public  String creationDate;
+    public  String locationType;
+    public  String incidentZip;
+    public  String incidentAddress;
+    public  String city;
+    public  String borough;
+    public  String latitude;
+    public  String longitude;
 
     /**
-     * Sole constructor for Sightings.
+     * Constructor required for Firebase encoding into database
+     */
+    public Sighting() {
+
+    }
+
+    /**
+     * Typical constructor for Sightings.
      */
     public Sighting(String[] entries) {
         this.uniqueKey = entries[0];
@@ -167,18 +177,6 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 '}';
-    }
-
-    /**
-     * Save sighting to a file, separating each attribute with a comma.
-     * This method is called by AddSightingActivity.java when a user adds a new sighting to the app
-     *
-     * @param pw print writer with reference to file where student should be written
-     */
-    public void saveToFile(PrintWriter pw) {
-        pw.println(uniqueKey + "," + creationDate + "," + locationType + "," + incidentZip
-                + "," + incidentAddress + "," + city + "," + borough + "," + latitude
-                + "," + longitude);
     }
 
     @Override
