@@ -45,7 +45,6 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
     private final String TAG = "RatMapActivity";
 
     private GoogleMap mGMap;
-    private SightingData mSightingData;
     private ArrayList<Sighting> mSightings;
 
     private DatePicker mDateFrom, mDateTo;
@@ -74,18 +73,15 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
 
-        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
-        mSightingData = new SightingData();
-        mSightingData.readCSV(reader);
+        SplashActivity.mSightingData.syncRatData();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-        mSightings = SightingData.getBackingData();
+        mSightings = SplashActivity.mSightingData.getRatData();
         // The default date range should contain all elements in the arraylist.
         mDateRange = new DateRange(mSightings.get(0).parseCreationDate(),
-                mSightings.get(mSightings.size() - 1).parseCreationDate());
+                 mSightings.get(mSightings.size() - 1).parseCreationDate());
 
         mapFragment.getMapAsync(this);
     }
@@ -224,6 +220,7 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     private void refreshMap() {
+        SplashActivity.mSightingData.syncRatData();
         mGMap.clear();
 
         RatMarkerAdapter ratInfo = new RatMarkerAdapter(getLayoutInflater());

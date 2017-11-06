@@ -4,17 +4,19 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cs2340.nycratsightings.model.SightingData;
+
 public class SplashActivity extends AppCompatActivity {
+
+    static SightingData mSightingData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = new Intent(this, WelcomeActivity.class);
-        //for testing purposes
-        //Intent intent = new Intent(this, DashboardActivity.class);
-        startActivity(intent);
+        mSightingData = new SightingData();
 
-        //finish();
+        startActivity(intent);
     }
 }

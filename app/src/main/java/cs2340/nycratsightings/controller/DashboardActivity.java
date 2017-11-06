@@ -22,13 +22,12 @@ import java.util.ArrayList;
 import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.DashboardAdapter;
 import cs2340.nycratsightings.model.Sighting;
-import cs2340.nycratsightings.model.SightingData;
-
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
+    private final String TAG = "DashboardActivity";
+
 
     private ArrayList<Sighting> mSightings;
-    private SightingData mSightingData;
     private ListView mList;
     DashboardAdapter mAdapter;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -38,29 +37,22 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_listview);
 
-        final Button mSignOut = (Button) findViewById(R.id.dash_sign_out);
+        final Button mSignOut = findViewById(R.id.dash_sign_out);
         final Button mAddSighting = findViewById(R.id.dash_add_sighting);
-        mList = (ListView) findViewById(R.id.csv_listview);
+        mList = findViewById(R.id.csv_listview);
 
         mSignOut.setOnClickListener(this);
         mAddSighting.setOnClickListener(this);
 
-        /**
-         * Read the csv file with sighting data and add it to the SightingData array list.
-         */
-        InputStream csvFile = getResources().openRawResource(R.raw.xaa);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
-        mSightingData = new SightingData();
-        mSightingData.readCSV(reader);
-
-        readInternalStorage();
         updateSightings();
     }
 
     @Override
     protected void onResume() {
-        super .onResume();
-        readInternalStorage();
+        super.onResume();
+
+        SplashActivity.mSightingData.syncRatData();
+
         updateSightings();
     }
 
@@ -70,7 +62,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         Sighting currSighting = (Sighting) parent.getItemAtPosition(pos);
 
-        Log.d("ITEMCLICK: ", currSighting.toString());
+        Log.d(TAG, "onItemClick: " + currSighting.toString());
 
         b = new Bundle();
         b.putParcelable("CURRENT_SIGHTING", currSighting);
@@ -79,7 +71,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         startActivity(i);
     }
 
-    //sign out button functionality
     public void onClick(View v) {
         Intent i;
 
@@ -103,32 +94,15 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     }
 
     /**
-     * Check if "new-sighting-data.txt" exists. If it does, then the user has added new
-     * mSightings to the app. These are then read from the file and added to the SightingData
-     * array list.
-     */
-    private void readInternalStorage() {
-        try {
-            File file = new File(this.getFilesDir(), "new-sighting-data.txt");
-            BufferedReader readerInternalStorage = new BufferedReader(new FileReader(file));
-            mSightingData.readInternalStorage(readerInternalStorage);
-        } catch (FileNotFoundException e) {
-            Log.e("Dashboard Activity", "new-sighting-data.txt does not exist");
-        }
-    }
-
-    /**
      * Methods updates sightings array list with SightingData's backing array.
      * Called after SightingData's backing array has been updated.
      */
     private void updateSightings() {
-        mSightings = mSightingData.getBackingData();
+        mSightings = SplashActivity.mSightingData.getRatData();
 
         mAdapter = new DashboardAdapter(this, mSightings);
 
-        //attach our Adapter to the ListView. This will populate all of the rows.
         mList.setAdapter(mAdapter);
-
         mList.setOnItemClickListener(this);
     }
 }

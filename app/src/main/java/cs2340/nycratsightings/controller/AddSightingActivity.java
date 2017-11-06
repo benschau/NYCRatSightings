@@ -18,12 +18,16 @@ import java.util.Random;
 
 import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.Sighting;
+import cs2340.nycratsightings.model.SightingData;
 
 /**
  * Created by Gerardo Prada on 10/23/17.
  */
 
 public class AddSightingActivity extends Activity implements View.OnClickListener {
+    private final String TAG = "AddSightingActivity";
+    private SightingData mSightingData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,9 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
 
         final Button cancelAddSighting = findViewById(R.id.cancel_add_sighting);
         final Button addSighting = findViewById(R.id.add_sighting);
+
+        mSightingData = new SightingData();
+
         // Set on click action for buttons. The onClick(View v) method is called and a switch
         // statement is used to determine the next method calls based on the clicked button id.
         cancelAddSighting.setOnClickListener(this);
@@ -56,9 +63,6 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
         }
     }
 
-    /**
-     * Save new sighting to internal storage.
-     */
     private void saveNewSighting() {
         String id = generateSightingId();
         String sightingDate = generateSightingDate();
@@ -80,25 +84,18 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
                 latitude, longitude};
         Sighting newSighting = new Sighting(sightingArray);
 
-        File file = new File(this.getFilesDir(), "new-sighting-data.txt");
-        try {
-            PrintWriter pw = new PrintWriter(file);
-            newSighting.saveToFile(pw);
-            pw.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Log.e("AddSightingActivity", "Error opening text file to add data");
-        }
+        Log.d(TAG, "Adding new rat...");
+        mSightingData.addRat(newSighting);
     }
 
     /**
-     * Generate random number in range [1, 30000000] for unique id
+     * Generate random number in range [3173337, 6173337] for unique id
      *
      * @return sighting id
      */
     private String generateSightingId() {
         Random random = new Random();
-        int r = random.nextInt(30000000) + 1;
+        int r = random.nextInt(30000000) + 3173337;
         return Integer.toString(r);
     }
 
