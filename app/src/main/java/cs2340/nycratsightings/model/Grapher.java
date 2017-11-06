@@ -12,6 +12,7 @@ import java.util.TreeMap;
  */
 
 public class Grapher {
+
     int monthsToTraverse;
     public TreeMap<String,Integer> map;
     Hashtable<String[],Integer> backing = new Hashtable<>();
@@ -31,14 +32,12 @@ public class Grapher {
         Integer[] start = {10,2015};
         Integer[] end = {1,2015};
         TreeMap<Integer[],Integer> test = new TreeMap<>();
-        //test.put(start,1);
-
-        //System.out.println(dank.getTime());
 
         Grapher thedank = new Grapher(start,end,testSightings);
         System.out.println(thedank.map.entrySet());
 
     }
+
     public Grapher(Integer[] start, Integer[] end, ArrayList<Sighting> data){
         //Format = [month] [date] for parameters
         map = new TreeMap<>();
@@ -64,6 +63,7 @@ public class Grapher {
         }
 
     }
+
     public static String getKey(Sighting data){
         String date = data.getCreationDate();
         String[] elements = date.split(" ");
