@@ -78,7 +78,7 @@ public class GraphInfo {
 
             Log.d("BUILD LINESERIES", "Entry: (" + e + ", " + numSightings + ")");
 
-            DataPoint dp = new DataPoint(e.getTime(), numSightings);
+            DataPoint dp = new DataPoint(i, numSightings);
 
             lineData.add(dp);
             i++;
