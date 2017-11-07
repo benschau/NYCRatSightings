@@ -154,15 +154,15 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
         mSightings = SplashActivity.mSightingData.getRatData();
 
         Calendar from = new GregorianCalendar(2015,3,3);
-        Calendar to = new GregorianCalendar(2017,12,3);
-
+        Calendar to = new GregorianCalendar(2018,12,3);
+        int[] dummy = {0};
         GraphInfo graph = new GraphInfo(from, to, mSightings);
-        graphData = graph.getGraphSeries();
+        graphData = graph.getGraphSeries(dummy);
 
         mGraph.addSeries(graphData);
 
         //mGraph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        mGraph.getGridLabelRenderer().setNumHorizontalLabels(2);
+        mGraph.getGridLabelRenderer().setNumHorizontalLabels(dummy[0]);
 
         //mGraph.getViewport().setMinX(from.getTime().getTime());
         //mGraph.getViewport().setMaxX(to.getTime().getTime());

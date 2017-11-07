@@ -7,6 +7,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
@@ -23,7 +24,7 @@ public class GraphInfo {
 
     private final String TAG = "GraphInfo";
     private int monthsToTraverse;
-    private TreeMap<String, Integer> map;
+    private TreeMap<Calendar, Integer> map;
 
     /**
      * Sole constructor for GraphInfo.
@@ -41,10 +42,10 @@ public class GraphInfo {
             tCreateDate = s.parseCreationDate();
             if(daterange.inRange(tCreateDate)) {
                 Log.d("WTF", getKey(s));
-                if(map.containsKey(getKey(s))) {
-                    map.put(getKey(s), map.get(getKey(s)) + 1);
+                if(map.containsKey(getKeyDate(s))) {
+                    map.put(getKeyDate(s), map.get(getKeyDate(s)) + 1);
                 } else {
-                    map.put(getKey(s), 1);
+                    map.put(getKeyDate(s), 1);
                 }
             }
         }
@@ -63,15 +64,15 @@ public class GraphInfo {
      *  Creates a set of data points to draw on the graph from the generated HashTable.
      * @return a set of data points to draw on the graph
      */
-    public LineGraphSeries<DataPoint> getGraphSeries() {
+    public LineGraphSeries<DataPoint> getGraphSeries(int[] dummy) {
         LineGraphSeries<DataPoint> lineSeries;
         ArrayList<DataPoint> lineData = new ArrayList<>();
         DataPoint dataPoints[];
 
         // TODO: Return LineGraphSeries set of datapoints for use in graphing.
-        Set<String> set = map.keySet();
+        Set<Calendar> set = map.keySet();
         int i = 0;
-        for (String e : set) {
+        for (Calendar e : set) {
             //e.set(Calendar.MONTH, e.get(Calendar.MONTH) - 1);
             Integer numSightings = map.get(e);
 
@@ -84,9 +85,9 @@ public class GraphInfo {
         }
 
         dataPoints = lineData.toArray(new DataPoint[lineData.size()]);
-        Log.d("wtF", "" + dataPoints[1]);
+        //Log.d("wtF", "" + dataPoints[1]);
         lineSeries = new LineGraphSeries<>(dataPoints);
-
+        dummy[0] = dataPoints.length;
         return lineSeries;
     }
     private static String getKey(Sighting data){
@@ -96,5 +97,13 @@ public class GraphInfo {
         String out = dateElements[0] + " " + dateElements[2];
 
         return out;
+    }
+    private static Calendar getKeyDate(Sighting data){
+        String date = data.getCreationDate();
+        String[] elements = date.split(" ");
+        String[] dateElements = elements[0].split("/");
+        String out = dateElements[0] + " " + dateElements[2];
+        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]),Integer.parseInt(dateElements[0]) - 1,1);
+        return outvar;
     }
 }
