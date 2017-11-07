@@ -60,8 +60,10 @@
             android:name=".controller.RatMapActivity"
             android:label="@string/title_activity_rat_map"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.Grapher" />
-        <activity android:name=".controller.GraphVisualizer"></activity>
+        <activity
+            android:name=".controller.GraphVisualizer"
+            android:label="GraphVisualizer"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

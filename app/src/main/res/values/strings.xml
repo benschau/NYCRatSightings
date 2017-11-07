@@ -27,7 +27,7 @@
     <string name="borough">Borough</string>
 
     <!--ADD NEW SIGHTING-->
-    <string name="add_sighting">Add New Sighting</string>
+    <string name="add_sighting">Add Sighting</string>
     <string name="add_sighting_button">Add</string>
     <string name="cancel_button">Cancel</string>
     <string name="invalid_lat_long">Incorrect format for latitute or longitude</string>
@@ -36,6 +36,7 @@
     <string name="title_activity_rat_map">RatMap</string>
     <string name="rat_range">Date range</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Graphs -->
+    <string name="title_graph">Graphs</string>
+
 </resources>

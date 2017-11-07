@@ -2,39 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="cs2340.nycratsightings.controller.DashboardActivity" >
+    tools:context="cs2340.nycratsightings.controller.DashboardActivity">
 
-    <Button
-        android:id="@+id/dash_sign_out"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sign_out" />
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#32353c"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="15dp" >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:title="@string/app_name" />
 
-        <TextView
-            android:id="@+id/SightingsView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="Sightings"
-            android:textColor="#ffffff"
-            android:textSize="22dp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/dash_add_sighting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_sighting" />
+    </android.support.design.widget.AppBarLayout>
 
     <ListView
         android:id="@+id/csv_listview"

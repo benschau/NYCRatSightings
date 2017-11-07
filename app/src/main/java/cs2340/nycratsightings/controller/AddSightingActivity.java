@@ -8,9 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

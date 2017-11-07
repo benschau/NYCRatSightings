@@ -64,6 +64,22 @@
             android:layout_margin="10dp">
 
             <Button
+                android:id="@+id/goToGraph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:text="@string/title_graph"
+                android:elevation="5dp"
+                android:textSize="40sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <Button
                 android:id="@+id/about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,15 +91,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/goToGraph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/linearLayout2"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="36dp"
-        android:text="TEST" />
 
 </RelativeLayout>

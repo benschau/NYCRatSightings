@@ -4,24 +4,17 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-
-import cs2340.nycratsightings.R;
 
 /** This class manages the list of sightings in the model
  * @author Lucas & co.

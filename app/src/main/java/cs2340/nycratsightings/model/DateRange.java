@@ -44,6 +44,20 @@ public class DateRange {
     }
 
     /**
+     * getFromDate
+     *  Get the raw Calendar object assigned at the beginning of the range.
+     * @return from date
+     */
+    public Calendar getFromDate() { return from; }
+
+    /**
+     * getToDate
+     *  Get the raw Calendar object assigned at the end of the range.
+     * @return to date
+     */
+    public Calendar getToDate() { return to; }
+
+    /**
      * Checks whether date is in range.
      * @param date the date
      * @return whether date is in range or not

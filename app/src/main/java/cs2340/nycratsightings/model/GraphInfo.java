@@ -1,22 +1,27 @@
 package cs2340.nycratsightings.model;
 
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Dictionary;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * Created by hwdge on 11/2/2017.
+ * Class designed to handle graphs.
+ * @author Lucas Liu
  */
+public class GraphInfo {
 
-public class Grapher {
+    private int monthsToTraverse;
+    private TreeMap<String, Integer> map;
+    private Hashtable<String[], Integer> ratData;
 
-    int monthsToTraverse;
-    public TreeMap<String,Integer> map;
-    Hashtable<String[],Integer> backing = new Hashtable<>();
-    public static void main(String[] args){
+    /* public static void main(String[] args){
         String[] data = {"dank","1/2/2015 11:58","thre","thre","thre","thre","thre","thre","thre"};
         String[] data2 = {"dank","10/8/2015 11:58","thre","thre","thre","thre","thre","thre","thre"};
         String[] dat3 = {"dank","10/8/2015 11:58","thre","thre","thre","thre","thre","thre","thre"};
@@ -35,23 +40,27 @@ public class Grapher {
 
         Grapher thedank = new Grapher(start,end,testSightings);
         System.out.println(thedank.map.entrySet());
+    } */
 
-    }
-
-    public Grapher(Integer[] start, Integer[] end, ArrayList<Sighting> data){
-        //Format = [month] [date] for parameters
+    /**
+     * Sole constructor for GraphInfo.
+     * @param start a start month and year pair in the form of an array of Integers.
+     * @param end an end month and year pair in the form of an array of Integers.
+     * @param data rat data in the form of an arraylist.
+     */
+    public GraphInfo(Integer[] start, Integer[] end, ArrayList<Sighting> data){
         map = new TreeMap<>();
-        // minus one for inclusivity
-        DateRange daterange = new DateRange(end[1],end[0] - 1,1,start[1],start[0],1);
+        ratData = new Hashtable<>();
+
+        DateRange daterange = new DateRange(end[1], end[0] - 1, 1, start[1], start[0], 1);
         boolean sent = true;
         int i = data.size() - 1;
 
         while(sent){
             Sighting traverse = data.get(i);
             if(daterange.inRange(traverse.parseCreationDate())){
-                System.out.println(traverse);
                 if(map.containsKey(getKey(traverse))){
-                    map.put(getKey(traverse),map.get(getKey(traverse)) + 1);
+                    map.put(getKey(traverse), map.get(getKey(traverse)) + 1);
                 } else {
                     map.put(getKey(traverse),1);
                 }
@@ -61,14 +70,33 @@ public class Grapher {
             }
             i--;
         }
-
     }
 
-    public static String getKey(Sighting data){
+    /**
+     * getGraphSeries
+     *  Creates a set of data points to draw on the graph from the generated HashTable.
+     * @return a set of data points to draw on the graph
+     */
+    public LineGraphSeries<DataPoint> getGraphSeries() {
+        LineGraphSeries<DataPoint> lineData = new LineGraphSeries<>();
+
+        // TODO: Return LineGraphSeries set of datapoints for use in graphing.
+
+        return lineData;
+    }
+
+    /**
+     * getKey
+     *  Get the key that will be used in a treemap from a sighting.
+     * @param data the sighting from which we get the key from
+     * @return the key used in the hashtable.
+     */
+    private static String getKey(Sighting data){
         String date = data.getCreationDate();
         String[] elements = date.split(" ");
         String[] dateElements = elements[0].split("/");
         String out = dateElements[0] + " " + dateElements[2];
+
         return out;
     }
 }

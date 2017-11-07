@@ -3,7 +3,10 @@ package cs2340.nycratsightings.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -29,7 +32,7 @@ import cs2340.nycratsightings.model.SightingData;
  * @version 1.0
  */
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener {
+public class DashboardActivity extends AppCompatActivity implements ListView.OnItemClickListener {
     private final String TAG = "DashboardActivity";
 
 
@@ -42,13 +45,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_listview);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        final Button mSignOut = findViewById(R.id.dash_sign_out);
-        final Button mAddSighting = findViewById(R.id.dash_add_sighting);
         mList = findViewById(R.id.csv_listview);
-
-        mSignOut.setOnClickListener(this);
-        mAddSighting.setOnClickListener(this);
 
         updateSightings();
     }
@@ -77,29 +77,34 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         startActivity(i);
     }
 
-    public void onClick(View v) {
-        Intent i;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_overflow, menu);
+        getMenuInflater().inflate(R.menu.rat_dash_overflow, menu);
 
-        switch (v.getId()) {
-            case R.id.dash_sign_out:
-                i = new Intent(this, WelcomeActivity.class);
-                this.startActivity(i);
-                signOut();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i;
+        int id = item.getItemId();
+
+        switch(id) {
+            case R.id.menu_logout:
+                mAuth.signOut();
+                finish();
                 break;
-            case R.id.dash_add_sighting:
+            case R.id.menu_about:
+                break;
+            case R.id.add_rat:
                 i = new Intent(this, AddSightingActivity.class);
                 this.startActivity(i);
                 break;
-            default:
-                break;
         }
-    }
 
-    /**
-     * This method signs out of firebase.
-     */
-    public void signOut() {
-        mAuth.signOut();
+        return super.onOptionsItemSelected(item);
     }
 
     /**
