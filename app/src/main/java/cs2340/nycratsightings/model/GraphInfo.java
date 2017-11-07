@@ -42,10 +42,10 @@ public class GraphInfo {
             tCreateDate = s.parseCreationDate();
             if(daterange.inRange(tCreateDate)) {
                 Log.d("WTF", getKey(s));
-                if(map.containsKey(getKeyDate(s))) {
-                    map.put(getKeyDate(s), map.get(getKeyDate(s)) + 1);
+                if(map.containsKey(getKeyDateDays(s))) {
+                    map.put(getKeyDateDays(s), map.get(getKeyDateDays(s)) + 1);
                 } else {
-                    map.put(getKeyDate(s), 1);
+                    map.put(getKeyDateDays(s), 1);
                 }
             }
         }
@@ -78,7 +78,7 @@ public class GraphInfo {
 
             Log.d("BUILD LINESERIES", "Entry: (" + e + ", " + numSightings + ")");
 
-            DataPoint dp = new DataPoint(i, numSightings);
+            DataPoint dp = new DataPoint(e.getTime(), numSightings);
 
             lineData.add(dp);
             i++;
@@ -104,6 +104,14 @@ public class GraphInfo {
         String[] dateElements = elements[0].split("/");
         String out = dateElements[0] + " " + dateElements[2];
         Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]),Integer.parseInt(dateElements[0]) - 1,1);
+        return outvar;
+    }
+    private static Calendar getKeyDateDays(Sighting data){
+        String date = data.getCreationDate();
+        String[] elements = date.split(" ");
+        String[] dateElements = elements[0].split("/");
+        String out = dateElements[0] + " " + dateElements[2];
+        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]),Integer.parseInt(dateElements[0]) - 1,Integer.parseInt(dateElements[1]));
         return outvar;
     }
 }
