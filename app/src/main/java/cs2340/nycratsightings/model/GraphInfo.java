@@ -23,7 +23,7 @@ public class GraphInfo {
 
     private final String TAG = "GraphInfo";
     private int monthsToTraverse;
-    private TreeMap<Calendar, Integer> map;
+    private TreeMap<String, Integer> map;
 
     /**
      * Sole constructor for GraphInfo.
@@ -40,11 +40,11 @@ public class GraphInfo {
         for (Sighting s : data) {
             tCreateDate = s.parseCreationDate();
             if(daterange.inRange(tCreateDate)) {
-                Log.d(TAG, s.toString());
-                if(map.containsKey(tCreateDate)) {
-                    map.put(tCreateDate, map.get(tCreateDate) + 1);
+                Log.d("WTF", getKey(s));
+                if(map.containsKey(getKey(s))) {
+                    map.put(getKey(s), map.get(getKey(s)) + 1);
                 } else {
-                    map.put(tCreateDate, 1);
+                    map.put(getKey(s), 1);
                 }
             }
         }
@@ -69,21 +69,32 @@ public class GraphInfo {
         DataPoint dataPoints[];
 
         // TODO: Return LineGraphSeries set of datapoints for use in graphing.
-        Set<Calendar> set = map.keySet();
-        for (Calendar e : set) {
-            e.set(Calendar.MONTH, e.get(Calendar.MONTH) - 1);
+        Set<String> set = map.keySet();
+        int i = 0;
+        for (String e : set) {
+            //e.set(Calendar.MONTH, e.get(Calendar.MONTH) - 1);
             Integer numSightings = map.get(e);
 
-            Log.d(TAG, "Entry: (" + e.toString() + ", " + numSightings + ")");
+            Log.d("BUILD LINESERIES", "Entry: (" + e + ", " + numSightings + ")");
 
-            DataPoint dp = new DataPoint(e.getTime(), numSightings);
+            DataPoint dp = new DataPoint(i, numSightings);
 
             lineData.add(dp);
+            i++;
         }
 
         dataPoints = lineData.toArray(new DataPoint[lineData.size()]);
+        Log.d("wtF", "" + dataPoints[1]);
         lineSeries = new LineGraphSeries<>(dataPoints);
 
         return lineSeries;
+    }
+    private static String getKey(Sighting data){
+        String date = data.getCreationDate();
+        String[] elements = date.split(" ");
+        String[] dateElements = elements[0].split("/");
+        String out = dateElements[0] + " " + dateElements[2];
+
+        return out;
     }
 }

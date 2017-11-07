@@ -23,6 +23,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.DateRange;
@@ -152,19 +153,19 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
         LineGraphSeries<DataPoint> graphData;
         mSightings = SplashActivity.mSightingData.getRatData();
 
-        Calendar from = mDateRange.getFromDate();
-        Calendar to = mDateRange.getToDate();
+        Calendar from = new GregorianCalendar(2015,3,3);
+        Calendar to = new GregorianCalendar(2017,12,3);
 
         GraphInfo graph = new GraphInfo(from, to, mSightings);
         graphData = graph.getGraphSeries();
 
         mGraph.addSeries(graphData);
 
-        mGraph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        mGraph.getGridLabelRenderer().setNumHorizontalLabels(graph.getMonthRange());
+        //mGraph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        mGraph.getGridLabelRenderer().setNumHorizontalLabels(2);
 
-        mGraph.getViewport().setMinX(from.getTime().getTime());
-        mGraph.getViewport().setMaxX(to.getTime().getTime());
+        //mGraph.getViewport().setMinX(from.getTime().getTime());
+        //mGraph.getViewport().setMaxX(to.getTime().getTime());
         //mGraph.getViewport().setXAxisBoundsManual(true);
 
         //mGraph.getGridLabelRenderer().setHumanRounding(false);
