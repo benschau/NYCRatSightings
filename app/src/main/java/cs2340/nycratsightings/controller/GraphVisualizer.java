@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -47,7 +48,10 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
 
         mGraph = findViewById(R.id.graph1);
 
+        SplashActivity.mSightingData.syncRatData();
+
         mSightings = SplashActivity.mSightingData.getRatData();
+        Log.d(TAG, "mSightings: " + mSightings);
         mDateRange = new DateRange(mSightings.get(0).parseCreationDate(),
                 mSightings.get(mSightings.size() - 1).parseCreationDate());
 
@@ -151,20 +155,19 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
         Calendar from = mDateRange.getFromDate();
         Calendar to = mDateRange.getToDate();
 
-        Integer start[] = new Integer[] {
-            Integer.valueOf(from.get(Calendar.MONTH)),
-            Integer.valueOf(from.get(Calendar.YEAR))
-        };
-
-        Integer end[] = new Integer[] {
-            Integer.valueOf(to.get(Calendar.MONTH)),
-            Integer.valueOf(to.get(Calendar.YEAR))
-        };
-
-        GraphInfo graph = new GraphInfo(start, end, mSightings);
+        GraphInfo graph = new GraphInfo(from, to, mSightings);
         graphData = graph.getGraphSeries();
 
         mGraph.addSeries(graphData);
+
+        mGraph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        mGraph.getGridLabelRenderer().setNumHorizontalLabels(graph.getMonthRange());
+
+        mGraph.getViewport().setMinX(from.getTime().getTime());
+        mGraph.getViewport().setMaxX(to.getTime().getTime());
+        //mGraph.getViewport().setXAxisBoundsManual(true);
+
+        //mGraph.getGridLabelRenderer().setHumanRounding(false);
     }
 
     /**

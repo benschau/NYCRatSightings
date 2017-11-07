@@ -85,10 +85,17 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
         String date = this.creationDate.substring(0, end);
         String[] split = date.split("/");
 
-        //return a new Calendar object
-        return new GregorianCalendar(Integer.parseInt(split[2]),
+        Calendar createDate = new GregorianCalendar(Integer.parseInt(split[2]),
                 Integer.parseInt(split[0]),
                 Integer.parseInt(split[1]));
+
+
+        createDate.set(Calendar.HOUR, 12);
+        createDate.set(Calendar.MINUTE, 0);
+        createDate.set(Calendar.SECOND, 0);
+        createDate.set(Calendar.MILLISECOND, 0);
+
+        return createDate;
     }
 
 

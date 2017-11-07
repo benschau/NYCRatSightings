@@ -93,7 +93,7 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
      */
     private String generateSightingId() {
         Random random = new Random();
-        int r = random.nextInt(30000000) + 3173337;
+        int r = random.nextInt(30000000) + 31473337;
         return Integer.toString(r);
     }
 

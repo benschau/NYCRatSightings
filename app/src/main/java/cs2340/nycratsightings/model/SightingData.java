@@ -1,8 +1,8 @@
 package cs2340.nycratsightings.model;
 
-import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.util.Log;
-import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /** This class manages the list of sightings in the model
  * @author Lucas & co.
@@ -22,12 +23,11 @@ import java.util.ArrayList;
  */
 public class SightingData {
     private final String TAG = "SightingData";
-    private final String CSV_PATH = "raw/xaa.csv";
+    private final String CSV_PATH = "res/raw/mimd.csv";
 
     private ArrayList<Sighting> mSightings;
     private FirebaseDatabase mDB;
     private DatabaseReference mRef;
-    private DateRange totalDateRange;
 
     public SightingData() {
         mSightings = new ArrayList<>();
@@ -38,13 +38,16 @@ public class SightingData {
 
     private void initDB() {
         mRef = mDB.getReference();
-        //mSightings = readCSV();
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.child("ratdb").exists()) {
                     mSightings = readCSV();
-                    for (Sighting s : mSightings) {
+                    Iterator<Sighting> iter = mSightings.iterator();
+
+                    while (iter.hasNext()) {
+                        Sighting s = iter.next();
+
                         addRat(s);
                     }
                 }
@@ -90,7 +93,7 @@ public class SightingData {
         mRef.child("ratdb").child(sighting.getUniqueKey()).setValue(sighting);
 
         Log.d(TAG, "addRat: " + sighting.toString());
-        mSightings.add(sighting);
+        //mSightings.add(sighting);
 
         syncRatData();
     }
