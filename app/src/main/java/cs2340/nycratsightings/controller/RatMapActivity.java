@@ -63,14 +63,13 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // TODO: Use this to add rats to database
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RatMapActivity.this, AddSightingActivity.class));
 
-                // refresh arraylist
+                // TODO: Use this to add rats to database
 
 
                 refreshMap();
