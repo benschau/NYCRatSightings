@@ -30,4 +30,63 @@
         android:layout_height="200dip"
         android:id="@+id/graph1" />
 
+    <EditText
+        android:id="@+id/editTextFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/graph1"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editTextTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editTextFrom"
+        android:layout_below="@+id/editTextFrom"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/fromDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editTextFrom"
+        android:layout_alignBottom="@+id/editTextFrom"
+        android:layout_marginEnd="28dp"
+        android:layout_toStartOf="@+id/editTextFrom"
+        android:text="From Date =" />
+
+    <TextView
+        android:id="@+id/toDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/fromDate"
+        android:layout_alignTop="@+id/editTextTo"
+        android:layout_marginTop="11dp"
+        android:text="To Date =" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/monthOrDay"
+        android:layout_alignBottom="@+id/monthOrDay"
+        android:layout_marginStart="44dp"
+        android:layout_toEndOf="@+id/monthOrDay"
+        android:text="Months / Days" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/editTextTo"
+        android:layout_marginBottom="24dp"
+        android:text="Update" />
+
 </RelativeLayout>

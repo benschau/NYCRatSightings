@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Switch;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.jjoe64.graphview.GraphView;
@@ -40,13 +42,22 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
     private DateRange mDateRange;
     private Button submit;
 
+    private EditText fromDate;
+    private EditText toDate;
+    private Button update;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_graph_visualizer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fromDate = findViewById(R.id.editTextFrom);
+        toDate = findViewById(R.id.editTextTo);
+        update = findViewById(R.id.update);
         mGraph = findViewById(R.id.graph1);
 
         SplashActivity.mSightingData.syncRatData();
@@ -55,7 +66,21 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
         Log.d(TAG, "mSightings: " + mSightings);
         mDateRange = new DateRange(mSightings.get(0).parseCreationDate(),
                 mSightings.get(mSightings.size() - 1).parseCreationDate());
-
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String fromString = fromDate.getText().toString();
+                String toString = toDate.getText().toString();
+                Log.d("dank",fromString);
+                String[] fromArray = fromString.split("/");
+                String[] toArray = toString.split("/");
+                Calendar fromCalendar = new GregorianCalendar(Integer.parseInt(fromArray[2]),
+                        Integer.parseInt(fromArray[0]) - 1,Integer.parseInt(fromArray[1]));
+                Calendar toCalendar = new GregorianCalendar(Integer.parseInt(toArray[2]),
+                        Integer.parseInt(toArray[0]) - 1,Integer.parseInt(toArray[1]));
+                updateGraph(fromCalendar,toCalendar);
+            }
+        });
         updateGraph();
     }
 
@@ -150,27 +175,43 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
      *  Graph the current rat data.
      */
     private void updateGraph() {
+        Calendar fromDefault = new GregorianCalendar(2015,7,3);
+        Calendar toDefault = new GregorianCalendar(2015,10,3);
         LineGraphSeries<DataPoint> graphData;
         mSightings = SplashActivity.mSightingData.getRatData();
-        
-        Calendar from = new GregorianCalendar(2015,3,3);
-        Calendar to = new GregorianCalendar(2018,12,3);
-
-
         int[] dummy = {0};
-        GraphInfo graph = new GraphInfo(from, to, mSightings);
+        GraphInfo graph = new GraphInfo(fromDefault, toDefault, mSightings);
         graphData = graph.getGraphSeries(dummy);
 
         mGraph.addSeries(graphData);
 
-        //mGraph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        mGraph.getGridLabelRenderer().setNumHorizontalLabels(dummy[0]);
+        mGraph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        //mGraph.getGridLabelRenderer().setNumHorizontalLabels(10);
 
-        //mGraph.getViewport().setMinX(from.getTime().getTime());
-        //mGraph.getViewport().setMaxX(to.getTime().getTime());
-        //mGraph.getViewport().setXAxisBoundsManual(true);
+        mGraph.getViewport().setMinX(fromDefault.getTime().getTime());
+        mGraph.getViewport().setMaxX(toDefault.getTime().getTime());
+        mGraph.getViewport().setXAxisBoundsManual(true);
 
-        //mGraph.getGridLabelRenderer().setHumanRounding(false);
+        mGraph.getGridLabelRenderer().setHumanRounding(false);
+    }
+    private void updateGraph(Calendar to, Calendar from){
+        LineGraphSeries<DataPoint> graphData;
+        mSightings = SplashActivity.mSightingData.getRatData();
+
+        int[] dummy = {0};
+        GraphInfo graph = new GraphInfo(from, to, mSightings);
+
+        graphData = graph.getGraphSeries(dummy);
+        mGraph.addSeries(graphData);
+
+        mGraph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        //mGraph.getGridLabelRenderer().setNumHorizontalLabels(10);
+
+        mGraph.getViewport().setMinX(from.getTime().getTime());
+        mGraph.getViewport().setMaxX(to.getTime().getTime());
+        mGraph.getViewport().setXAxisBoundsManual(true);
+
+        mGraph.getGridLabelRenderer().setHumanRounding(false);
     }
 
     /**

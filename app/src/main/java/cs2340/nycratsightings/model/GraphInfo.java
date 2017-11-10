@@ -18,6 +18,7 @@ import java.util.TreeMap;
 
 /**
  * Class designed to handle graphs.
+ *
  * @author Lucas Liu
  */
 public class GraphInfo {
@@ -28,21 +29,22 @@ public class GraphInfo {
 
     /**
      * Sole constructor for GraphInfo.
+     *
      * @param from a start month and year pair
-     * @param to an end month and year pair
+     * @param to   an end month and year pair
      * @param data rat data in the form of an arraylist.
      */
-    public GraphInfo(Calendar from, Calendar to, ArrayList<Sighting> data){
+    public GraphInfo(Calendar from, Calendar to, ArrayList<Sighting> data) {
         map = new TreeMap<>();
 
         DateRange daterange = new DateRange(from, to);
-
+        Log.d("test3", daterange.toString());
         Calendar tCreateDate;
         for (Sighting s : data) {
             tCreateDate = s.parseCreationDate();
-            if(daterange.inRange(tCreateDate)) {
+            if (daterange.inRange(tCreateDate)) {
                 Log.d("WTF", getKey(s));
-                if(map.containsKey(getKeyDateDays(s))) {
+                if (map.containsKey(getKeyDateDays(s))) {
                     map.put(getKeyDateDays(s), map.get(getKeyDateDays(s)) + 1);
                 } else {
                     map.put(getKeyDateDays(s), 1);
@@ -55,13 +57,62 @@ public class GraphInfo {
         Log.d(TAG, "months traversed: " + monthsToTraverse);
     }
 
-    public int getMonthRange() {
-        return monthsToTraverse;
+    /**
+     * Generates a map key given a sighting, this one
+     * generates a string and ignores the day
+     * The graph will display months
+     * no longer in use
+     * @param data sighting whose key should be found
+     * @return a String key
+     */
+    private static String getKey(Sighting data) {
+        String date = data.getCreationDate();
+        String[] elements = date.split(" ");
+        String[] dateElements = elements[0].split("/");
+        String out = dateElements[0] + " " + dateElements[2];
+
+        return out;
     }
 
     /**
+     * generates a map key given a sighting, this one
+     * generates a calender ignoring day of month
+     * The graph will display dates in the x axis as months
+     * no longer in use
+     * @param data
+     * @return
+     */
+    private static Calendar getKeyDate(Sighting data) {
+        String date = data.getCreationDate();
+        String[] elements = date.split(" ");
+        String[] dateElements = elements[0].split("/");
+        String out = dateElements[0] + " " + dateElements[2];
+        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]), Integer.parseInt(dateElements[0]) - 1, 1);
+        return outvar;
+    }
+
+    /**
+     * generates a map key given a sighting, this one
+     * generates a calendar including day of month
+     * the graph will display dates as differention for days
+     *
+     * @param data
+     * @return
+     */
+    private static Calendar getKeyDateDays(Sighting data) {
+        String date = data.getCreationDate();
+        String[] elements = date.split(" ");
+        String[] dateElements = elements[0].split("/");
+        String out = dateElements[0] + " " + dateElements[2];
+        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]), Integer.parseInt(dateElements[0]) - 1, Integer.parseInt(dateElements[1]));
+        return outvar;
+    }
+
+
+    /**
      * getGraphSeries
-     *  Creates a set of data points to draw on the graph from the generated HashTable.
+     * Creates a set of data points to draw on the graph from the generated HashTable.
+     *
      * @return a set of data points to draw on the graph
      */
     public LineGraphSeries<DataPoint> getGraphSeries(int[] dummy) {
@@ -78,7 +129,7 @@ public class GraphInfo {
 
             Log.d("BUILD LINESERIES", "Entry: (" + e + ", " + numSightings + ")");
 
-            DataPoint dp = new DataPoint(i, numSightings);
+            DataPoint dp = new DataPoint(e.getTime(), numSightings);
 
             lineData.add(dp);
             i++;
@@ -89,29 +140,5 @@ public class GraphInfo {
         lineSeries = new LineGraphSeries<>(dataPoints);
         dummy[0] = dataPoints.length;
         return lineSeries;
-    }
-    private static String getKey(Sighting data){
-        String date = data.getCreationDate();
-        String[] elements = date.split(" ");
-        String[] dateElements = elements[0].split("/");
-        String out = dateElements[0] + " " + dateElements[2];
-
-        return out;
-    }
-    private static Calendar getKeyDate(Sighting data){
-        String date = data.getCreationDate();
-        String[] elements = date.split(" ");
-        String[] dateElements = elements[0].split("/");
-        String out = dateElements[0] + " " + dateElements[2];
-        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]),Integer.parseInt(dateElements[0]) - 1,1);
-        return outvar;
-    }
-    private static Calendar getKeyDateDays(Sighting data){
-        String date = data.getCreationDate();
-        String[] elements = date.split(" ");
-        String[] dateElements = elements[0].split("/");
-        String out = dateElements[0] + " " + dateElements[2];
-        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]),Integer.parseInt(dateElements[0]) - 1,Integer.parseInt(dateElements[1]));
-        return outvar;
     }
 }
