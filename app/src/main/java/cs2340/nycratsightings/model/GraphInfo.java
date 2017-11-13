@@ -38,12 +38,12 @@ public class GraphInfo {
         map = new TreeMap<>();
 
         DateRange daterange = new DateRange(from, to);
-        Log.d("test3", daterange.toString());
+
         Calendar tCreateDate;
         for (Sighting s : data) {
             tCreateDate = s.parseCreationDate();
             if (daterange.inRange(tCreateDate)) {
-                Log.d("WTF", getKey(s));
+                //Log.d("WTF", getKey(s));
                 if (map.containsKey(getKeyDateDays(s))) {
                     map.put(getKeyDateDays(s), map.get(getKeyDateDays(s)) + 1);
                 } else {
@@ -54,7 +54,7 @@ public class GraphInfo {
 
         monthsToTraverse = (to.get(Calendar.YEAR) * 12 + to.get(Calendar.MONTH))
                 - (from.get(Calendar.YEAR) * 12 + from.get(Calendar.MONTH));
-        Log.d(TAG, "months traversed: " + monthsToTraverse);
+        //Log.d(TAG, "months traversed: " + monthsToTraverse);
     }
 
     /**
@@ -127,7 +127,7 @@ public class GraphInfo {
             //e.set(Calendar.MONTH, e.get(Calendar.MONTH) - 1);
             Integer numSightings = map.get(e);
 
-            Log.d("BUILD LINESERIES", "Entry: (" + e + ", " + numSightings + ")");
+            //Log.d("BUILD LINESERIES", "Entry: (" + e + ", " + numSightings + ")");
 
             DataPoint dp = new DataPoint(e.getTime(), numSightings);
 
@@ -140,5 +140,8 @@ public class GraphInfo {
         lineSeries = new LineGraphSeries<>(dataPoints);
         dummy[0] = dataPoints.length;
         return lineSeries;
+    }
+    public TreeMap getMap(){
+        return map;
     }
 }
