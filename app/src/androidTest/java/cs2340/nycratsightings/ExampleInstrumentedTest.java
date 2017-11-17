@@ -19,6 +19,7 @@ public class ExampleInstrumentedTest {
 
     /**
      * tester method
+     * @throws Exception an exception
      */
     @Test
     public void useAppContext() throws Exception {

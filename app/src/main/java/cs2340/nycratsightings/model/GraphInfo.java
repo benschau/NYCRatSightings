@@ -113,6 +113,7 @@ public class GraphInfo {
      * getGraphSeries
      * Creates a set of data points to draw on the graph from the generated HashTable.
      *
+     * @param dummy a dummy int array
      * @return a set of data points to draw on the graph
      */
     public LineGraphSeries<DataPoint> getGraphSeries(int[] dummy) {
@@ -144,6 +145,7 @@ public class GraphInfo {
 
     /**
      * getter method for treemap
+     * @return the map
      */
     public TreeMap getMap(){
         return map;

@@ -113,6 +113,9 @@ public class SightingData {
        return mSightings;
     }
 
+    /**
+     * syncs rat data with firebase
+     */
     public void syncRatData() {
         final ArrayList<Sighting> sightings = new ArrayList<>();
 

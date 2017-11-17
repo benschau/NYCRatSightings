@@ -13,6 +13,7 @@ public class ExampleUnitTest {
 
     /**
      * addition tester
+     * @throws Exception an exception
      */
     @Test
     public void addition_isCorrect() throws Exception {
