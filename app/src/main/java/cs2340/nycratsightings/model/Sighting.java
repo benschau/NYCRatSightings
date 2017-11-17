@@ -26,6 +26,9 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
     public  String latitude;
     public  String longitude;
 
+    //to test
+    public boolean nullEntries = false;
+
     /**
      * Constructor required for Firebase encoding into database
      */
@@ -37,6 +40,12 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
      * Typical constructor for Sightings.
      */
     public Sighting(String[] entries) {
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i] == null) {
+                nullEntries = true;
+                break;
+            }
+        }
         this.uniqueKey = entries[0];
         this.creationDate = entries[1]; // mon/day/yr time
         this.locationType = entries[2];
