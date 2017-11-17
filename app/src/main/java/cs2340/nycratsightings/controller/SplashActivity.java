@@ -3,13 +3,12 @@ package cs2340.nycratsightings.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import cs2340.nycratsightings.model.SightingData;
 
 /** Represents a SplashActivity.
  * @author Benson Chau
  * @version 1.0
  */
-import cs2340.nycratsightings.model.SightingData;
-
 public class SplashActivity extends AppCompatActivity {
 
     static SightingData mSightingData;

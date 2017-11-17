@@ -79,8 +79,8 @@ public class GraphInfo {
      * generates a calender ignoring day of month
      * The graph will display dates in the x axis as months
      * no longer in use
-     * @param data
-     * @return
+     * @param data the data
+     * @return a calendar object
      */
     private static Calendar getKeyDate(Sighting data) {
         String date = data.getCreationDate();
@@ -96,8 +96,8 @@ public class GraphInfo {
      * generates a calendar including day of month
      * the graph will display dates as differention for days
      *
-     * @param data
-     * @return
+     * @param data the data
+     * @return the calendar object
      */
     private static Calendar getKeyDateDays(Sighting data) {
         String date = data.getCreationDate();
@@ -141,6 +141,10 @@ public class GraphInfo {
         dummy[0] = dataPoints.length;
         return lineSeries;
     }
+
+    /**
+     * getter method for treemap
+     */
     public TreeMap getMap(){
         return map;
     }

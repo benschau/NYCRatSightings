@@ -32,6 +32,9 @@ import cs2340.nycratsightings.model.DateRange;
 import cs2340.nycratsightings.model.GraphInfo;
 import cs2340.nycratsightings.model.Sighting;
 
+/**
+ * Represents a graphvisualizer object
+ */
 public class GraphVisualizer extends AppCompatActivity implements DialogInterface.OnDismissListener {
 
     private final String TAG = "GraphVisualizer";

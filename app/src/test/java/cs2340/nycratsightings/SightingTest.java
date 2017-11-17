@@ -13,11 +13,17 @@ public class SightingTest {
     private Sighting tSighting;
     private String[] tEntries;
 
+    /**
+     * initializer method
+     */
     @Before
     public void init() {
         tEntries = new String[9];
     }
 
+    /**
+     * test if contructor is valid
+     */
     @Test
     public void testLegalConstructionLetters() {
         tEntries = new String[]{"a","b","c","d","e","f","g","h", "i"};
@@ -35,6 +41,9 @@ public class SightingTest {
         assertFalse(tSighting.nullEntries);
     }
 
+    /**
+     * Tests if constructor is valid
+     */
     @Test
     public void testLegalConstructionNums() {
         tEntries = new String[]{"78", "89", "57", "43", "21", "90", "89", "87", "93"};
@@ -52,6 +61,9 @@ public class SightingTest {
         assertFalse(tSighting.nullEntries);
     }
 
+    /**
+     * Tests if constructor is valid
+     */
     @Test
     public void testNullEntries() {
         tEntries = new String[]{"a","b", null,"dry","e","fry","g","h", "i"};
@@ -65,6 +77,9 @@ public class SightingTest {
         assertEquals(tSighting.incidentZip, "dry");
     }
 
+    /**
+     * Tests if constructor is valid
+     */
     @Test
     public void testNullEntriesAgain() {
         tEntries = new String[]{"why", "is", "geerja", "tek", "this", "way", null, null, "?"};

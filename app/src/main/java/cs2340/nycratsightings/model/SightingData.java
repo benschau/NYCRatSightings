@@ -29,6 +29,9 @@ public class SightingData {
     private FirebaseDatabase mDB;
     private DatabaseReference mRef;
 
+    /**
+     * Constructor
+     */
     public SightingData() {
         mSightings = new ArrayList<>();
         mDB = FirebaseDatabase.getInstance();
@@ -89,6 +92,10 @@ public class SightingData {
         return csvData;
     }
 
+    /**
+     * add rat method
+     * @param sighting the sighting
+     */
     public void addRat(Sighting sighting) {
         mRef.child("ratdb").child(sighting.getUniqueKey()).setValue(sighting);
 
@@ -98,6 +105,10 @@ public class SightingData {
         syncRatData();
     }
 
+    /**
+     * gets the rat data
+     * @return the arraylist of sighitngs
+     */
     public ArrayList<Sighting> getRatData() {
        return mSightings;
     }

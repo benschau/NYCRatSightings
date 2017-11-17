@@ -164,6 +164,9 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
         refreshMap();
     }
 
+    /**
+     * signout method
+     */
     public void signOut() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 

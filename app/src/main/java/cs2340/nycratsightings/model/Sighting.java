@@ -38,6 +38,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
 
     /**
      * Typical constructor for Sightings.
+     * @param entries the entries
      */
     public Sighting(String[] entries) {
         for (int i = 0; i < entries.length; i++) {
@@ -142,7 +143,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
 
     /**
      * Sets the city.
-     * @return the city
+     * @param city the city
      */
     public void setCity(String city) {
         this.city = city;
@@ -158,7 +159,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
 
     /**
      * Sets the borough.
-     * @return the borough
+     * @param borough the borough
      */
     public void setBorough(String borough) {
         this.borough = borough;

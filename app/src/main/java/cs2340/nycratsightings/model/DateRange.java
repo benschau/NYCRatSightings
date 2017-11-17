@@ -63,7 +63,7 @@ public class DateRange {
      * @return whether date is in range or not
      */
     public boolean inRange(Calendar date) {
-        /**
+        /*
         Log.d(TAG, "from: " + this.from);
         Log.d(TAG, "to: " + this.to);
         Log.d(TAG, "compared to: " + date);

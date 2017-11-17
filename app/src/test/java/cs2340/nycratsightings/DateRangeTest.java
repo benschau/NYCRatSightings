@@ -10,15 +10,24 @@ import cs2340.nycratsightings.model.DateRange;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Represents a DateRangeTest Object
+ */
 public class DateRangeTest {
     DateRange mDateRange;
 
+    /**
+     * DateRangeTEst constructor
+     */
     public DateRangeTest() {
         Calendar from = new GregorianCalendar(1998, 8, 10);
         Calendar to = new GregorianCalendar(1999, 5, 11);
         mDateRange = new DateRange(from, to);
     }
 
+    /**
+     * method to test if in range
+     */
     @Test
     public void inRangeValidator() {
         // test a calendar that's actuallly in range
