@@ -17,7 +17,7 @@ import cs2340.nycratsightings.model.Sighting;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by hwdge on 11/12/2017.
+ * Created by Lucas Liu on 11/12/2017.
  */
 
 public class graphInfoUnitTests {
@@ -33,6 +33,9 @@ public class graphInfoUnitTests {
     private Calendar nullto;
 
     @Before
+    /**
+     * Sets up variables for testing.
+     */
     public void setUp() {
         from = new GregorianCalendar(2017, 4 - 1, 30);
         to = new GregorianCalendar(2014, 2 - 1, 10);
@@ -74,31 +77,53 @@ public class graphInfoUnitTests {
         expected.put(new GregorianCalendar(2017, 2, 2), 1);
     }
 
+    /**
+     * Tests that passing in null variables result in a nullpointer
+     * The Activity Class should be the one handling invalid data.
+     */
     @Test(expected = NullPointerException.class)
     public void testNullFrom() {
         GraphInfo test = new GraphInfo(nullfrom, to, filledSightingData);
     }
-
+    /**
+     * Tests that passing in null variables result in a nullpointer
+     * The Activity Class should be the one handling invalid data.
+     */
     @Test(expected = NullPointerException.class)
     public void testNullTo() {
         GraphInfo test = new GraphInfo(from, nullto, filledSightingData);
     }
-
+    /**
+     * Tests that passing in null variables result in a nullpointer
+     * The Activity Class should be the one handling invalid data.
+     */
     @Test(expected = NullPointerException.class)
     public void testNullSightingData() {
         GraphInfo test = new GraphInfo(from, to, nullSightingData);
     }
 
+    /**
+     * The logic for bad dates is unique to the GraphInfo class,
+     * if from is before to, then these two dates are invalid
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testBadDates() {
         GraphInfo test = new GraphInfo(to, from, filledSightingData);
     }
 
+    /**
+     * The GraphInfo should not run in the event that
+     * there are no rats currently recorded on the database.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testEmptySightingData() {
         GraphInfo test = new GraphInfo(to, from, emptySightingData);
     }
 
+    /**
+     * tests that the graphinfo's backing map is equal
+     * to the expected map.
+     */
     @Test
     public void testMapEquality() {
         assertEquals(map, expected);
