@@ -41,7 +41,7 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
 
     private ArrayList<Sighting> mSightings;
     private GraphView mGraph;
-    private DatePicker mDateFrom
+    private DatePicker mDateFrom;
     private DatePicker mDateTo;
     private DateRange mDateRange;
     //private Button submit;
@@ -58,7 +58,7 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
         Button update;
 
         setContentView(R.layout.activity_graph_visualizer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         fromDate = findViewById(R.id.editTextFrom);

@@ -18,7 +18,7 @@ From the `develop` branch, create a new feature branch
 
 `git checkout -b new_feature_branch`
 
-Commit your code changes to this new branch. Once you are done coding your feature, checkout the `develop` branch and `pull` to update it with any changes that may have been commited to it by other team members.
+Commit your code changes to this new branch. Once you are done coding your feature, checkout the `develop` branch and `pull` to update it with any changes that may have been comitted to it by other team members.
 
 `git checkout develop`
 

@@ -86,14 +86,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Registers the new user.
      */
-    public void register() {
+    private void register() {
         String email;
-        String passwd;
+        String password;
 
         email = ((EditText) findViewById(R.id.email)).getText().toString();
-        passwd = ((EditText) findViewById(R.id.password)).getText().toString();
+        password = ((EditText) findViewById(R.id.password)).getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, passwd)
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

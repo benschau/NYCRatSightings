@@ -45,7 +45,7 @@ public class DashboardActivity extends AppCompatActivity implements ListView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_listview);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         mList = findViewById(R.id.csv_listview);
@@ -62,6 +62,7 @@ public class DashboardActivity extends AppCompatActivity implements ListView.OnI
         updateSightings();
     }
 
+    @Override
     public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
         Intent i;
         Bundle b;

@@ -12,15 +12,15 @@ import java.util.regex.*;
 @IgnoreExtraProperties
 public class User {
     /**
-     * Instance variables are required to be public in order for Firebase to serialize them
+     * Instance variables are required to be public in order for Fire base to serialize them
      * in the database.
      */
-    public String mEmail;
+    private String mEmail;
 
     /**
      * Default constructor. Needed for DataSnapshot.getValue(User.class)
      */
-    public User() {
+     User() {
 
     }
 

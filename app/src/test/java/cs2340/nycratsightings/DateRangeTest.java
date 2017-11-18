@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
  * Represents a DateRangeTest Object
  */
 public class DateRangeTest {
-    DateRange mDateRange;
+    private final DateRange mDateRange;
 
     /**
      * DateRangeTEst constructor
@@ -30,15 +30,15 @@ public class DateRangeTest {
      */
     @Test
     public void inRangeValidator() {
-        // test a calendar that's actuallly in range
+        // test a calendar that's actually in range
         Calendar test = new GregorianCalendar(1998, 9, 10);
         assertTrue(mDateRange.inRange(test));
 
-        // test a calendar that's before the 'from' date in the daterange
+        // test a calendar that's before the 'from' date in the date range
         test = new GregorianCalendar(1997, 5, 9);
         assertFalse(mDateRange.inRange(test));
 
-        // test a calendar that's after the 'to' date in the daterange
+        // test a calendar that's after the 'to' date in the date range
         test = new GregorianCalendar(2000, 1, 10);
         assertFalse(mDateRange.inRange(test));
 

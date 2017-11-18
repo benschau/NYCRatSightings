@@ -30,7 +30,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
     public boolean nullEntries = false;
 
     /**
-     * Constructor required for Firebase encoding into database
+     * Constructor required for Fire base encoding into database
      */
     public Sighting() {
 
@@ -41,8 +41,8 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
      * @param entries the entries
      */
     public Sighting(String[] entries) {
-        for (int i = 0; i < entries.length; i++) {
-            if (entries[i] == null) {
+        for (String s : entries) {
+            if (s == null) {
                 nullEntries = true;
                 break;
             }
@@ -214,10 +214,12 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
 
     public static final Parcelable.Creator<Sighting> CREATOR
             = new Parcelable.Creator<Sighting>() {
+        @Override
         public Sighting createFromParcel(Parcel in) {
             return new Sighting(in);
         }
 
+        @Override
         public Sighting[] newArray(int size) {
             return new Sighting[size];
         }

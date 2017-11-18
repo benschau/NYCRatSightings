@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * This method signs out of firebase.
      */
-    public void signOut() {
+    private void signOut() {
         mAuth.signOut();
         finish();
     }

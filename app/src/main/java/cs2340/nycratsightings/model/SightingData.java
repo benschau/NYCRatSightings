@@ -111,14 +111,14 @@ public class SightingData {
 
     /**
      * gets the rat data
-     * @return the arraylist of sighitngs
+     * @return the array list of sighitngs
      */
     public ArrayList<Sighting> getRatData() {
        return mSightings;
     }
 
     /**
-     * syncs rat data with firebase
+     * syncs rat data with fire base
      */
     public void syncRatData() {
         final ArrayList<Sighting> sightings = new ArrayList<>();

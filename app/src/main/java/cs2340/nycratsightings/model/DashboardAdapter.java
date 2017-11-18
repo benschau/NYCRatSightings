@@ -16,8 +16,8 @@ import cs2340.nycratsightings.R;
  * @version 1.0
  */
 public class DashboardAdapter extends ArrayAdapter<Sighting>{
-    Context ctx;
-    ArrayList<Sighting> values;
+    private final Context ctx;
+    private final ArrayList<Sighting> values;
     private TextView uniqueID;
     private TextView dateCreated;
     private TextView locationType;
@@ -51,7 +51,7 @@ public class DashboardAdapter extends ArrayAdapter<Sighting>{
      * Gets sighting values.
      * @param view the view
      */
-    public void bindValues(View view) {
+    private void bindValues(View view) {
         //Set up item layout params
         uniqueID = view.findViewById(R.id.unique_id);
         dateCreated = view.findViewById(R.id.date_created);
@@ -63,7 +63,7 @@ public class DashboardAdapter extends ArrayAdapter<Sighting>{
      * Sets the sighting values.
      * @param sighting the Sighting object
      */
-    public void setItemValues(Sighting sighting) {
+    private void setItemValues(Sighting sighting) {
 
         uniqueID.setText(sighting.getUniqueKey());
         dateCreated.setText(sighting.getCreationDate());

@@ -32,7 +32,7 @@ public class GraphInfo {
      *
      * @param from a start month and year pair
      * @param to   an end month and year pair
-     * @param data rat data in the form of an arraylist.
+     * @param data rat data in the form of an array list.
      */
     public GraphInfo(Calendar from, Calendar to, ArrayList<Sighting> data) {
         map = new TreeMap<>();
@@ -95,7 +95,7 @@ public class GraphInfo {
     /**
      * generates a map key given a sighting, this one
      * generates a calendar including day of month
-     * the graph will display dates as differention for days
+     * the graph will display dates as differentation for days
      *
      * @param data the data
      * @return the calendar object
@@ -122,14 +122,14 @@ public class GraphInfo {
         ArrayList<DataPoint> lineData = new ArrayList<>();
         DataPoint dataPoints[];
 
-        // TODO: Return LineGraphSeries set of datapoints for use in graphing.
+        // TODO: Return LineGraphSeries set of data points for use in graphing.
         Set<Calendar> set = map.keySet();
         int i = 0;
         for (Calendar e : set) {
             //e.set(Calendar.MONTH, e.get(Calendar.MONTH) - 1);
             Integer numSightings = map.get(e);
 
-            //Log.d("BUILD LINESERIES", "Entry: (" + e + ", " + numSightings + ")");
+            //Log.d("BUILD LINE_SERIES", "Entry: (" + e + ", " + numSightings + ")");
 
             DataPoint dp = new DataPoint(e.getTime(), numSightings);
 
@@ -145,7 +145,7 @@ public class GraphInfo {
     }
 
     /**
-     * getter method for treemap
+     * getter method for tree map
      * @return the map
      */
     public TreeMap getMap(){

@@ -61,10 +61,10 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_map);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +83,7 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
                 .findFragmentById(R.id.map);
 
         mSightings = SplashActivity.mSightingData.getRatData();
-        // The default date range should contain all elements in the arraylist.
+        // The default date range should contain all elements in the array list.
         mDateRange = new DateRange(mSightings.get(0).parseCreationDate(),
                  mSightings.get(mSightings.size() - 1).parseCreationDate());
 
@@ -166,9 +166,9 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     /**
-     * signout method
+     * sign out method
      */
-    public void signOut() {
+    private void signOut() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         auth.signOut();
@@ -232,12 +232,12 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
      * Creates a description of the sighting.
      * @param borough the borough
      * @param city the city
-     * @param addr the address
+     * @param address the address
      * @param date the date
      * @return the formatted String
      */
-    private String createDesc(String borough, String city, String addr, String date) {
-        return String.format("Borough: %s\nCity: %s\nAddress: %s\nDate: %s", borough, city, addr, date);
+    private String createDesc(String borough, String city, String address, String date) {
+        return String.format("Borough: %s\nCity: %s\nAddress: %s\nDate: %s", borough, city, address, date);
     }
 
     /**

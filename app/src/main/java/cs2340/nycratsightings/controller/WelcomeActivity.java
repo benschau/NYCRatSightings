@@ -105,7 +105,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     /**
      * This method goes to the login screen.
      */
-    public void toLogin() {
+    private void toLogin() {
         Intent i = new Intent(this, LoginActivity.class);
         this.startActivity(i);
     }

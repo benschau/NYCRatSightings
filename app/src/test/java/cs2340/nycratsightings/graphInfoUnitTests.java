@@ -23,13 +23,13 @@ import static org.junit.Assert.assertEquals;
 
 public class graphInfoUnitTests {
 
-    Calendar from;
-    Calendar to;
-    ArrayList<Sighting> nullSightingData;
-    ArrayList<Sighting> emptySightingData;
-    ArrayList<Sighting> filledSightingData;
-    TreeMap<Calendar, Integer> map;
-    Map<Calendar, Integer> expected;
+    private Calendar from;
+    private Calendar to;
+    private ArrayList<Sighting> nullSightingData;
+    private ArrayList<Sighting> emptySightingData;
+    private ArrayList<Sighting> filledSightingData;
+    private TreeMap<Calendar, Integer> map;
+    private Map<Calendar, Integer> expected;
     private Calendar nullfrom;
     private Calendar nullto;
 
@@ -60,8 +60,8 @@ public class graphInfoUnitTests {
         String[] data6 = {"33", "03/2/2018 f", "irrelevant", "irrelevant", "irrelevant"
                 , "irrelevant", "irrelevant", "0", "0"};
         Sighting sighting6 = new Sighting(data6);
-        emptySightingData = new ArrayList<Sighting>();
-        filledSightingData = new ArrayList<Sighting>();
+        emptySightingData = new ArrayList<>();
+        filledSightingData = new ArrayList<>();
         filledSightingData.add(sighting1);
         filledSightingData.add(sighting2);
         filledSightingData.add(sighting3);

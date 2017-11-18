@@ -23,7 +23,7 @@ public class SightingTest {
     }
 
     /**
-     * test if contructor is valid
+     * test if constructor is valid
      */
     @Test
     public void testLegalConstructionLetters() {
@@ -46,7 +46,7 @@ public class SightingTest {
      * Tests if constructor is valid
      */
     @Test
-    public void testLegalConstructionNums() {
+    public void testLegalConstructionNumbers() {
         tEntries = new String[]{"78", "89", "57", "43", "21", "90", "89", "87", "93"};
         tSighting = new Sighting(tEntries);
         assertEquals(tSighting.uniqueKey, tEntries[0]);
@@ -83,7 +83,7 @@ public class SightingTest {
      */
     @Test
     public void testNullEntriesAgain() {
-        tEntries = new String[]{"why", "is", "geerja", "tek", "this", "way", null, null, "?"};
+        tEntries = new String[]{"why", "is", "georgia", "tek", "this", "way", null, null, "?"};
         tSighting = new Sighting(tEntries);
         assertEquals(tSighting.uniqueKey, tEntries[0]);
         assertEquals(tSighting.creationDate, tEntries[1]);
