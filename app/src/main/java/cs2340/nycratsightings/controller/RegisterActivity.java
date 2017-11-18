@@ -29,13 +29,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
-    private Button mRegister;
+    //private Button mRegister;
     private CheckBox mUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Button mRegister;
 
         mRegister = findViewById(R.id.register);
         mUserType = findViewById(R.id.userType);

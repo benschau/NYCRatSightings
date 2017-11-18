@@ -23,10 +23,10 @@ import cs2340.nycratsightings.controller.RegisterActivity;
 public class WelcomeActivity extends Activity implements View.OnClickListener{
 
     private final String TAG = "WelcomeActivity";
-    private TextView mTitle;
+    /*private TextView mTitle;
     private TextView mLoginText;
     private TextView mRegisterText;
-    private Typeface mTypeFace;
+    private Typeface mTypeFace;*/
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
 
@@ -34,6 +34,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        TextView mTitle, mLoginText, mRegisterText;
+        Typeface mTypeFace;
 
         mTypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");
 

@@ -6,7 +6,8 @@ import cs2340.nycratsightings.model.Sighting;
 import static org.junit.Assert.*;
 
 /**
- * Created by Mariam Marzouk on 11/17/17.
+ * This represents a sighting test object
+ * @author Mariam Marzouk on 11/17/17.
  */
 
 public class SightingTest {

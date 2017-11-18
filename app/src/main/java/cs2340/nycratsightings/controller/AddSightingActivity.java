@@ -23,7 +23,7 @@ import cs2340.nycratsightings.model.SightingData;
  * @version 1.0
  */
 public class AddSightingActivity extends Activity implements View.OnClickListener {
-    private final String TAG = "AddSightingActivity";
+    //private final String TAG = "AddSightingActivity";
     private SightingData mSightingData;
 
     @Override
@@ -62,6 +62,8 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
     }
 
     private void saveNewSighting() {
+        String TAG = "AddSightingActivity";
+
         String id = generateSightingId();
         String sightingDate = generateSightingDate();
         String locationType = ((EditText) findViewById(R.id.location_type)).getText().toString();

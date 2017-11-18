@@ -33,12 +33,12 @@ import cs2340.nycratsightings.model.SightingData;
  */
 
 public class DashboardActivity extends AppCompatActivity implements ListView.OnItemClickListener {
-    private final String TAG = "DashboardActivity";
+    //private final String TAG = "DashboardActivity";
 
 
-    private ArrayList<Sighting> mSightings;
+    //private ArrayList<Sighting> mSightings;
     private ListView mList;
-    private DashboardAdapter mAdapter;
+    //private DashboardAdapter mAdapter;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
@@ -65,6 +65,7 @@ public class DashboardActivity extends AppCompatActivity implements ListView.OnI
     public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
         Intent i;
         Bundle b;
+        String TAG = "DashboardActivity";
 
         Sighting currSighting = (Sighting) parent.getItemAtPosition(pos);
 
@@ -112,6 +113,8 @@ public class DashboardActivity extends AppCompatActivity implements ListView.OnI
      * Called after SightingData's backing array has been updated.
      */
     private void updateSightings() {
+        ArrayList<Sighting> mSightings;
+        DashboardAdapter mAdapter;
         mSightings = SplashActivity.mSightingData.getRatData();
 
         mAdapter = new DashboardAdapter(this, mSightings);

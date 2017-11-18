@@ -16,15 +16,20 @@ import cs2340.nycratsightings.model.Sighting;
  */
 public class DetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView uniqueIDDetailed, creationDateDetailed, locationTypeDetailed, incidentZipDetailed,
-    incidentAddressDetailed, cityDetailed, boroughDetailed, latitudeDetailed, longitudeDetailed;
+    //private TextView uniqueIDDetailed, creationDateDetailed, locationTypeDetailed, incidentZipDetailed,
+    //incidentAddressDetailed, cityDetailed, boroughDetailed, latitudeDetailed, longitudeDetailed;
 
-    private Sighting currSighting;
+    //private Sighting currSighting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailedview);
+
+        Sighting currSighting;
+
+        TextView uniqueIDDetailed, creationDateDetailed, locationTypeDetailed, incidentZipDetailed,
+                incidentAddressDetailed, cityDetailed, boroughDetailed, latitudeDetailed, longitudeDetailed;
 
         final Button returnToList = findViewById(R.id.returnToList);
 

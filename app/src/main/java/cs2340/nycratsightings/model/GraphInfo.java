@@ -24,7 +24,7 @@ import java.util.TreeMap;
 public class GraphInfo {
 
     private final String TAG = "GraphInfo";
-    private int monthsToTraverse;
+    //private int monthsToTraverse;
     private TreeMap<Calendar, Integer> map;
 
     /**
@@ -36,6 +36,7 @@ public class GraphInfo {
      */
     public GraphInfo(Calendar from, Calendar to, ArrayList<Sighting> data) {
         map = new TreeMap<>();
+        int monthsToTraverse;
 
         DateRange daterange = new DateRange(from, to);
 

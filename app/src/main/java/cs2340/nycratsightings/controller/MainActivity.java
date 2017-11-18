@@ -27,13 +27,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String TAG = "MainActivity";
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private Button mAbout, mRatMap, mDashboard,mGraphVisualizer;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
+    //private Button mAbout, mRatMap, mDashboard,mGraphVisualizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button mAbout, mRatMap, mDashboard,mGraphVisualizer;
+
+        FirebaseAuth.AuthStateListener mAuthListener;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

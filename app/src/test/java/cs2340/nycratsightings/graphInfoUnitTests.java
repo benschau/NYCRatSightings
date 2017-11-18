@@ -17,7 +17,8 @@ import cs2340.nycratsightings.model.Sighting;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Lucas Liu on 11/12/2017.
+ * This represents a graphInfoUnitTests object.
+ * @author Lucas Liu on 11/12/2017.
  */
 
 public class graphInfoUnitTests {
@@ -32,10 +33,11 @@ public class graphInfoUnitTests {
     private Calendar nullfrom;
     private Calendar nullto;
 
-    @Before
+
     /**
      * Sets up variables for testing.
      */
+    @Before
     public void setUp() {
         from = new GregorianCalendar(2017, 4 - 1, 30);
         to = new GregorianCalendar(2014, 2 - 1, 10);

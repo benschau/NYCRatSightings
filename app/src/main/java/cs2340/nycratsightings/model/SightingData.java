@@ -22,8 +22,8 @@ import java.util.Iterator;
  * @version 1.0
  */
 public class SightingData {
-    private final String TAG = "SightingData";
-    private final String CSV_PATH = "res/raw/mimd.csv";
+    //private final String TAG = "SightingData";
+    //private final String CSV_PATH = "res/raw/mimd.csv";
 
     private ArrayList<Sighting> mSightings;
     private FirebaseDatabase mDB;
@@ -70,6 +70,8 @@ public class SightingData {
      */
     private ArrayList<Sighting> readCSV() {
         ArrayList<Sighting> csvData = new ArrayList<>();
+        final String TAG = "SightingData";
+        final String CSV_PATH = "res/raw/mimd.csv";
 
         InputStream csvFile = this.getClass().getClassLoader().getResourceAsStream(CSV_PATH);
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvFile));
@@ -86,7 +88,7 @@ public class SightingData {
             }
             reader.close();
         } catch (Exception e) {
-            System.out.println(e);
+            Log.d("EXCEPTION", "There was a problem: " + e);
         }
 
         return csvData;
@@ -97,6 +99,8 @@ public class SightingData {
      * @param sighting the sighting
      */
     public void addRat(Sighting sighting) {
+
+        String TAG = "SightingData";
         mRef.child("ratdb").child(sighting.getUniqueKey()).setValue(sighting);
 
         Log.d(TAG, "addRat: " + sighting.toString());

@@ -52,7 +52,7 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
     private ArrayList<Sighting> mSightings;
 
     private DatePicker mDateFrom, mDateTo;
-    private Button submit;
+    //private Button submit;
 
     private DateRange mDateRange;
 
@@ -181,6 +181,8 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
     private void createRangeDialog(Context context) {
         final Dialog dialog = new Dialog(context);
         Calendar today = Calendar.getInstance();
+
+        Button submit;
 
         dialog.setContentView(R.layout.daterange_dialog);
         dialog.setTitle("Date Range");

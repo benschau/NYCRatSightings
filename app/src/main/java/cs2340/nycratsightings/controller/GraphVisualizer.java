@@ -43,16 +43,18 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
     private GraphView mGraph;
     private DatePicker mDateFrom, mDateTo;
     private DateRange mDateRange;
-    private Button submit;
+    //private Button submit;
 
     private EditText fromDate;
     private EditText toDate;
-    private Button update;
+    //private Button update;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Button update;
 
         setContentView(R.layout.activity_graph_visualizer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -122,6 +124,8 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
     private void createRangeDialog(Context context) {
         final Dialog dialog = new Dialog(context);
         Calendar today = Calendar.getInstance();
+
+        Button submit;
 
         dialog.setContentView(R.layout.daterange_dialog);
         dialog.setTitle("Date Range");
