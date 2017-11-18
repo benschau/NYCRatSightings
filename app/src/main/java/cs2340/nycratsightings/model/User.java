@@ -1,6 +1,7 @@
 package cs2340.nycratsightings.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+import java.util.regex.*;
 
 /**
  * Model for account information.
@@ -29,5 +30,16 @@ public class User {
      */
     public User (String email) {
         mEmail = email;
+    }
+
+    /**
+     * Tests the validity of the user's email address
+     * @return whether user email matches regular expression
+     */
+    public boolean hasValidEmail() {
+        Pattern regex = Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b");
+        Matcher regexMatcher = regex.matcher(mEmail);
+        return regexMatcher.matches();
+
     }
 }
