@@ -105,7 +105,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * If the login fails, a toast will appear to indicate login failure.
      */
     public void login() {
-        String email, passwd;
+        String email;
+        String passwd;
 
         email = ((EditText) findViewById(R.id.email)).getText().toString();
         passwd = ((EditText) findViewById(R.id.password)).getText().toString();

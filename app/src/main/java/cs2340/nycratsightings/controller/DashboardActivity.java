@@ -39,7 +39,7 @@ public class DashboardActivity extends AppCompatActivity implements ListView.OnI
     //private ArrayList<Sighting> mSightings;
     private ListView mList;
     //private DashboardAdapter mAdapter;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -35,7 +35,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        TextView mTitle, mLoginText, mRegisterText;
+        TextView mTitle;
+        TextView mLoginText;
+        TextView mRegisterText;
         Typeface mTypeFace;
 
         mTypeFace = Typeface.createFromAsset(getAssets(), "font/Trocchi-Regular.ttf");

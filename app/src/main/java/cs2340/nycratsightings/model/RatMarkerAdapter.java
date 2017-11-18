@@ -16,7 +16,7 @@ import cs2340.nycratsightings.R;
 public class RatMarkerAdapter implements GoogleMap.InfoWindowAdapter {
 
     private View mWindow;
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
 
     /**
      * RatMarkerAdapter Constructor

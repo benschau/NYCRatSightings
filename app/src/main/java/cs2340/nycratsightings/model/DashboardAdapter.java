@@ -18,7 +18,9 @@ import cs2340.nycratsightings.R;
 public class DashboardAdapter extends ArrayAdapter<Sighting>{
     Context ctx;
     ArrayList<Sighting> values;
-    private TextView uniqueID, dateCreated, locationType;
+    private TextView uniqueID;
+    private TextView dateCreated;
+    private TextView locationType;
 
     /**
      * Constructor for DashboardAdapter.

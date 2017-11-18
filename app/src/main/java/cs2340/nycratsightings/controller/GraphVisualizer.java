@@ -41,7 +41,8 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
 
     private ArrayList<Sighting> mSightings;
     private GraphView mGraph;
-    private DatePicker mDateFrom, mDateTo;
+    private DatePicker mDateFrom
+    private DatePicker mDateTo;
     private DateRange mDateRange;
     //private Button submit;
 

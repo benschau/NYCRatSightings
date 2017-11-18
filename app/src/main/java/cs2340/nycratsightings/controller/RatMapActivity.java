@@ -51,7 +51,8 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
     private GoogleMap mGMap;
     private ArrayList<Sighting> mSightings;
 
-    private DatePicker mDateFrom, mDateTo;
+    private DatePicker mDateFrom;
+    private DatePicker mDateTo;
     //private Button submit;
 
     private DateRange mDateRange;
@@ -249,7 +250,8 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
         RatMarkerAdapter ratInfo = new RatMarkerAdapter(getLayoutInflater());
 
         LatLng rat = null;
-        Double lat, lng;
+        Double lat;
+        Double lng;
         String desc;
         for (Sighting sighting : mSightings) {
             Log.d(TAG, "Comparing date1: " + sighting.getCreationDate() + " to date range: " + mDateRange);
@@ -270,8 +272,9 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         }
 
-        if (mSightings != null && rat != null)
+        if (mSightings != null && rat != null) {
             mGMap.moveCamera(CameraUpdateFactory.newLatLng(rat));
+        }
 
         mGMap.setInfoWindowAdapter(ratInfo);
         mGMap.setOnInfoWindowClickListener(this);

@@ -28,8 +28,15 @@ public class DetailedViewActivity extends AppCompatActivity implements View.OnCl
 
         Sighting currSighting;
 
-        TextView uniqueIDDetailed, creationDateDetailed, locationTypeDetailed, incidentZipDetailed,
-                incidentAddressDetailed, cityDetailed, boroughDetailed, latitudeDetailed, longitudeDetailed;
+        TextView uniqueIDDetailed;
+        TextView creationDateDetailed;
+        TextView locationTypeDetailed;
+        TextView incidentZipDetailed;
+        TextView incidentAddressDetailed;
+        TextView cityDetailed;
+        TextView boroughDetailed;
+        TextView latitudeDetailed;
+        TextView longitudeDetailed;
 
         final Button returnToList = findViewById(R.id.returnToList);
 

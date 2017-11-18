@@ -35,7 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button mAbout, mRatMap, mDashboard,mGraphVisualizer;
+        Button mAbout;
+        Button mRatMap;
+        Button mDashboard;
+        Button mGraphVisualizer;
 
         FirebaseAuth.AuthStateListener mAuthListener;
 

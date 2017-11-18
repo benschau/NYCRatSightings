@@ -5,12 +5,8 @@ import cs2340.nycratsightings.model.User;
 import static org.junit.Assert.*;
 
 /**
- * Created by Alex on 11/17/17.
- */
-
-
-/**
  * Represents a UserTest Object
+ * @author Alex on 11/17/17.
  */
 public class UserTest {
     private User mUser1;

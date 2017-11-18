@@ -26,7 +26,7 @@ public class SightingData {
     //private final String CSV_PATH = "res/raw/mimd.csv";
 
     private ArrayList<Sighting> mSightings;
-    private FirebaseDatabase mDB;
+    private final FirebaseDatabase mDB;
     private DatabaseReference mRef;
 
     /**

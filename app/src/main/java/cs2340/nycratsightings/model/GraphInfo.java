@@ -25,7 +25,7 @@ public class GraphInfo {
 
     private final String TAG = "GraphInfo";
     //private int monthsToTraverse;
-    private TreeMap<Calendar, Integer> map;
+    private final TreeMap<Calendar, Integer> map;
 
     /**
      * Sole constructor for GraphInfo.

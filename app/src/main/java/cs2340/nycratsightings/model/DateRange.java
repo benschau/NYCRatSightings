@@ -12,7 +12,8 @@ import java.util.GregorianCalendar;
  */
 public class DateRange {
     private final String TAG = "DateRange";
-    private Calendar from, to;
+    private final Calendar from;
+    private final Calendar to;
 
     /**
      * DateRange constructor.
