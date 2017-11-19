@@ -74,11 +74,8 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
         String latitude = ((EditText) findViewById(R.id.latitutde)).getText().toString();
         String longitude = ((EditText) findViewById(R.id.longitude)).getText().toString();
 
-        // Verify user input.
-        // If this fails, a NumberFormatException is thrown, caught in the switch case
-        // that called the saveNewSighting() method, and a toast is displayed
-        Double.parseDouble(latitude);
-        Double.parseDouble(longitude);
+        verifyUserLatitude(latitude);
+        verifyUserLongitude(longitude);
 
         String[] sightingArray = {id, sightingDate, locationType, zipCode, address, city, borough,
                 latitude, longitude};
@@ -108,5 +105,31 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    /**
+     * Verify that user input for latitude can be parsed into a double. If it cannot, then a
+     * NumberFormatException is thrown and caught in the the try/catch in the onClick() method.
+     *
+     * @param latitute latitude to verify
+     */
+    private void verifyUserLatitude(String latitute) {
+        if (latitute == null) {
+            throw new IllegalArgumentException("Latitude cannot be null");
+        }
+        Double.parseDouble(latitute);
+    }
+
+    /**
+     * Verify that user input for longitude can be parsed into a double. If it cannot, then a
+     * NumberFormatException is thrown and caught in the the try/catch in the onClick() method.
+     *
+     * @param longitude
+     */
+    private void verifyUserLongitude(String longitude) {
+        if (longitude == null) {
+            throw new IllegalArgumentException("Longitude cannot be null");
+        }
+        Double.parseDouble(longitude);
     }
 }
