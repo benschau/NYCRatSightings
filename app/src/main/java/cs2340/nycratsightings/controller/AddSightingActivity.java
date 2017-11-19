@@ -113,7 +113,7 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
      *
      * @param latitute latitude to verify
      */
-    private void verifyUserLatitude(String latitute) {
+    public void verifyUserLatitude(String latitute) {
         if (latitute == null) {
             throw new IllegalArgumentException("Latitude cannot be null");
         }
@@ -126,7 +126,7 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
      *
      * @param longitude
      */
-    private void verifyUserLongitude(String longitude) {
+    public void verifyUserLongitude(String longitude) {
         if (longitude == null) {
             throw new IllegalArgumentException("Longitude cannot be null");
         }
