@@ -91,6 +91,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
      * @return the calendar object
      */
     public Calendar parseCreationDate() {
+        final int hours = 12;
         int end = this.creationDate.indexOf(' ');
         String date = this.creationDate.substring(0, end);
         String[] split = date.split("/");
@@ -100,7 +101,7 @@ public class Sighting implements Parcelable, Comparable<Sighting> {
                 Integer.parseInt(split[1]));
 
 
-        createDate.set(Calendar.HOUR, 12);
+        createDate.set(Calendar.HOUR, hours);
         createDate.set(Calendar.MINUTE, 0);
         createDate.set(Calendar.SECOND, 0);
         createDate.set(Calendar.MILLISECOND, 0);

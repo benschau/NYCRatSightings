@@ -124,7 +124,7 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
      * Verify that user input for longitude can be parsed into a double. If it cannot, then a
      * NumberFormatException is thrown and caught in the the try/catch in the onClick() method.
      *
-     * @param longitude
+     * @param longitude the longitude
      */
     public void verifyUserLongitude(String longitude) {
         if (longitude == null) {
