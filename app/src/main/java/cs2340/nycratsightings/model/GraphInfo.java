@@ -7,10 +7,12 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,10 +35,14 @@ public class GraphInfo {
      * @param from a start month and year pair
      * @param to   an end month and year pair
      * @param data rat data in the form of an array list.
+     * @throws IllegalArgumentException
      */
     public GraphInfo(Calendar from, Calendar to, ArrayList<Sighting> data) {
         map = new TreeMap<>();
         int monthsToTraverse;
+        //if (comparator.compare(from, to) > 0) {
+        //    throw new IllegalArgumentException("from can't be greater than to.");
+        //}
 
         DateRange daterange = new DateRange(from, to);
 

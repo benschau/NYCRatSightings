@@ -20,8 +20,14 @@ public class DateRangeTest {
      * DateRangeTEst constructor
      */
     public DateRangeTest() {
-        Calendar from = new GregorianCalendar(1998, 8, 10);
-        Calendar to = new GregorianCalendar(1999, 5, 11);
+        final int year1 = 1998;
+        final int year2 = 1999;
+        final int month1 = 8;
+        final int month2 = 5;
+        final int day1 = 10;
+        final int day2 = 11;
+        Calendar from = new GregorianCalendar(year1, month1, day1);
+        Calendar to = new GregorianCalendar(year2, month2, day2);
         mDateRange = new DateRange(from, to);
     }
 
@@ -30,22 +36,33 @@ public class DateRangeTest {
      */
     @Test
     public void inRangeValidator() {
+        final int year97 = 1997;
+        final int year98 = 1998;
+        final int year99 = 1999;
+        final int year00 = 2000;
+        final int month1 = 1;
+        final int month5 = 5;
+        final int month8 = 8;
+        final int month9 = 9;
+        final int day09 = 9;
+        final int day10 = 10;
+        final int day11 = 11;
         // test a calendar that's actually in range
-        Calendar test = new GregorianCalendar(1998, 9, 10);
+        Calendar test = new GregorianCalendar(year98, month9, day10);
         assertTrue(mDateRange.inRange(test));
 
         // test a calendar that's before the 'from' date in the date range
-        test = new GregorianCalendar(1997, 5, 9);
+        test = new GregorianCalendar(year97, month5, day09);
         assertFalse(mDateRange.inRange(test));
 
         // test a calendar that's after the 'to' date in the date range
-        test = new GregorianCalendar(2000, 1, 10);
+        test = new GregorianCalendar(year00, month1, day10);
         assertFalse(mDateRange.inRange(test));
 
         // test calendars on the to and from dates
-        test = new GregorianCalendar(1998, 8, 10);
+        test = new GregorianCalendar(year98, month8, day10);
         assertTrue(mDateRange.inRange(test));
-        test = new GregorianCalendar(1999, 5, 11);
+        test = new GregorianCalendar(year99, month5, day11);
         assertTrue(mDateRange.inRange(test));
     }
 }

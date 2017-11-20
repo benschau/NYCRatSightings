@@ -15,6 +15,7 @@ import cs2340.nycratsightings.model.GraphInfo;
 import cs2340.nycratsightings.model.Sighting;
 
 import static org.junit.Assert.assertEquals;
+import java.util.Comparator;
 
 /**
  * This represents a graphInfoUnitTests object.
