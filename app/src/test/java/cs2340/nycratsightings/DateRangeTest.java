@@ -32,6 +32,41 @@ public class DateRangeTest {
     }
 
     /**
+     * method to test if the dates in the DateRange object are valid.
+     */
+    @Test
+    public void validDateRangeValidator() {
+        final int year1 = 1998;
+        final int year2 = 1999;
+        final int month1 = 8;
+        final int month2 = 5;
+        final int day1 = 10;
+        final int day2 = 11;
+        Calendar from = new GregorianCalendar(year1, month1, day1);
+        Calendar to = new GregorianCalendar(year2, month2, day2);
+
+        // check if the date range is correct, given a valid date in either from or to
+        from.set(MINUTE, 0);
+        from.set(HOUR, 12);
+
+        mDateRange.setFromDate(from);
+        assertTrue(mDateRange.validateDateRange());
+
+        mDateRange.setToDate(to);
+        assertTrue(mDateRange.validateDateRange());
+
+        // check if the date range is incorrect, given a invalid date in either from or to
+        from.set(MINUTE, 50)
+        from.set(HOUR, 12)
+
+        mDateRange.setFromDate(from);
+        assertFalse(mDateRange.validateDateRange());
+
+        mDateRange.setToDate(to);
+        assertFalse(mDateRange.validateDateRange());
+    }
+
+    /**
      * method to test if in range
      */
     @Test

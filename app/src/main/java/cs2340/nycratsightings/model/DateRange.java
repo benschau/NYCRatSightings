@@ -57,6 +57,46 @@ public class DateRange {
      * @return to date
      */
     public Calendar getToDate() { return to; }
+    
+    /**
+     * setFromDate
+     *  Set the raw Calendar object assigned at the beginning of the range.
+     */
+    public void setFromDate(Calendar from) { this.from = from; }
+
+    /**
+     * setToDate
+     *  Set the raw Calendar object assigned at the end of the range.
+     */
+    public void setToDate(Calendar to) { this.to = to; }
+    
+
+    /**
+     * validateDateRange 
+     *  Validate the current calendars of the date range.
+     * @return bool false if either is incorrect, true is both are correct.
+     */
+    public boolean validateDateRange() {
+        if (from.get(DAY_OF_MONTH) > 30 || from.get(DAY_OF_MONTH) < 0)
+            return false;
+            
+        if (to.get(DAY_OF_MONTH) > 30 || to.get(DAY_OF_MONTH) < 0)
+            return false;
+            
+        if (from.get(MONTH) > 12 || from.get(MONTH) < 0)
+            return false;
+            
+        if (to.get(MONTH) > 12 || to.get(MONTH) < 0) 
+            return false;
+
+        if (from.get(MINUTE) != 0 || 
+            from.get(HOUR) != 12)
+            return false;
+
+        if (to.get(MINUTE) != 0 ||
+            to.get(HOUR) != 12)
+            return false;
+    }
 
     /**
      * Checks whether date is in range.
