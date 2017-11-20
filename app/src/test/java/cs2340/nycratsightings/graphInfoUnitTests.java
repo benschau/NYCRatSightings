@@ -112,16 +112,6 @@ public class graphInfoUnitTests {
     public void testNullSightingData() {
         GraphInfo test = new GraphInfo(from, to, nullSightingData);
     }
-
-    /**
-     * The logic for bad dates is unique to the GraphInfo class,
-     * if from is before to, then these two dates are invalid
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testBadDates() {
-        GraphInfo test = new GraphInfo(to, from, filledSightingData);
-    }
-
     /**
      * The GraphInfo should not run in the event that
      * there are no rats currently recorded on the database.

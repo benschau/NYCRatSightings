@@ -1,20 +1,12 @@
 package cs2340.nycratsightings.model;
 
-//import android.util.Log;
 
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-//import java.util.Comparator;
-//import java.util.Date;
-//import java.util.Dictionary;
 import java.util.GregorianCalendar;
-//import java.util.Hashtable;
-//import java.util.IllegalFormatCodePointException;
-//import java.util.List;
-//import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -38,12 +30,12 @@ public class GraphInfo {
      * @throws IllegalArgumentException Exception
      */
     public GraphInfo(Calendar from, Calendar to, ArrayList<Sighting> data) {
+        if (data.isEmpty()) {
+            throw new IllegalArgumentException("Cannot create graph with empty data");
+        }
         final int twelve = 12;
         map = new TreeMap<>();
         int monthsToTraverse;
-        //if (comparator.compare(from, to) > 0) {
-        //    throw new IllegalArgumentException("from can't be greater than to.");
-        //}
 
         DateRange daterange = new DateRange(from, to);
 
