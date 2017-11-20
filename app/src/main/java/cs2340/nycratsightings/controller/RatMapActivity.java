@@ -6,9 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.SwipeDismissBehavior;
+//import android.support.design.widget.SwipeDismissBehavior;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
+//import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -25,19 +25,19 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.FirebaseUser;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+//import java.io.BufferedReader;
+//import java.io.InputStream;
+//import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+//import java.util.GregorianCalendar;
 
 import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.RatMarkerAdapter;
 import cs2340.nycratsightings.model.Sighting;
-import cs2340.nycratsightings.model.SightingData;
+//import cs2340.nycratsightings.model.SightingData;
 import cs2340.nycratsightings.model.DateRange;
 
 /** Represents a RatMapActivity.
@@ -272,7 +272,7 @@ public class RatMapActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         }
 
-        if (mSightings != null && rat != null) {
+        if ((mSightings != null) && (rat != null)) {
             mGMap.moveCamera(CameraUpdateFactory.newLatLng(rat));
         }
 

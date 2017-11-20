@@ -1,7 +1,7 @@
 package cs2340.nycratsightings.model;
 
-import android.content.res.AssetManager;
-import android.content.res.Resources;
+//import android.content.res.AssetManager;
+//import android.content.res.Resources;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -48,9 +48,13 @@ public class SightingData {
                     mSightings = readCSV();
                     Iterator<Sighting> iter = mSightings.iterator();
 
-                    while (iter.hasNext()) {
+                    /*while (iter.hasNext()) {
                         Sighting s = iter.next();
 
+                        addRat(s);
+                    }*/
+                    for (Sighting s : mSightings) {
+                        s = iter.next();
                         addRat(s);
                     }
                 }
@@ -80,9 +84,19 @@ public class SightingData {
             String line;
             reader.readLine(); //skip over header
             while ((line = reader.readLine()) != null) {
+                final int zero = 0;
+                final int one = 1;
+                final int seven = 7;
+                final int eight = 8;
+                final int nine = 9;
+                final int sixteen = 16;
+                final int twenty3 = 23;
+                final int forty9 = 49;
+                final int fifty = 50;
+
                 String[] tokens = line.split(",");
-                String[] relevantData = {tokens[0],tokens[1],tokens[7],tokens[8], tokens[9],
-                        tokens[16], tokens[23], tokens[49], tokens[50]};
+                String[] relevantData = {tokens[zero],tokens[one],tokens[seven],tokens[eight], tokens[nine],
+                        tokens[sixteen], tokens[twenty3], tokens[forty9], tokens[fifty]};
                 Sighting sighting = new Sighting(relevantData);
                 csvData.add(sighting);
             }

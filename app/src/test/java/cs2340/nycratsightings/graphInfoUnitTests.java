@@ -3,11 +3,11 @@ package cs2340.nycratsightings;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,7 +15,7 @@ import cs2340.nycratsightings.model.GraphInfo;
 import cs2340.nycratsightings.model.Sighting;
 
 import static org.junit.Assert.assertEquals;
-import java.util.Comparator;
+//import java.util.Comparator;
 
 /**
  * This represents a graphInfoUnitTests object.
@@ -31,8 +31,8 @@ public class graphInfoUnitTests {
     private ArrayList<Sighting> filledSightingData;
     private TreeMap<Calendar, Integer> map;
     private Map<Calendar, Integer> expected;
-    private Calendar nullfrom;
-    private Calendar nullto;
+    private Calendar nullFrom;
+    private Calendar nullTo;
 
 
     /**
@@ -40,8 +40,16 @@ public class graphInfoUnitTests {
      */
     @Before
     public void setUp() {
-        from = new GregorianCalendar(2017, 4 - 1, 30);
-        to = new GregorianCalendar(2014, 2 - 1, 10);
+        final int year17 = 2017;
+        final int year14 = 2014;
+        final int year15 = 2015;
+        final int three = 3;
+        final int one = 1;
+        final int thirty = 30;
+        final int ten = 10;
+
+        from = new GregorianCalendar(year17, three, thirty);
+        to = new GregorianCalendar(year14, one, ten);
 
         String[] data1 = {"33", "03/2/1990 f", "irrelevant", "irrelevant", "irrelevant"
                 , "irrelevant", "irrelevant", "0", "0"};
@@ -75,29 +83,29 @@ public class graphInfoUnitTests {
         map = test.getMap();
 
         expected = new TreeMap<>();
-        expected.put(new GregorianCalendar(2014, 1, 30), 1);
-        expected.put(new GregorianCalendar(2015, 2, 10), 2);
-        expected.put(new GregorianCalendar(2017, 2, 2), 1);
+        expected.put(new GregorianCalendar(year14, one, thirty), one);
+        expected.put(new GregorianCalendar(year15, one + one, ten), one + one);
+        expected.put(new GregorianCalendar(year17, one + one, one + one), one);
     }
 
     /**
-     * Tests that passing in null variables result in a nullpointer
+     * Tests that passing in null variables result in a null pointer
      * The Activity Class should be the one handling invalid data.
      */
     @Test(expected = NullPointerException.class)
     public void testNullFrom() {
-        GraphInfo test = new GraphInfo(nullfrom, to, filledSightingData);
+        GraphInfo test = new GraphInfo(nullFrom, to, filledSightingData);
     }
     /**
-     * Tests that passing in null variables result in a nullpointer
+     * Tests that passing in null variables result in a null pointer
      * The Activity Class should be the one handling invalid data.
      */
     @Test(expected = NullPointerException.class)
     public void testNullTo() {
-        GraphInfo test = new GraphInfo(from, nullto, filledSightingData);
+        GraphInfo test = new GraphInfo(from, nullTo, filledSightingData);
     }
     /**
-     * Tests that passing in null variables result in a nullpointer
+     * Tests that passing in null variables result in a null pointer
      * The Activity Class should be the one handling invalid data.
      */
     @Test(expected = NullPointerException.class)
@@ -124,7 +132,7 @@ public class graphInfoUnitTests {
     }
 
     /**
-     * tests that the graphinfo's backing map is equal
+     * tests that the graphInfo's backing map is equal
      * to the expected map.
      */
     @Test

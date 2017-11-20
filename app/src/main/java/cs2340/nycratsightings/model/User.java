@@ -1,7 +1,8 @@
 package cs2340.nycratsightings.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
-import java.util.regex.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Model for account information.

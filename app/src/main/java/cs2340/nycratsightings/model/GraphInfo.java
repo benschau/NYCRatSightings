@@ -1,20 +1,20 @@
 package cs2340.nycratsightings.model;
 
-import android.util.Log;
+//import android.util.Log;
 
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Dictionary;
+//import java.util.Comparator;
+//import java.util.Date;
+//import java.util.Dictionary;
 import java.util.GregorianCalendar;
-import java.util.Hashtable;
-import java.util.IllegalFormatCodePointException;
-import java.util.List;
-import java.util.Map;
+//import java.util.Hashtable;
+//import java.util.IllegalFormatCodePointException;
+//import java.util.List;
+//import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -35,9 +35,10 @@ public class GraphInfo {
      * @param from a start month and year pair
      * @param to   an end month and year pair
      * @param data rat data in the form of an array list.
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException Exception
      */
     public GraphInfo(Calendar from, Calendar to, ArrayList<Sighting> data) {
+        final int twelve = 12;
         map = new TreeMap<>();
         int monthsToTraverse;
         //if (comparator.compare(from, to) > 0) {
@@ -59,8 +60,8 @@ public class GraphInfo {
             }
         }
 
-        monthsToTraverse = (to.get(Calendar.YEAR) * 12 + to.get(Calendar.MONTH))
-                - (from.get(Calendar.YEAR) * 12 + from.get(Calendar.MONTH));
+        monthsToTraverse = (((to.get(Calendar.YEAR) * twelve) + to.get(Calendar.MONTH))
+                - ((from.get(Calendar.YEAR) * twelve) + from.get(Calendar.MONTH)));
         //Log.d(TAG, "months traversed: " + monthsToTraverse);
     }
 
@@ -94,14 +95,14 @@ public class GraphInfo {
         String[] elements = date.split(" ");
         String[] dateElements = elements[0].split("/");
         String out = dateElements[0] + " " + dateElements[2];
-        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]), Integer.parseInt(dateElements[0]) - 1, 1);
-        return outvar;
+        Calendar outVar = new GregorianCalendar(Integer.parseInt(dateElements[2]), Integer.parseInt(dateElements[0]) - 1, 1);
+        return outVar;
     }
 
     /**
      * generates a map key given a sighting, this one
      * generates a calendar including day of month
-     * the graph will display dates as differentation for days
+     * the graph will display dates as differentiation for days
      *
      * @param data the data
      * @return the calendar object
@@ -111,8 +112,8 @@ public class GraphInfo {
         String[] elements = date.split(" ");
         String[] dateElements = elements[0].split("/");
         String out = dateElements[0] + " " + dateElements[2];
-        Calendar outvar = new GregorianCalendar(Integer.parseInt(dateElements[2]), Integer.parseInt(dateElements[0]) - 1, Integer.parseInt(dateElements[1]));
-        return outvar;
+        Calendar outVar = new GregorianCalendar(Integer.parseInt(dateElements[2]), Integer.parseInt(dateElements[0]) - 1, Integer.parseInt(dateElements[1]));
+        return outVar;
     }
 
 

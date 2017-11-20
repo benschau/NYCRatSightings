@@ -1,6 +1,6 @@
 package cs2340.nycratsightings.model;
 
-import android.util.Log;
+//import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

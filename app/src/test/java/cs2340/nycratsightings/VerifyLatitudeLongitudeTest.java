@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import cs2340.nycratsightings.controller.AddSightingActivity;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertTrue;
 
 /**
  * This represents a testing object.
@@ -31,7 +31,7 @@ public class VerifyLatitudeLongitudeTest {
      * Verifies latitude with illegal arguments.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void verifyLatitudeIllegalArgumentExeption() {
+    public void verifyLatitudeIllegalArgumentException() {
         addSightingActivity.verifyUserLatitude(null);
     }
 
@@ -47,7 +47,7 @@ public class VerifyLatitudeLongitudeTest {
      * Verifies longitude with illegal arguments.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void verifyLongitudeIllegalArgumentExeption() {
+    public void verifyLongitudeIllegalArgumentException() {
         addSightingActivity.verifyUserLongitude(null);
     }
 

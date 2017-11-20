@@ -9,11 +9,11 @@ import static org.junit.Assert.*;
  * @author Alex on 11/17/17.
  */
 public class UserTest {
-    private User mUser1;
-    private User mUser2;
-    private User mUser3;
-    private User mUser4;
-    private User mUser5;
+    private final User mUser1;
+    private final User mUser2;
+    private final User mUser3;
+    private final User mUser4;
+    private final User mUser5;
 
     /**
      * UserTest Constructor

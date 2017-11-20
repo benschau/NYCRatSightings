@@ -91,8 +91,10 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
      * @return sighting id
      */
     private String generateSightingId() {
+        final int range = 30000000;
+        final int startAt = 31473337;
         Random random = new Random();
-        int r = random.nextInt(30000000) + 31473337;
+        int r = random.nextInt(range) + startAt;
         return Integer.toString(r);
     }
 
@@ -111,13 +113,13 @@ public class AddSightingActivity extends Activity implements View.OnClickListene
      * Verify that user input for latitude can be parsed into a double. If it cannot, then a
      * NumberFormatException is thrown and caught in the the try/catch in the onClick() method.
      *
-     * @param latitute latitude to verify
+     * @param latitude latitude to verify
      */
-    public void verifyUserLatitude(String latitute) {
-        if (latitute == null) {
+    public void verifyUserLatitude(String latitude) {
+        if (latitude == null) {
             throw new IllegalArgumentException("Latitude cannot be null");
         }
-        Double.parseDouble(latitute);
+        Double.parseDouble(latitude);
     }
 
     /**

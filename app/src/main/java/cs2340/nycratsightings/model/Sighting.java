@@ -2,11 +2,11 @@ package cs2340.nycratsightings.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+//import android.util.Log;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 

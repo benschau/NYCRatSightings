@@ -3,8 +3,8 @@ package cs2340.nycratsightings.controller;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
-import android.icu.text.NumberFormat;
+//import android.content.res.Resources;
+//import android.icu.text.NumberFormat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Switch;
+//import android.widget.Switch;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.jjoe64.graphview.GraphView;
@@ -25,7 +25,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
+//import java.util.Comparator;
 import java.util.GregorianCalendar;
 
 import cs2340.nycratsightings.R;
@@ -34,7 +34,7 @@ import cs2340.nycratsightings.model.GraphInfo;
 import cs2340.nycratsightings.model.Sighting;
 
 /**
- * Represents a graphvisualizer object
+ * Represents a graphVisualizer object
  */
 public class GraphVisualizer extends AppCompatActivity implements DialogInterface.OnDismissListener {
 
@@ -184,8 +184,12 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
      *  Graph the current rat data.
      */
     private void updateGraph() {
-        Calendar fromDefault = new GregorianCalendar(2015,7,3);
-        Calendar toDefault = new GregorianCalendar(2015,10,3);
+        final int year15 = 2015;
+        final int seven = 7;
+        final int ten = 10;
+        final int three = 3;
+        Calendar fromDefault = new GregorianCalendar(year15,seven,three);
+        Calendar toDefault = new GregorianCalendar(year15,ten,three);
         LineGraphSeries<DataPoint> graphData;
         mSightings = SplashActivity.mSightingData.getRatData();
         int[] dummy = {0};
@@ -225,7 +229,7 @@ public class GraphVisualizer extends AppCompatActivity implements DialogInterfac
 
     /**
      * signOut
-     *  Sign out of Firebase.
+     *  Sign out of Fire base.
      */
     private void signOut() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
