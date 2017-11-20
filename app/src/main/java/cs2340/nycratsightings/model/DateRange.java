@@ -12,8 +12,8 @@ import java.util.GregorianCalendar;
  */
 public class DateRange {
     private final String TAG = "DateRange";
-    private final Calendar from;
-    private final Calendar to;
+    private Calendar from;
+    private Calendar to;
 
     /**
      * DateRange constructor.
@@ -77,25 +77,16 @@ public class DateRange {
      * @return bool false if either is incorrect, true is both are correct.
      */
     public boolean validateDateRange() {
-        if (from.get(DAY_OF_MONTH) > 30 || from.get(DAY_OF_MONTH) < 0)
-            return false;
-            
-        if (to.get(DAY_OF_MONTH) > 30 || to.get(DAY_OF_MONTH) < 0)
-            return false;
-            
-        if (from.get(MONTH) > 12 || from.get(MONTH) < 0)
-            return false;
-            
-        if (to.get(MONTH) > 12 || to.get(MONTH) < 0) 
+
+        if (from.get(Calendar.MINUTE) != 0 &&
+            from.get(Calendar.HOUR) != 12)
             return false;
 
-        if (from.get(MINUTE) != 0 || 
-            from.get(HOUR) != 12)
+        if (to.get(Calendar.MINUTE) != 0 &&
+            to.get(Calendar.HOUR) != 12)
             return false;
 
-        if (to.get(MINUTE) != 0 ||
-            to.get(HOUR) != 12)
-            return false;
+        return true;
     }
 
     /**

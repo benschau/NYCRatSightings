@@ -46,18 +46,18 @@ public class DateRangeTest {
         Calendar to = new GregorianCalendar(year2, month2, day2);
 
         // check if the date range is correct, given a valid date in either from or to
-        from.set(MINUTE, 0);
-        from.set(HOUR, 12);
+        from.set(Calendar.MINUTE, 0);
+        from.set(Calendar.HOUR, 12);
 
         mDateRange.setFromDate(from);
         assertTrue(mDateRange.validateDateRange());
 
-        mDateRange.setToDate(to);
+        mDateRange.setToDate(from);
         assertTrue(mDateRange.validateDateRange());
 
         // check if the date range is incorrect, given a invalid date in either from or to
-        from.set(MINUTE, 50)
-        from.set(HOUR, 12)
+        from.set(Calendar.MINUTE, 50);
+        from.set(Calendar.HOUR, 12);
 
         mDateRange.setFromDate(from);
         assertFalse(mDateRange.validateDateRange());
