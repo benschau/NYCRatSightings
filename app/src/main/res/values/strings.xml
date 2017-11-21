@@ -38,5 +38,6 @@
 
     <!-- Graphs -->
     <string name="title_graph">Graphs</string>
+    <string name="empty_from_to">From and To dates cannot be empty</string>
 
 </resources>

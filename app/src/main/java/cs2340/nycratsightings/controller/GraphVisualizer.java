@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -61,56 +62,60 @@ public class GraphVisualizer extends AppCompatActivity implements View.OnClickLi
             case R.id.update_graph:
                 String fromDateString = mDateFrom.getText().toString();
                 String toDateString = mDateTo.getText().toString();
-                try {
-                    mGraphData = SplashActivity.mSightingData.getLineChartRatData(fromDateString, toDateString);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                /**
-                 * Loop through hash map and create an Entry object. The variable 'i' is used to set
-                 * the x-axis values for each entry so that each entry is plotted at regular
-                 * intervals.
-                 * A separate list is created that contains the HashMaps' keys which are used as
-                 * labels for the x-axis.
-                 * The entries are then added to an entries list which is used to populate the
-                 * chart.
-                 */
-                List<Entry> entries = new ArrayList<Entry>();
-                final List<String> xAxisLabels = new ArrayList<String>();
-                int i = 0;
-                for (String key : mGraphData.keySet()) {
-                    xAxisLabels.add(key);
-                    Log.e("key and value", key + " " + mGraphData.get(key)); // TODO: DEBUG
-                    entries.add(new Entry(i, mGraphData.get(key)));
-                    i++;
-                }
-
-                /**
-                 * Create a formatter to set the labels for each data point on the x-axis to its
-                 * corresponding date.
-                 */
-                IAxisValueFormatter formatter = new IAxisValueFormatter() {
-                    @Override
-                    public String getFormattedValue(float value, AxisBase axis) {
-                        return xAxisLabels.get((int) value);
+                if (fromDateString.isEmpty() || toDateString.isEmpty()) {
+                    Toast.makeText(GraphVisualizer.this, R.string.empty_from_to, Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        mGraphData = SplashActivity.mSightingData.getLineChartRatData(fromDateString, toDateString);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
-                };
-                XAxis xAxis = mChart.getXAxis();
-                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                xAxis.setGranularity(1f); // Set minimum axis-step interval to 1
-                xAxis.setValueFormatter(formatter);
+                    /**
+                     * Loop through hash map and create an Entry object. The variable 'i' is used to set
+                     * the x-axis values for each entry so that each entry is plotted at regular
+                     * intervals.
+                     * A separate list is created that contains the HashMaps' keys which are used as
+                     * labels for the x-axis.
+                     * The entries are then added to an entries list which is used to populate the
+                     * chart.
+                     */
+                    List<Entry> entries = new ArrayList<Entry>();
+                    final List<String> xAxisLabels = new ArrayList<String>();
+                    int i = 0;
+                    for (String key : mGraphData.keySet()) {
+                        xAxisLabels.add(key);
+                        // TODO: DEBUG STATEMENT
+                        Log.e("key and value", key + " " + mGraphData.get(key));
+                        entries.add(new Entry(i, mGraphData.get(key)));
+                        i++;
+                    }
 
-                /**
-                 * Create data set, add to chart, and style.
-                 */
-                LineDataSet dataSet = new LineDataSet(entries, "Rat Frequency");
-                LineData lineData = new LineData(dataSet);
-                dataSet.setDrawFilled(true);
-                mChart.setData(lineData);
-                mChart.animateY(3000);
-                mChart.invalidate();
-                break;
+                    /**
+                     * Create a formatter to set the labels for each data point on the x-axis to its
+                     * corresponding date.
+                     */
+                    IAxisValueFormatter formatter = new IAxisValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value, AxisBase axis) {
+                            return xAxisLabels.get((int) value);
+                        }
+                    };
+                    XAxis xAxis = mChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setGranularity(1f); // Set minimum axis-step interval to 1
+                    xAxis.setValueFormatter(formatter);
+
+                    /**
+                     * Create data set, add to chart, and style.
+                     */
+                    LineDataSet dataSet = new LineDataSet(entries, "Rat Frequency");
+                    LineData lineData = new LineData(dataSet);
+                    dataSet.setDrawFilled(true);
+                    mChart.setData(lineData);
+                    mChart.animateY(3000);
+                    mChart.invalidate();
+                    break;
+                }
             default:
                 break;
         }
