@@ -1,7 +1,5 @@
 package cs2340.nycratsightings.model;
 
-//import android.content.res.AssetManager;
-//import android.content.res.Resources;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,8 +12,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 /** This class manages the list of sightings in the model
  * @author Lucas & co.
@@ -154,6 +156,44 @@ public class SightingData {
 
             }
         });
+    }
+
+    /**
+     * Convert input strings representing 'from' and 'to' dates into Date objects. The method then
+     * loops through the array list of sightings in the database, retrieves the date for each
+     * sighting, and compares it to the 'from' and 'to' boundaries set by the user. If the sighting
+     * is within these dates, then the data point is added to the hashmap if it is not there or else
+     * the value associated with that date in the hashmap is incremented by one.
+     *
+     * @param from from date for sightings to display
+     * @param to to date for sightings to display
+     * @return HashMap containing the number of rat sightings for each date
+     * @throws ParseException
+     */
+    public LinkedHashMap<String, Integer> getLineChartRatData(String from, String to) throws ParseException {
+        SimpleDateFormat sourceFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date fromDate = sourceFormat.parse(from);
+        Date toDate = sourceFormat.parse(to);
+        /**
+         * LinkedHashMap is used to keep the order in which dates are added to the HashMap. This is
+         * important when looping through the HashMap and adding entries to the graph to ensure that
+         * the dates are in the correct order.
+         */
+        LinkedHashMap<String, Integer> lineChartData = new LinkedHashMap<>();
+        for (Sighting s : mSightings) {
+            String cd = s.getCreationDate();
+            Date cdDate = sourceFormat.parse(cd);
+            if ((cdDate.equals(fromDate) || cdDate.after(fromDate)) && (cdDate.equals(toDate) || cdDate.before(toDate))) {
+                // Retrive the mm/dd/yyyy from the date and ignores the hh:mm:ss
+                String cdNoTime = cd.substring(0, 10);
+                if (lineChartData.containsKey(cdNoTime)) {
+                    lineChartData.put(cdNoTime, lineChartData.get(cdNoTime) + 1);
+                } else {
+                    lineChartData.put(cdNoTime, 1);
+                }
+            }
+        }
+        return lineChartData;
     }
 }
 
