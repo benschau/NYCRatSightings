@@ -1,9 +1,12 @@
 package cs2340.nycratsightings.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /** Represents an Admin.
  * @author --
  * @version 1.0
  */
+@IgnoreExtraProperties
 public class Admin extends User {
 
     /**

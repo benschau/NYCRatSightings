@@ -34,6 +34,18 @@ public class User {
     }
 
     /**
+     * Get the user's email.
+     * @return email as a String
+     */
+    public String getEmail() { return mEmail; }
+
+    /**
+     * Set the user's email.
+     * @param email to set as current email
+     */
+    public void setEmail(String email) { mEmail = email; }
+
+    /**
      * Tests the validity of the user's email address
      * @return whether user email matches regular expression
      */
