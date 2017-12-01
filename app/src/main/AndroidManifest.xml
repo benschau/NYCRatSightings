@@ -64,6 +64,11 @@
             android:name=".controller.GraphVisualizer"
             android:label="GraphVisualizer"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.AboutActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_about"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

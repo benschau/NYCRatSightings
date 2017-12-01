@@ -7,6 +7,19 @@
     <string name="about">About</string>
     <string name="submit">Submit</string>
 
+    <string name="about_content">
+        Keeping track of one rat at a time.
+        You're welcome, you can thank us later.
+    </string>
+
+    <string name="authors">
+        Gerardo Prada,
+        Mariam Marzouk,
+        Alex Zhang,
+        Lucas Liu,
+        Benson Chau
+    </string>
+
     <string name="passwd_txtview">Password</string>
     <string name="register_txtview">Register Here</string>
     <string name="email_txtview">Email</string>
@@ -39,5 +52,9 @@
     <!-- Graphs -->
     <string name="title_graph">Graphs</string>
     <string name="empty_from_to">From and To dates cannot be empty</string>
+
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

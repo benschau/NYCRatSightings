@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.startActivity(new Intent(this, RatMapActivity.class));
                 break;
             case R.id.about:
+                this.startActivity(new Intent(this, AboutActivity.class));
                 break;
             case R.id.goToGraph:
                 this.startActivity(new Intent(this,GraphVisualizer.class));
