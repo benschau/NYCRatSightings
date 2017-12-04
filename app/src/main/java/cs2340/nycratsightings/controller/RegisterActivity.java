@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * @param uid the user id
      * @param email the user's email
      */
-    private void writeNewUser(String uid, String email) {
+    public void writeNewUser(String uid, String email) {
         User user;
         Admin admin;
         String tag;

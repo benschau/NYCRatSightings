@@ -43,8 +43,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="1dp"
         android:text="@string/login_button" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fblogin"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/cancelLogin"
@@ -62,4 +68,6 @@
         android:clickable="true"
         android:onClick=""
         android:text="@string/register_txtview" />
+
+
 </LinearLayout>

@@ -21,7 +21,7 @@ public class User {
     /**
      * Default constructor. Needed for DataSnapshot.getValue(User.class)
      */
-     User() {
+     public User() {
 
     }
 

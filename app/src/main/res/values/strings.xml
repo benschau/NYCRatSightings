@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">NYCRatSightings</string>
 
+    <string name="facebook_app_id">372778476479750</string>
+    <string name="fb_login_protocol_scheme">fb372778476479750</string>
+
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
     <string name="sign_out">Sign Out</string>

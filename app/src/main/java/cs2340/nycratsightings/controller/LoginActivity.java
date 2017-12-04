@@ -11,13 +11,28 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONObject;
 
 import cs2340.nycratsightings.R;
+import cs2340.nycratsightings.model.User;
 
 /** Represents a LoginActivity.
  * @author Benson
@@ -28,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private final String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +51,47 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         final Button logIn = findViewById(R.id.login);
+        final LoginButton fbLogIn = findViewById(R.id.fblogin);
         final Button cancelLogin = findViewById(R.id.cancelLogin);
         final TextView signUp = findViewById(R.id.signup);
+
+        fbLogIn.setReadPermissions("email");
+
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        final AccessToken accessToken = loginResult.getAccessToken();
+                        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+                        final User fbUser = new User();
+
+                        Log.d(TAG, "UID: " + accessToken.getUserId() + "\n" +
+                                        "Auth Content: " + accessToken.getToken());
+
+                        GraphRequestAsyncTask request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                fbUser.setEmail(object.optString("email"));
+
+                                Log.d(TAG, "Email: " + fbUser.getEmail());
+
+                                mRef.child("users").child(accessToken.getUserId()).setValue(fbUser);
+                            }
+                        }).executeAsync();
+
+                        toMain();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                    }
+                }
+        );
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -91,6 +146,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
