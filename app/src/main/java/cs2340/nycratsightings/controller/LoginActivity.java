@@ -23,16 +23,33 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GithubAuthCredential;
+import com.google.firebase.auth.GithubAuthProvider;
+import com.google.firebase.auth.TwitterAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterAuthClient;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import org.json.JSONObject;
 
 import cs2340.nycratsightings.R;
 import cs2340.nycratsightings.model.User;
+import io.fabric.sdk.android.Fabric;
 
 /** Represents a LoginActivity.
  * @author Benson
@@ -44,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private CallbackManager callbackManager;
+    private TwitterLoginButton twitterLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +72,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final LoginButton fbLogIn = findViewById(R.id.fblogin);
         final Button cancelLogin = findViewById(R.id.cancelLogin);
         final TextView signUp = findViewById(R.id.signup);
+        twitterLogin = findViewById(R.id.twitterlogin);
 
         fbLogIn.setReadPermissions("email");
+
+        twitterLogin.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                Log.d(TAG, "Twitter Username: " + result.data.getUserName());
+                handleTwitterLogin(result.data);
+            }
+
+            @Override
+            public void failure(TwitterException e) {
+            }
+        });
 
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager,
@@ -152,6 +183,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        if (TwitterAuthConfig.DEFAULT_AUTH_REQUEST_CODE == resultCode) {
+            twitterLogin.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     /**
@@ -159,6 +194,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     private void toMain() {
         this.startActivity(new Intent(this, MainActivity.class));
+    }
+
+    /**
+     * Method handles Twitter login.
+     */
+    private void handleTwitterLogin(TwitterSession session) {
+        AuthCredential credential = TwitterAuthProvider.getCredential(
+                session.getAuthToken().token,
+                session.getAuthToken().secret
+        );
+
+        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, R.string.login_failed,
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.d(TAG, "signInWithCredential (Twitter): " + task.isSuccessful());
+                            FirebaseUser user = task.getResult().getUser();
+                            User twitterUser = new User(user.getEmail());
+
+                            mRef.child(user.getUid()).child(user.getEmail()).setValue(twitterUser);
+
+                            toMain();
+                        }
+                    }
+                });
     }
 
     /**
@@ -179,9 +244,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (!task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, R.string.login_failed,
                                     Toast.LENGTH_SHORT).show();
+                        } else {
+                            //checkIfEmailValidated();
+                            toMain();
                         }
                     }
                 });
     }
 
+    /*
+    private void checkIfEmailValidated() {
+        if (!mAuth.getCurrentUser().isEmailVerified()) {
+            Toast.makeText(LoginActivity.this, "Email hasn't been verified.",
+                    Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+        } else {
+            toMain();
+        }
+    } */
 }

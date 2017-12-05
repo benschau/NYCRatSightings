@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * @param uid the user id
      * @param email the user's email
      */
-    public void writeNewUser(String uid, String email) {
+    private void writeNewUser(String uid, String email) {
         User user;
         Admin admin;
         String tag;
@@ -81,6 +81,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             tag = "users";
             ref.child(tag).child(uid).setValue(user);
         }
+
+        /*
+        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Verification email sent to " + mAuth.getCurrentUser().getEmail(),
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Failed to send verification email to " + mAuth.getCurrentUser().getEmail(),
+                            Toast.LENGTH_LONG).show();
+
+                }
+            }
+        }); */
     }
 
     /**
@@ -98,10 +113,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-
                             Toast.makeText(RegisterActivity.this, R.string.register_failed,
                                     Toast.LENGTH_SHORT).show();
-
                         } else {
                             FirebaseUser user = task.getResult().getUser();
 
@@ -111,6 +124,5 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         }
                     }
                 });
-
     }
 }

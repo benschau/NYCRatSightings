@@ -3,8 +3,12 @@
 
     <string name="facebook_app_id">372778476479750</string>
     <string name="fb_login_protocol_scheme">fb372778476479750</string>
+    <string name="twitter_consumer_key" translatable="false">HmQAf5LTsKDgNCnxwnULzlX7M</string>
+    <string name="twitter_consumer_secret" translatable="false">7sakJt07SCIKJcOfooPjS7qrtwT75mHY1Z2dXSlmx2ltvnyYbB</string>
+    <string name="fabric_api_key">cce05201b02256e06522dcafd0f7dbbbb1dd0dc7</string>
 
     <string name="login_button">Login</string>
+    <string name="gitlogin_button">Login with Github</string>
     <string name="register_button">Register</string>
     <string name="sign_out">Sign Out</string>
     <string name="about">About</string>
